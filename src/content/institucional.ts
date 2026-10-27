@@ -169,3 +169,11 @@ export const contato = {
     { titulo: "Como consumidor", texto: "Você também pode registrar uma reclamação na plataforma oficial do governo.", link: { rotulo: "consumidor.gov.br", href: "https://www.consumidor.gov.br/" } },
   ],
 };
+
+export const obrigado = {
+  texto: pendente(
+    "prazo-retorno",
+    "Vamos falar com você em até 1 dia útil, em horário comercial.",
+    "Prazo de retorno do formulário (COPY.md › Microcopy)",
+  ),
+};

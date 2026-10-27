@@ -5,7 +5,7 @@ import { contato as c } from "@/content/institucional";
 import { exibir, formatarTelefone } from "@/lib/dados";
 import { rotas } from "@/content/navegacao";
 import { TopoInterno } from "@/components/paginas/topo-interno";
-import { CampoSelecao, CampoTexto } from "@/components/gwl/campo";
+import { FormularioContato } from "@/components/gwl/formulario-contato";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 /**
  * Contato (APP_FLOW › Fluxo 3; harness R12, R17, R25). O formulário segue o SCHEMA.md (sem dado de saúde, CPF ou
- * de terceiros). O envio é ligado na etapa 8 (Cloudflare Function + Supabase); até lá o botão fica desativado.
+ * de terceiros). O envio vai para a função da Cloudflare /api/contato (functions/api/contato.ts).
  */
 export default function Contato() {
   const { whatsapp, telefone, email, horarioAtendimento, endereco } = empresa;
@@ -60,40 +60,17 @@ export default function Contato() {
             <h2 id="t-form" className="text-h2-cel md:text-h2">{c.formulario.titulo}</h2>
             <p className="mt-6 max-w-[40ch] text-grafite">{c.formulario.texto}</p>
           </div>
-          <form aria-labelledby="t-form" className="space-y-6" noValidate>
-            <CampoTexto id="nome" rotulo="Seu nome" autoComplete="name" minLength={2} maxLength={120} />
-            <CampoTexto
-              id="telefone"
-              rotulo="Telefone ou WhatsApp com DDD"
-              type="tel"
-              inputMode="tel"
-              autoComplete="tel"
-              dica="Exemplo: (11) 91234-5678"
-            />
-            <CampoSelecao id="para_quem" rotulo="Para quem é o plano" opcoes={c.formulario.paraQuem} />
-            <CampoTexto
-              id="hospital_preferido"
-              rotulo="Hospital que você quer usar"
-              opcional
-              maxLength={120}
-              dica="Só o nome do hospital. Não informe doenças, tratamentos ou dados de outras pessoas."
-            />
-            <CampoSelecao id="melhor_horario" rotulo="Melhor horário para ligarmos" opcoes={c.formulario.horarios} />
-            <div className="space-y-4 border-t border-fio pt-6">
-              <p className="m-0 text-nota text-musgo">
-                Usamos estes dados só para retornar o seu contato sobre planos de saúde. Veja a{" "}
+          <FormularioContato
+            paraQuem={c.formulario.paraQuem}
+            horarios={c.formulario.horarios}
+            siteKeyTurnstile={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || undefined}
+            aviso={
+              <>
+                Usamos estes dados só para retornar o seu contato sobre planos de saúde. Não pedimos dados de saúde aqui. Veja a{" "}
                 <Link href={rotas.privacidade}>política de privacidade</Link>.
-              </p>
-              <button
-                type="submit"
-                disabled
-                className="inline-flex min-h-15 items-center rounded-full bg-noite px-7 text-corpo font-medium text-nevoa disabled:opacity-50"
-              >
-                Quero receber o contato
-              </button>
-              <p className="m-0 text-nota text-musgo">Envio do formulário em ativação. Enquanto isso, fale com a GWL pelo WhatsApp.</p>
-            </div>
-          </form>
+              </>
+            }
+          />
         </div>
       </section>
 

@@ -1,0 +1,214 @@
+/**
+ * Cloudflare Pages Function: POST /api/contato (APP_FLOW › Fluxo 2; docs/SCHEMA.md).
+ *
+ * Camadas, nesta ordem: método e origem → tamanho → honeypot → validação (Zod) → Turnstile →
+ * restrição da prévia → registrar_lead() no Supabase com a service role → aviso por e-mail (Resend).
+ * Falha no e-mail não perde o lead: o registro já está no banco, e o erro vai para o log sem dados pessoais.
+ *
+ * Variáveis (Cloudflare › Settings › Variables; nunca no código):
+ *   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, TURNSTILE_SECRET_KEY, RESEND_API_KEY, LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM,
+ *   ACEITAR_LEADS ("teste" na prévia: só aceita nomes que começam com "TESTE"; "todos" em produção),
+ *   TURNSTILE_VERIFY_URL (opcional, só para testes locais).
+ */
+import { z } from "zod";
+import {
+  AVISO_PRIVACIDADE_VERSAO,
+  MELHOR_HORARIO,
+  MENSAGENS,
+  PARA_QUEM,
+  normalizarTelefone,
+  type RespostaContato,
+} from "../../src/lib/lead.ts";
+
+export type Env = {
+  SUPABASE_URL: string;
+  SUPABASE_SERVICE_ROLE_KEY: string;
+  TURNSTILE_SECRET_KEY: string;
+  RESEND_API_KEY?: string;
+  LEAD_NOTIFY_TO?: string;
+  LEAD_NOTIFY_FROM?: string;
+  ACEITAR_LEADS?: string;
+  TURNSTILE_VERIFY_URL?: string;
+};
+
+type Contexto = { request: Request; env: Env; waitUntil?: (p: Promise<unknown>) => void };
+
+const TAMANHO_MAXIMO = 4096;
+
+const esquema = z.object({
+  nome: z.string().trim().min(2, MENSAGENS.nome).max(120, MENSAGENS.nome),
+  telefone: z
+    .string()
+    .transform(normalizarTelefone)
+    .pipe(z.string().regex(/^[1-9][0-9]{9,10}$/, MENSAGENS.telefone)),
+  para_quem: z.enum(PARA_QUEM, { error: MENSAGENS.para_quem }),
+  hospital_preferido: z.string().trim().max(120, MENSAGENS.hospital_preferido).optional().default(""),
+  melhor_horario: z.enum(MELHOR_HORARIO, { error: MENSAGENS.melhor_horario }).optional().default("qualquer"),
+  pagina_origem: z
+    .string()
+    .max(200)
+    .regex(/^\/[^\s]*$/)
+    .optional()
+    .default("/contato/"),
+  utm_source: z.string().max(100).optional().default(""),
+  utm_medium: z.string().max(100).optional().default(""),
+  utm_campaign: z.string().max(100).optional().default(""),
+  turnstile: z.string().min(1).max(2048),
+  empresa_site: z.string().optional().default(""), // honeypot: pessoas não preenchem
+});
+
+function json(corpo: RespostaContato, status: number): Response {
+  return new Response(JSON.stringify(corpo), {
+    status,
+    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" },
+  });
+}
+
+function origemPermitida(request: Request): boolean {
+  const origem = request.headers.get("origin");
+  if (!origem) return false;
+  try {
+    return new URL(origem).host === new URL(request.url).host;
+  } catch {
+    return false;
+  }
+}
+
+async function turnstileValido(token: string, ip: string | null, env: Env): Promise<boolean> {
+  const corpo = new FormData();
+  corpo.append("secret", env.TURNSTILE_SECRET_KEY);
+  corpo.append("response", token);
+  if (ip) corpo.append("remoteip", ip);
+  const url = env.TURNSTILE_VERIFY_URL || "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+  try {
+    const r = await fetch(url, { method: "POST", body: corpo });
+    const dados = (await r.json()) as { success?: boolean };
+    return dados.success === true;
+  } catch {
+    return false;
+  }
+}
+
+const rotuloParaQuem: Record<string, string> = {
+  eu: "Para a própria pessoa",
+  familia: "Família",
+  pais_60_mais: "Pais (60+)",
+  empresa: "Empresa",
+  mei_autonomo: "MEI ou autônomo",
+  trocar_plano: "Quer trocar de plano",
+};
+
+async function avisarPorEmail(lead: z.infer<typeof esquema>, env: Env): Promise<void> {
+  if (!env.RESEND_API_KEY || !env.LEAD_NOTIFY_TO || !env.LEAD_NOTIFY_FROM) {
+    console.error("[contato] aviso por e-mail não configurado; lead gravado no banco");
+    return;
+  }
+  const linhas = [
+    `Nome: ${lead.nome}`,
+    `Telefone: ${lead.telefone}`,
+    `Para quem: ${rotuloParaQuem[lead.para_quem]}`,
+    `Hospital: ${lead.hospital_preferido || "não informado"}`,
+    `Melhor horário: ${lead.melhor_horario}`,
+    `Página: ${lead.pagina_origem}`,
+  ];
+  try {
+    const r = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, "content-type": "application/json" },
+      body: JSON.stringify({
+        from: env.LEAD_NOTIFY_FROM,
+        to: env.LEAD_NOTIFY_TO.split(",").map((s) => s.trim()),
+        subject: "Novo pedido de contato pelo site",
+        text: `${linhas.join("\n")}\n\nO pedido também está no painel do Supabase (tabela leads).`,
+      }),
+    });
+    if (!r.ok) console.error(`[contato] e-mail de aviso falhou (status ${r.status}); lead gravado no banco`);
+  } catch {
+    console.error("[contato] e-mail de aviso falhou (rede); lead gravado no banco");
+  }
+}
+
+export async function onRequestPost({ request, env, waitUntil }: Contexto): Promise<Response> {
+  if (!origemPermitida(request)) return json({ ok: false, erro: "bloqueado" }, 403);
+
+  const texto = await request.text();
+  if (texto.length > TAMANHO_MAXIMO) return json({ ok: false, erro: "bloqueado" }, 403);
+
+  let bruto: unknown;
+  try {
+    bruto = JSON.parse(texto);
+  } catch {
+    return json({ ok: false, erro: "bloqueado" }, 400);
+  }
+
+  // Honeypot antes da validação: robôs recebem a mesma resposta genérica de bloqueio.
+  if (typeof bruto === "object" && bruto && "empresa_site" in bruto && (bruto as { empresa_site?: unknown }).empresa_site) {
+    return json({ ok: false, erro: "bloqueado" }, 403);
+  }
+
+  const analise = esquema.safeParse(bruto);
+  if (!analise.success) {
+    const campos: Record<string, string> = {};
+    for (const problema of analise.error.issues) {
+      const campo = String(problema.path[0] ?? "");
+      if (campo in MENSAGENS && !campos[campo]) campos[campo] = problema.message;
+    }
+    if (Object.keys(campos).length === 0) return json({ ok: false, erro: "bloqueado" }, 400);
+    return json({ ok: false, erro: "validacao", campos }, 400);
+  }
+  const lead = analise.data;
+
+  if (!(await turnstileValido(lead.turnstile, request.headers.get("cf-connecting-ip"), env))) {
+    return json({ ok: false, erro: "bloqueado" }, 403);
+  }
+
+  // Prévia (harness, Anexo D): só envios de teste da equipe.
+  if (env.ACEITAR_LEADS !== "todos" && !lead.nome.toUpperCase().startsWith("TESTE")) {
+    return json({ ok: false, erro: "previa" }, 403);
+  }
+
+  let r: Response;
+  try {
+    r = await fetch(`${env.SUPABASE_URL}/rest/v1/rpc/registrar_lead`, {
+      method: "POST",
+      headers: {
+        apikey: env.SUPABASE_SERVICE_ROLE_KEY,
+        authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        p_nome: lead.nome,
+        p_telefone: lead.telefone,
+        p_para_quem: lead.para_quem,
+        p_hospital: lead.hospital_preferido,
+        p_melhor_horario: lead.melhor_horario,
+        p_pagina_origem: lead.pagina_origem,
+        p_utm_source: lead.utm_source,
+        p_utm_medium: lead.utm_medium,
+        p_utm_campaign: lead.utm_campaign,
+        p_aviso_versao: AVISO_PRIVACIDADE_VERSAO,
+      }),
+    });
+  } catch {
+    console.error("[contato] Supabase inacessível");
+    return json({ ok: false, erro: "falha" }, 500);
+  }
+
+  if (!r.ok) {
+    const erro = (await r.json().catch(() => ({}))) as { message?: string; code?: string };
+    if (erro.message === "limite_envios") return json({ ok: false, erro: "limite" }, 429);
+    console.error(`[contato] registrar_lead falhou (status ${r.status}, código ${erro.code ?? "?"})`);
+    return json({ ok: false, erro: "falha" }, 500);
+  }
+
+  const envio = avisarPorEmail(lead, env);
+  if (waitUntil) waitUntil(envio);
+  else await envio;
+
+  return json({ ok: true }, 200);
+}
+
+export async function onRequest({ request }: Contexto): Promise<Response> {
+  if (request.method === "POST") return json({ ok: false, erro: "falha" }, 500);
+  return new Response(null, { status: 405, headers: { allow: "POST" } });
+}

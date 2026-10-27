@@ -35,3 +35,7 @@ npm-debug.log*
 
 # Impeccable: estado local do live server
 .impeccable/live/
+
+# Wrangler (variáveis locais)
+.dev.vars
+.wrangler/
