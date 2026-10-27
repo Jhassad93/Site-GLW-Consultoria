@@ -41,11 +41,12 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): imagens ainda como blocos descritos (aguardam `docs/IMAGENS.md`). Critique do Impeccable (revisão de design + detector) aplicada: notas informativas a 16px, menu do celular sólido com botão do WhatsApp, carrossel abre no primeiro card, vizinhos a 60%, atalhos de hospital dizem que abrem o WhatsApp, perfis duplicados removidos. Review de animações: sublinhado de navegação só em aparelho com mouse. Pendências de conteúdo registradas em `src/content/home.ts` bloqueiam o build de produção (16 no total).
 
 ## Etapa 4 — Páginas por perfil
-- [ ] Modelo comum: topo da persona, dores e o que a GWL explica, perguntas da persona, chamada para o WhatsApp com mensagem pronta do perfil
-- [ ] `/planos-de-saude-60-mais`, `/planos-de-saude-familia`, `/planos-de-saude-empresas`, `/planos-de-saude-mei`, `/trocar-de-plano`
-- [ ] Atenção especial: R24 e R25 (60+ e família), R26 (MEI: regras de 6 meses de CNPJ, sem incentivo a MEI de fachada), R27 (empresas), portabilidade marcada "a conferir" até checar a norma da ANS (trocar)
-- [ ] Prints e critique
+- [x] Modelo comum: topo da persona, dores e o que a GWL explica, perguntas da persona, chamada para o WhatsApp com mensagem pronta do perfil
+- [x] `/planos-de-saude-60-mais`, `/planos-de-saude-familia`, `/planos-de-saude-empresas`, `/planos-de-saude-mei`, `/trocar-de-plano`
+- [x] Atenção especial: R24 e R25 (60+ e família), R26 (MEI: regras de 6 meses de CNPJ, sem incentivo a MEI de fachada), R27 (empresas), portabilidade marcada "a conferir" até checar a norma da ANS (trocar)
+- [x] Prints e critique
 - Pronto quando: as cinco páginas completas, cada uma com uma palavra-chave principal no título e no H1, harness sem alertas 🔴
+- Notas (27/10/2026): botão principal com o rótulo único "Falar com a GWL" e mensagem pronta do perfil. Palavra-chave como primeira linha do H1. Critique aplicada: rótulos "O que preocupa / O que explicamos", atalhos de hospital em 60+, família e trocar, par "Quando não faz sentido" no MEI, "Não é o seu caso?" alinhado, bloco de imagem fora da árvore de acessibilidade. Portabilidade e pós-venda seguem "a confirmar" (bloqueiam produção).
 
 ## Etapa 5 — Guias
 - [ ] `/guias` (índice), modelo de guia por hospital e por bairro gerados a partir de um arquivo de dados com **data de referência obrigatória** (o build falha sem data; R28)

@@ -20,6 +20,8 @@ export type ConteudoPerfil = {
   abertura: string;
   imagem?: { id: string; descricao: string };
   pares: { titulo: string; preocupacao: string; resposta: string }[];
+  /** Mostra os atalhos de hospital (personas para quem o hospital é o critério nº 1). */
+  hospitais?: boolean;
   perguntas: { pergunta: string; resposta: string }[];
 };
 
@@ -44,6 +46,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
     abertura:
       "Depois dos 60, o plano mais barato hoje pode não ser o mais sustentável amanhã. Comparamos opções pela rede e explicamos o reajuste de cada tipo de contrato antes da escolha.",
     imagem: { id: "IMG-09", descricao: "Imagem IMG-09 · pai de 70 anos caminhando no parque com a filha" },
+    hospitais: true,
     pares: [
       {
         titulo: "O hospital deles",
@@ -104,6 +107,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
     abertura:
       "Pediatria, pronto-socorro e maternidade na zona norte: começamos pelos lugares que vocês já usam. Explicamos carência de parto, coparticipação e acomodação sem pressa.",
     imagem: { id: "IMG-10", descricao: "Imagem IMG-10 · pai com o filho nos ombros numa feira de bairro" },
+    hospitais: true,
     pares: [
       {
         titulo: "Pronto-socorro e maternidade",
@@ -134,7 +138,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
       {
         pergunta: "Quanto tempo de carência para parto?",
         resposta:
-          "Até 300 dias para parto a termo. Em planos empresariais com 30 ou mais participantes, quem entra em até 30 dias da contratação não cumpre carência.",
+          "Até 300 dias para parto a termo. Se a família entrar por um plano da empresa com 30 ou mais participantes, quem entra em até 30 dias da contratação não cumpre carência.",
       },
       {
         pergunta: "O bebê recém-nascido entra no plano?",
@@ -256,6 +260,13 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
         resposta:
           "Comparamos o plano pelo CNPJ com o individual e com a adesão pela sua profissão, com as regras de cada um lado a lado, e não só o preço.",
       },
+      {
+        titulo: "Quando não faz sentido",
+        preocupacao: "Ter certeza de que o plano pelo CNPJ é mesmo para você.",
+        // R26: critérios só a partir das regras já citadas.
+        resposta:
+          "Se o CNPJ tem menos de 6 meses ou não corresponde a uma atividade real, ou se você prefere o teto anual de reajuste e as regras de cancelamento do individual, o individual ou a adesão tendem a ser melhores. Dizemos isso com franqueza.",
+      },
     ],
     perguntas: [
       {
@@ -296,6 +307,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
     h1: "Quer trocar de plano? Primeiro, vamos olhar o seu.",
     abertura:
       "Antes de propor qualquer troca, analisamos seu contrato, sua rede e as carências que você já cumpriu. Às vezes trocar compensa; às vezes, não.",
+    hospitais: true,
     pares: [
       {
         titulo: "Carências já cumpridas",
@@ -342,7 +354,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
       {
         pergunta: "Meu reajuste foi abusivo?",
         resposta:
-          "Podemos explicar a regra de reajuste que vale para o seu tipo de contrato. Se você achar que houve erro, pode reclamar na operadora e na ANS.",
+          "Podemos explicar a regra de reajuste que vale para o seu tipo de contrato. Se você achar que houve erro, pode reclamar na operadora e na ANS, pelo site gov.br/ans ou pelo Disque ANS.",
       },
       {
         pergunta: "Existe plano com o mesmo hospital e preço menor?",
