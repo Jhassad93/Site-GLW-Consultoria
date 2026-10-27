@@ -10,6 +10,7 @@ import { validarGuias } from "../src/content/guias.ts";
 // Conteúdos que registram pendências ao serem carregados:
 import "../src/content/home.ts";
 import "../src/content/perfis.ts";
+import "../src/content/institucional.ts";
 
 const stage = process.env.SITE_STAGE === "production" ? "production" : "preview";
 

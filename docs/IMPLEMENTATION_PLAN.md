@@ -56,11 +56,12 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): dados em `src/content/guias.ts`. A trava do R28 roda antes de todo build (testada: rede sem data → build falha). O guia do São Camilo Santana está no estado "em validação": sem nenhuma linha de rede até a GWL conferir com as operadoras (nada inventado). Detector do Impeccable nas três páginas: só os falsos positivos já conhecidos (fios finos, marca decorativa do rodapé, fonte Inter, keyframes globais da esteira).
 
 ## Etapa 6 — Perguntas frequentes, Operadoras, Sobre e Contato
-- [ ] `/perguntas-frequentes` com as 14 perguntas (cada resposta abre pela resposta), pergunta 10 de portabilidade marcada até a conferência da norma
-- [ ] `/operadoras` com a lista em texto, sem logos (R3, R7), "lista a confirmar" em preview
-- [ ] `/sobre` com equipe e história "a confirmar" (R9, R19)
-- [ ] `/contato` com WhatsApp, formulário (ligado na etapa 8), endereço e horário (R17)
+- [x] `/perguntas-frequentes` com as 14 perguntas (cada resposta abre pela resposta), pergunta 10 de portabilidade marcada até a conferência da norma
+- [x] `/operadoras` com a lista em texto, sem logos (R3, R7), "lista a confirmar" em preview
+- [x] `/sobre` com equipe e história "a confirmar" (R9, R19)
+- [x] `/contato` com WhatsApp, formulário (ligado na etapa 8), endereço e horário (R17)
 - Pronto quando: as quatro páginas completas e ligadas no menu e no rodapé; harness sem alertas 🔴
+- Notas (27/10/2026): conteúdo em `src/content/institucional.ts`. FAQ com as 14 perguntas em 4 temas; portabilidade e taxa "a confirmar". Operadoras: lista lida de `empresa.ts`, estado "em validação" e declaração de participações pendente (R3). Sobre: história e equipe só na prévia, como espaço marcado (R9, R19). Contato: canais, formulário do SCHEMA (botão desativado até a etapa 8) e canais oficiais de reclamação (R17). Rodapé com Operadoras, Perguntas e Contato. Detector: só os falsos positivos conhecidos.
 
 ## Etapa 7 — Banco de dados
 - [ ] Projeto Supabase de **desenvolvimento** (conta de João); o de produção é criado na conta do cliente na etapa 11

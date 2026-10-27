@@ -89,6 +89,9 @@ export function Rodape() {
             <ul className="mt-3 list-none space-y-1.5 p-0">
               <li><Link href={rotas.sobre} className="link-nav">Sobre a GWL</Link></li>
               <li><Link href={rotas.guias} className="link-nav">Guias por hospital e bairro</Link></li>
+              <li><Link href={rotas.operadoras} className="link-nav">Operadoras com que trabalhamos</Link></li>
+              <li><Link href={rotas.perguntas} className="link-nav">Perguntas frequentes</Link></li>
+              <li><Link href={rotas.contato} className="link-nav">Contato</Link></li>
               <li><Link href={rotas.privacidade} className="link-nav">Política de privacidade</Link></li>
               <li><Link href={rotas.termos} className="link-nav">Termos de uso</Link></li>
               <li>
