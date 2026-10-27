@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Tokens do docs/DESIGN.md (v1, 27/10/2026).
+ * 5 cores, cada uma sempre no mesmo papel. Nada de cor fora desta lista.
+ * Mel é exclusivo do botão de ação principal.
+ */
+:root {
+  /* Cores da marca */
+  --tinta: #17301c; /* texto */
+  --branco: #ffffff; /* fundo */
+  --mel: #f2b33d; /* só ação principal */
+  --copa: #2c5a34; /* marca: seções, rodapé, botão secundário */
+  --rio: #3b5687; /* links, ícones informativos, foco */
+
+  /* Tons de superfície ("salas"): variações, não cores novas */
+  --folha-clara: #eaf3dc;
+  --rio-claro: #e3eaf5;
+  --mel-claro: #fdf1d6;
+
+  /* Apoio */
+  --folha: #6e9f2a; /* só gráfico, nunca texto (3,2:1) */
+  --texto-2: #4a5a4d; /* legendas e notas */
+  --mel-hover: #e0a22f; /* Mel escurecido 8% */
+
+  /* Forma */
+  --raio-folha: 32px 6px 32px 6px; /* só: imagem do topo, painel do hospital, cards de perfil */
+  --radius: 1rem; /* cards 16px */
+
+  /* Mapeamento para os componentes do shadcn/ui */
+  --background: var(--branco);
+  --foreground: var(--tinta);
+  --card: var(--branco);
+  --card-foreground: var(--tinta);
+  --popover: var(--branco);
+  --popover-foreground: var(--tinta);
+  --primary: var(--mel);
+  --primary-foreground: var(--tinta);
+  --secondary: var(--folha-clara);
+  --secondary-foreground: var(--tinta);
+  --muted: var(--folha-clara);
+  --muted-foreground: var(--texto-2);
+  --accent: var(--rio-claro);
+  --accent-foreground: var(--tinta);
+  --destructive: var(--rio); /* sem vermelho na interface: erro usa Rio + texto Tinta */
+  --border: rgb(23 48 28 / 0.15);
+  --input: rgb(23 48 28 / 0.15);
+  --ring: var(--rio);
+}
+
+@theme inline {
+  --color-tinta: var(--tinta);
+  --color-branco: var(--branco);
+  --color-mel: var(--mel);
+  --color-mel-hover: var(--mel-hover);
+  --color-copa: var(--copa);
+  --color-rio: var(--rio);
+  --color-folha: var(--folha);
+  --color-folha-clara: var(--folha-clara);
+  --color-rio-claro: var(--rio-claro);
+  --color-mel-claro: var(--mel-claro);
+  --color-texto-2: var(--texto-2);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Tipografia: Bricolage Grotesque (títulos) + Atkinson Hyperlegible Next (corpo) */
+  --font-sans: "Atkinson Hyperlegible Next", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala terça maior (1,25) a partir de 18px */
+  --text-legenda: 0.8rem; /* 14,4px: mínimo permitido */
+  --text-legenda--line-height: 1.5;
+  --text-corpo: 1.125rem; /* 18px */
+  --text-corpo--line-height: 1.6;
+  --text-sub: 1.40625rem; /* 22,5px */
+  --text-sub--line-height: 1.5;
+  --text-h3: 1.75rem; /* 28px */
+  --text-h3--line-height: 1.2;
+  --text-h2: 2.1875rem; /* 35px */
+  --text-h2--line-height: 1.15;
+  --text-h1: 2.75rem; /* 44px */
+  --text-h1--line-height: 1.1;
+  --text-h1-home: 3.5rem; /* 56px */
+  --text-h1-home--line-height: 1.08;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-folha: var(--raio-folha);
+}
+
+@layer base {
+  html {
+    /* corpo nunca abaixo de 18px, em nenhuma tela */
+    font-size: 100%;
+  }
+  body {
+    @apply bg-background font-sans text-corpo text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-heading text-balance;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  a {
+    @apply text-rio underline underline-offset-4;
+  }
+  :focus-visible {
+    outline: 3px solid var(--rio);
+    outline-offset: 3px;
+  }
+  * {
+    @apply border-border;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
