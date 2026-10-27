@@ -7,6 +7,7 @@ import { camposNaoConfirmados } from "../src/content/empresa.ts";
 import { pendenciasDeConteudo } from "../src/content/pendencias.ts";
 // Conteúdos que registram pendências ao serem carregados:
 import "../src/content/home.ts";
+import "../src/content/perfis.ts";
 
 const stage = process.env.SITE_STAGE === "production" ? "production" : "preview";
 const dados = camposNaoConfirmados();

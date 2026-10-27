@@ -12,6 +12,7 @@ import { ItemHospital, ListaHospitais } from "@/components/gwl/item-hospital";
 import { Carrossel } from "@/components/gwl/carrossel";
 import { CardDepoimento, CardPlano, ListaPassos } from "@/components/gwl/cards";
 import { Acordeao } from "@/components/gwl/acordeao";
+import { ChamadaFinal } from "@/components/gwl/chamada-final";
 
 /**
  * Home (etapa 3). Ordem do DESIGN.md v2: topo com placa, esteira, manifesto, hospitais, tipos de plano,
@@ -205,21 +206,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Chamada final */}
-      <section aria-labelledby="t-final" data-oculta-barra className="px-5 pb-20 md:px-10 md:pb-32">
-        <div className="escuro mx-auto max-w-[1200px] rounded-[2rem] bg-noite px-6 py-16 text-nevoa md:px-16 md:py-22">
-          <h2 id="t-final" className="max-w-[14ch] text-final-cel md:text-final">{chamadaFinal.titulo}</h2>
-          <div className="mt-12 flex flex-wrap items-end justify-between gap-8 border-t border-fio-escuro pt-8 md:mt-14">
-            <p className="m-0 text-sub text-nevoa/80">{chamadaFinal.assinatura}</p>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <LinkBotao href={rotas.contato} variante="contorno-claro">
-                {chamadaFinal.secundario}
-              </LinkBotao>
-              <BotaoWhatsApp fundo="escuro" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <ChamadaFinal titulo={chamadaFinal.titulo} />
     </>
   );
 }
