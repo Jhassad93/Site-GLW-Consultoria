@@ -189,9 +189,13 @@
   transform-origin: left;
   transition: transform 200ms ease-out;
 }
-.link-nav:hover::after,
 .link-nav:focus-visible::after {
   transform: scaleX(1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .link-nav:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* Esteira de operadoras: volta em 45s; pausa com mouse, foco ou botão */

@@ -1,35 +1,220 @@
 import Link from "next/link";
+import { empresa, A_CONFIRMAR } from "@/content/empresa";
+import { chamadaFinal, comoFunciona, depoimentos, esteira, hospitais, manifesto, perguntas, placa, tipos, topo } from "@/content/home";
+import { perfis, rotas } from "@/content/navegacao";
+import { linkWhatsApp } from "@/lib/whatsapp";
+import { LinkBotao } from "@/components/gwl/botao";
 import { BotaoWhatsApp } from "@/components/gwl/botao-whatsapp";
-import { isPreview } from "@/config/site";
+import { TopoCenas, BotaoPausaTopo } from "@/components/gwl/topo-cenas";
+import { PlacaDados } from "@/components/gwl/placa-dados";
+import { Esteira, NomeOperadora } from "@/components/gwl/esteira";
+import { ItemHospital, ListaHospitais } from "@/components/gwl/item-hospital";
+import { Carrossel } from "@/components/gwl/carrossel";
+import { CardDepoimento, CardPlano, ListaPassos } from "@/components/gwl/cards";
+import { Acordeao } from "@/components/gwl/acordeao";
 
 /**
- * Home provisória da etapa 2: só um topo escuro com o botão principal, para testar o cabeçalho de vidro
- * e a barra do celular. A home definitiva (DESIGN.md v2 e copy v3) entra na etapa 3.
+ * Home (etapa 3). Ordem do DESIGN.md v2: topo com placa, esteira, manifesto, hospitais, tipos de plano,
+ * como funciona, depoimentos, perguntas e chamada final. Texto: COPY.md v3 (RASCUNHO), em src/content/home.ts.
+ * Página de servidor: só o fundo do topo, a esteira e os carrosséis hidratam no navegador.
  */
 export default function Home() {
+  const { registroSusep, endereco, operadoras } = empresa;
+  const nomesOperadoras = operadoras.valor.length > 0 ? operadoras.valor : esteira.exemplos;
+
   return (
     <>
-      <section className="escuro flex min-h-[44rem] items-end bg-noite text-nevoa">
-        <div className="mx-auto w-full max-w-[1280px] px-5 pt-36 pb-16 md:px-10">
-          <p className="mb-6 text-[0.9375rem] text-nevoa/75">Planos de saúde e odontológicos · Santana, zona norte de São Paulo</p>
-          <h1 className="max-w-[15ch] text-h1-cel md:text-h1">Site em construção.</h1>
-          <p className="mt-7 max-w-[40ch] text-sub text-nevoa/85">
-            A página inicial completa entra na próxima etapa. Enquanto isso, fale com a GWL pelo WhatsApp.
-          </p>
-          <div className="mt-10">
-            <BotaoWhatsApp fundo="escuro" principal />
+      {/* Topo */}
+      <section aria-labelledby="titulo-home" className="escuro relative flex min-h-[min(46rem,calc(100svh-2.25rem))] items-end overflow-hidden bg-noite text-nevoa md:min-h-[min(57.5rem,calc(100svh-2.25rem))]">
+        <TopoCenas cenas={topo.cenas}>
+          <div className="relative mx-auto w-full max-w-[1280px] px-5 pt-32 pb-12 md:px-10 md:pb-14">
+            <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16">
+              <div>
+                <p className="mb-6 text-[0.9375rem] text-nevoa/75">
+                  <span className="md:hidden">{topo.sobretituloCurto}</span>
+                  <span className="hidden md:inline">{topo.sobretitulo}</span>
+                </p>
+                <h1 id="titulo-home" className="max-w-[15ch] text-h1-cel md:max-w-[19ch] md:text-h1">
+                  {topo.titulo}
+                </h1>
+                <p className="mt-6 max-w-[50ch] text-sub text-nevoa/85">{topo.subtitulo}</p>
+                <div className="mt-8 flex items-center gap-3">
+                  <BotaoWhatsApp fundo="escuro" principal />
+                  <BotaoPausaTopo />
+                </div>
+                <p className="mt-5 max-w-[52ch] text-nota text-nevoa/75">{topo.nota}</p>
+              </div>
+              <PlacaDados
+                linhas={[
+                  {
+                    rotulo: "Registro SUSEP",
+                    valor: registroSusep.valor ?? "[nº]",
+                    nota: registroSusep.confirmado ? undefined : A_CONFIRMAR,
+                  },
+                  { rotulo: "Atuação", valor: placa.atuacao, nota: A_CONFIRMAR },
+                  {
+                    rotulo: "Atendimento",
+                    valor: `${endereco.valor.bairro}, ${endereco.valor.uf}`,
+                    nota: endereco.confirmado ? undefined : A_CONFIRMAR,
+                  },
+                ]}
+              />
+            </div>
+          </div>
+        </TopoCenas>
+      </section>
+
+      {/* Esteira de operadoras (R3, R7) */}
+      <Esteira
+        titulo={esteira.titulo}
+        itens={nomesOperadoras.map((nome) => <NomeOperadora key={nome} nome={nome} />)}
+        nota={operadoras.confirmado ? undefined : esteira.nota}
+      />
+
+      {/* Manifesto */}
+      <section aria-labelledby="t-manifesto" className="px-5 py-20 md:px-10 md:py-32">
+        <div className="mx-auto max-w-[1200px]">
+          <p className="mb-8 text-[0.9375rem] text-musgo">{manifesto.rotulo}</p>
+          <h2 id="t-manifesto" className="max-w-[28ch] text-manifesto-cel md:text-manifesto">
+            {manifesto.frase} <span className="text-cinza">{manifesto.complemento}</span>
+          </h2>
+          <p className="mt-6 text-nota text-musgo">{manifesto.fonte}</p>
+        </div>
+      </section>
+
+      {/* Hospitais */}
+      <section id="hospital" aria-labelledby="t-hospital" className="bg-branco px-5 py-20 md:px-10 md:py-32">
+        <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
+          <div>
+            <h2 id="t-hospital" className="text-h2-cel md:text-h2">{hospitais.titulo}</h2>
+            <p className="mt-6 max-w-[40ch] text-grafite">{hospitais.texto}</p>
+            <p className="mt-6 max-w-[44ch] text-nota text-musgo">{hospitais.nota}</p>
+          </div>
+          <div>
+            <ListaHospitais>
+              {hospitais.lista.map((h) => (
+                <ItemHospital key={h.nome} hospital={h.nome} nota={h.nota} />
+              ))}
+              <ItemHospital hospital="Outro hospital" nota="Diga qual e conferimos para você" outro />
+            </ListaHospitais>
+            <p className="mt-4 text-legenda text-musgo">{hospitais.avisoLista}</p>
           </div>
         </div>
       </section>
-      {isPreview && (
-        <section className="mx-auto max-w-[1200px] px-5 py-20 md:px-10">
-          <p className="text-musgo">
-            Equipe: veja a <Link href="/componentes/">vitrine de componentes</Link>.
-          </p>
-          {/* espaço para testar a barra do celular ao rolar */}
-          <div aria-hidden className="h-[100vh]" />
-        </section>
-      )}
+
+      {/* Tipos de plano */}
+      <section id="tipos" aria-labelledby="t-tipos" className="overflow-hidden bg-pedra py-20 md:py-32">
+        <Carrossel
+          titulo={
+            <>
+              <h2 id="t-tipos" className="max-w-[18ch] text-h2-cel md:text-h2">{tipos.titulo}</h2>
+              <p className="mt-4 max-w-[52ch] text-grafite">{tipos.texto}</p>
+            </>
+          }
+          rotuloItem="Tipo de plano"
+          larguraCard="plano"
+          centralizado
+          inicial={1}
+        >
+          {tipos.itens.map((t) => (
+            <CardPlano
+              key={t.titulo}
+              titulo={t.titulo}
+              rotulo={t.rotulo}
+              imagem={{ alt: "", descricao: t.imagem.descricao }}
+              resumo={t.resumo}
+              acao={
+                t.acao.href ? (
+                  <Link href={t.acao.href} className="font-medium">
+                    {t.acao.rotulo} <span aria-hidden>→</span>
+                  </Link>
+                ) : (
+                  <a href={linkWhatsApp()} target="_blank" rel="noopener noreferrer" className="font-medium" data-evento="whatsapp_click">
+                    {t.acao.rotulo} <span aria-hidden>↗</span>
+                    <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+                  </a>
+                )
+              }
+            />
+          ))}
+        </Carrossel>
+        <nav aria-label="Planos por perfil" className="mx-auto mt-14 max-w-[1280px] px-5 md:px-10">
+          <p className="text-[0.9375rem] text-musgo">{tipos.perfis}</p>
+          <ul className="mt-3 flex list-none flex-wrap gap-2 p-0">
+            {perfis.map((p) => (
+              <li key={p.href}>
+                <LinkBotao href={p.href} variante="contorno" tamanho="compacto">
+                  {p.rotulo}
+                </LinkBotao>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </section>
+
+      {/* Como funciona */}
+      <section id="como-funciona" aria-labelledby="t-como" className="px-5 py-20 md:px-10 md:py-32">
+        <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
+          <div>
+            <h2 id="t-como" className="text-h2-cel md:text-h2">{comoFunciona.titulo}</h2>
+            <p className="mt-6 max-w-[38ch] text-grafite">{comoFunciona.texto}</p>
+          </div>
+          <ListaPassos passos={comoFunciona.passos} />
+        </div>
+      </section>
+
+      {/* Depoimentos (R9: só reais e autorizados) */}
+      <section aria-label="Depoimentos" className="overflow-hidden bg-branco py-20 md:py-32">
+        <Carrossel
+          titulo={
+            <>
+              <h2 className="max-w-[20ch] text-h2-cel md:text-h2">{depoimentos.titulo}</h2>
+              <p className="mt-4 text-nota text-musgo">{depoimentos.aviso}</p>
+            </>
+          }
+          rotuloItem="Depoimento"
+          larguraCard="depoimento"
+        >
+          {depoimentos.itens.map((d, i) => (
+            <CardDepoimento
+              key={i}
+              citacao={d.citacao}
+              autor={d.autor}
+              iniciais={"iniciais" in d ? d.iniciais : undefined}
+              foto={"foto" in d && d.foto ? { alt: "", descricao: d.foto } : undefined}
+            />
+          ))}
+        </Carrossel>
+      </section>
+
+      {/* Perguntas */}
+      <section id="perguntas" aria-labelledby="t-perguntas" className="px-5 py-20 md:px-10 md:py-32">
+        <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
+          <div>
+            <h2 id="t-perguntas" className="text-h2-cel md:text-h2">{perguntas.titulo}</h2>
+            <Link href={rotas.perguntas} className="link-nav mt-6 inline-block font-medium">
+              {perguntas.link} <span aria-hidden>→</span>
+            </Link>
+          </div>
+          <Acordeao itens={perguntas.itens} />
+        </div>
+      </section>
+
+      {/* Chamada final */}
+      <section aria-labelledby="t-final" data-oculta-barra className="px-5 pb-20 md:px-10 md:pb-32">
+        <div className="escuro mx-auto max-w-[1200px] rounded-[2rem] bg-noite px-6 py-16 text-nevoa md:px-16 md:py-22">
+          <h2 id="t-final" className="max-w-[14ch] text-final-cel md:text-final">{chamadaFinal.titulo}</h2>
+          <div className="mt-12 flex flex-wrap items-end justify-between gap-8 border-t border-fio-escuro pt-8 md:mt-14">
+            <p className="m-0 text-sub text-nevoa/80">{chamadaFinal.assinatura}</p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <LinkBotao href={rotas.contato} variante="contorno-claro">
+                {chamadaFinal.secundario}
+              </LinkBotao>
+              <BotaoWhatsApp fundo="escuro" />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
