@@ -14,7 +14,9 @@ Preencher durante o projeto com cada componente de terceiros efetivamente usado.
 | [componente] | React Bits | MIT + Commons Clause | Uso livre no site; vedada a revenda dos componentes |
 | [componente] | 21st.dev / [autor] | [conforme autor] | Conferido em [data] |
 | [GSAP, se usado] | gsap.com | [licença vigente] | Conferir uso comercial |
-| Fonte Bricolage Grotesque (títulos) | Google Fonts / Fontsource | SIL Open Font License 1.1 | Definida no DESIGN.md v1 (27/10/2026) |
-| Fonte Atkinson Hyperlegible Next (corpo) | Google Fonts / Fontsource (Braille Institute) | SIL Open Font License 1.1 | Definida no DESIGN.md v1 (27/10/2026) |
-| Estilo-base (só linguagem visual, sem identidade) | Refero Styles — "Chat for impact" (turn.io) | Referência de estilo; nenhum asset copiado | Paleta, fontes e logo próprios da GWL |
-| Imagens (uma linha por origem) | [cliente / sessão de fotos / gerada por IA: ferramenta / banco curado] | [direito de uso, licença ou termos da ferramenta] | Nenhuma foto genérica de banco (item 30 de produção) |
+| Fonte Inter Tight (títulos) | Google Fonts / Fontsource (Rasmus Andersson) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026) |
+| Fonte Inter (corpo) | Google Fonts / Fontsource (Rasmus Andersson) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026) |
+| Referências visuais (só linguagem, nenhum asset copiado) | instituteofhealth.com · untillabs.com · hona.com | Referência de estilo | DESIGN.md v2 › Referências |
+| Imagens geradas por IA (uma linha por arquivo) | [ferramenta e versão] · prompt em `docs/IMAGENS.md` (ID) | [termos da ferramenta: uso comercial permitido? data da conferência] | Só ambiente; nunca cliente, equipe ou lugar identificável (Anexo D) |
+| Fotos do cliente (uma linha por arquivo) | GWL | Cessão do cliente + autorização de imagem de cada pessoa | [arquivo da autorização] |
+| Logos de operadoras (uma linha por operadora) | Site oficial / kit de imprensa da operadora | Autorização escrita (F12) — pendente | Prévia: "em validação"; produção: só com autorização |

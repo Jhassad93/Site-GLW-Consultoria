@@ -1,165 +1,146 @@
 # DESIGN.md — GWL Corretora de Seguros
 
-> Versão 1 · 27/10/2026 · base: `BRIEF.md` provisório (v0), `claude/personas.md` e identidade atual da GWL. Pendente de aprovação.
+> Versão 2 · 27/10/2026 · substitui a v1 (salas pastel e canto de folha), considerada infantilizada pelo responsável.
+> Base: `BRIEF.md` provisório (v0), `claude/personas.md`, as três referências escolhidas pelo responsável e o protótipo aprovado em 27/10/2026 (artefato "GWL — protótipo da home", Design canvas).
 > Fonte da verdade visual do projeto. As skills de design trabalham dentro deste arquivo, nunca o substituem.
 
 ## Direção visual
-- **Em uma frase:** uma clínica de bairro arejada e iluminada: salas de cor sólida, verde da copa da árvore da GWL, luz de mel nos botões e letra grande e legível para quem lê com calma.
+- **Em uma frase:** uma consultoria de saúde sóbria e editorial: fundo neutro claro, superfícies verde-noite, tipografia grande e justa, linhas finas e imagem real ocupando a tela.
 - **Por que combina com o público e o tom (BRIEF.md):**
-  - **Público:** a persona prioritária é a filha de 45 a 58 anos que decide pelos pais com 60+, e muitos visitantes são esses próprios pais. Daí letra grande, contraste alto, poucos elementos por tela e nada de efeitos.
-  - **Emoção:** a mensagem é o alívio de "ainda bem que eu tenho plano", com tom claro, próximo e honesto. Daí cores calmas e solares, nenhuma estética de pronto-socorro (vermelho, sirene, azul hospitalar frio) e nenhum excesso corporativo.
-  - **Marca:** a identidade existente (árvore, verdes, arco azul) é preservada e amadurecida. O cliente reconhece a própria marca.
+  - **Confiança:** quem decide por um plano (a filha que escolhe pelos pais, o dono de PME) compara corretoras pelo quanto elas parecem sérias. Um visual refinado e calmo transmite método e responsabilidade; o visual lúdico da v1 transmitia o contrário.
+  - **Emoção:** o alívio de "ainda bem que eu tenho plano" vem da imagem (pessoas reais, luz natural, momentos tranquilos), não de cores alegres. A interface fica neutra e deixa a imagem falar.
+  - **Público 60+:** o refinamento não sacrifica a leitura. Corpo em 18px, contraste AAA no texto, áreas de toque de 48px, "Menu" escrito por extenso e movimento sempre pausável.
 
-## Estilo-base
-- **Referência:** [Refero Styles — "Chat for impact" (turn.io): *forest-green clinic with pastel rooms*](https://styles.refero.design/style/18975f37-2e5d-47ca-9367-8b201d20390d). É uma marca de saúde que usa o WhatsApp como canal, como a GWL.
-- **O que herdamos da linguagem:**
-  - superfícies sólidas de cor como "salas" que separam as seções;
-  - sistema plano, sem sombras;
-  - um único botão de ação de alto contraste;
-  - cantos arredondados generosos.
-- **O que não herdamos (identidade de terceiros):** nome, logo, a combinação verde-floresta com coral e o lilás de fundo. A fonte DM Sans também fica de fora, trocada por fontes escolhidas para o público 60+.
-- **Paleta:** derivada do logotipo e do site atual da GWL (amostrados em 27/10/2026: verde #2C5A34, verde-folha #5D8726 a #90C030, azul do arco #405783). Validada com cálculo de contraste WCAG. *O kit indica o Realtime Colors para exportar o tema shadcn; a exportação fica para a etapa 1 do plano, com estes valores.*
+## Referências (escolhidas pelo responsável em 27/10/2026)
+
+| Referência | O que adotamos | O que não adotamos |
+| --- | --- | --- |
+| [Institute of Health](https://www.instituteofhealth.com/) | Topo em tela cheia com vídeo, título grande no canto inferior esquerdo e painel de dados em vidro à direita. Carrossel horizontal com card central em destaque e resumo embaixo. | Giro automático do carrossel; números de prova sem fonte confirmada. |
+| [Until](https://www.untillabs.com/) | Cabeçalho em pílula de vidro fosco flutuante, fixo no topo. | Menu escondido atrás de ícone no computador; vidro transparente demais (10%) para o público 60+. |
+| [Hona](https://www.hona.com/) | Esteira de marcas logo abaixo do topo. Depoimentos em cards grandes alternando foto e texto. Card escuro gigante de chamada final. Botão em pílula com seta num círculo de acento. | Esteira sem botão de pausar. |
+
+Nome, logo, fontes proprietárias (Lay Grotesk) e imagens dessas marcas não são usados.
 
 ## Cores
 
 | Papel | Nome | Valor | Uso |
 | --- | --- | --- | --- |
-| Texto | Tinta | `#17301C` | Corpo e títulos em fundos claros. Verde quase preto, mais quente que o preto puro. |
-| Fundo | Branco | `#FFFFFF` | Página e cards. |
-| Primária | Mel | `#F2B33D` | **Somente** o botão de ação principal (Comparar pelo WhatsApp) e a barra fixa no celular. Texto do botão sempre em Tinta. |
-| Secundária | Copa | `#2C5A34` | Cor da marca: seção "Comece pelo hospital", rodapé, títulos de destaque, botão secundário (contorno). |
-| Destaque | Rio | `#3B5687` | Links, ícones informativos e foco de teclado, vindo do arco azul do logo. |
+| Texto e superfície escura | Noite | `#0F1A12` | Todo texto em fundo claro; fundo do topo, da chamada final e do rodapé; botão escuro. |
+| Fundo | Névoa | `#F3F2EE` | Fundo padrão das seções; texto e botão claro sobre Noite. |
+| Cartão | Branco | `#FFFFFF` | Cards, seções alternadas, esteira. |
+| Seção de destaque | Pedra | `#E6E5E0` | Uma seção por página (o carrossel de tipos de plano). |
+| Marca | Mata | `#1F3D27` | Cards de depoimento em texto; o verde da GWL, aprofundado. |
+| Acento | Broto | `#C9E27A` | **Somente** o círculo da seta nos botões de ação, o selo "Cliente GWL" e o anel de foco em fundo escuro. Nunca texto sobre fundo claro, nunca área grande. |
+| Texto secundário | Musgo | `#4F5751` | Legendas, notas, rótulos. |
+| Texto de apoio | Grafite | `#2E3830` | Parágrafos de apoio sob títulos. |
+| Texto atenuado | Cinza | `#6E756F` | **Só texto grande (≥ 24px)**: a segunda frase do manifesto, numeração dos passos, nomes na esteira. |
 
-**Tons de superfície (variações das cores acima, não cores novas):** Folha clara `#EAF3DC` · Rio claro `#E3EAF5` · Mel claro `#FDF1D6`. São as "salas": cada seção usa no máximo uma.
-**Apoio gráfico (nunca texto):** Folha `#6E9F2A`, só em ilustrações e no detalhe da folha.
-**Texto secundário:** `#4A5A4D` (legendas e notas de rodapé).
-
-**Contraste conferido (WCAG):**
+**Contraste conferido (WCAG, calculado em 27/10/2026):**
 
 | Par | Razão | Resultado |
 | --- | --- | --- |
-| Tinta sobre Branco | 14,2:1 | AAA |
-| Tinta sobre Mel (botão) | 7,7:1 | AAA |
-| Tinta sobre Folha clara / Rio claro / Mel claro | 12,4 / 11,8 / 12,7:1 | AAA |
-| Branco sobre Copa | 8,0:1 | AAA |
-| Copa sobre Branco | 8,0:1 | AAA |
-| Rio sobre Branco (links) | 7,3:1 | AAA |
-| Texto secundário sobre Branco | 7,3:1 | AAA |
-| Mel sobre Copa | 4,3:1 | Só superfície ou texto ≥ 24px (botão mel dentro da sala Copa: OK, contraste de componente ≥ 3:1) |
-| Folha sobre Branco | 3,2:1 | **Proibido para texto**; só gráfico |
+| Noite sobre Névoa / Branco / Pedra | 15,9 / 17,8 / 14,2 | AAA |
+| Névoa sobre Noite | 15,9 | AAA |
+| Névoa sobre Mata | 10,7 | AAA |
+| Noite sobre Broto (círculo da seta, selo) | 12,4 | AAA |
+| Broto sobre Noite / Mata | 12,4 / 8,3 | AAA |
+| Musgo sobre Névoa / Branco / Pedra | 6,7 / 7,5 / 5,9 | AA (AAA a partir de 18,66px negrito ou 24px) |
+| Grafite sobre Névoa | 10,9 | AAA |
+| Névoa a 70% sobre Noite (legendas no escuro) | 8,3 | AAA |
+| Cinza sobre Névoa / Branco | 4,2 / 4,7 | **Só texto ≥ 24px** (exige 3:1) |
 
 Regras:
-- 5 cores, cada uma sempre no mesmo papel.
-- **Mel nunca decora.** Se aparece, é para clicar.
-- Nada de cor fora desta tabela.
-- Não existe vermelho na interface. Erros de formulário usam Tinta com ícone e borda Rio, e a mensagem diz o que corrigir.
-- Sem modo escuro na v1.
+- Interface quase monocromática: Noite, Névoa e Branco fazem 90% da página. A cor vem da fotografia.
+- Broto é tempero: no máximo um elemento de Broto por botão; nunca preenche seção.
+- Sem vermelho na interface. Erros de formulário: borda Noite de 2px, ícone e mensagem que diz o que corrigir.
+- Sem modo escuro na v1 (as seções escuras fazem parte do layout, não são tema).
 
 ## Tipografia
-- **Títulos:** **Bricolage Grotesque**, pesos 600 e 700. Grotesca de traço humano, levemente irregular, que parece escrita por gente e não por um banco. Dá personalidade aos títulos grandes sem ficar formal.
-- **Corpo e interface:** **Atkinson Hyperlegible Next**, pesos 400 e 700. Criada pelo Braille Institute para leitura com baixa visão, com letras que não se confundem (I/l/1, O/0, rn/m). É a escolha certa para o público 60+ e funciona para todos.
-- **Escala:** Terça maior (1,25) a partir de **18px** de corpo:
-  - 14,4 legenda mínima
-  - 18 corpo
-  - 22,5 subtítulo
-  - 28 H3
-  - 35 H2
-  - 44 H1 interno
-  - 56 H1 da home no desktop
-- **No celular:** corpo 18px (não diminui); H1 da home 36 a 40px; H2 28px.
+- **Títulos:** **Inter Tight**, peso 500 (600 só no logotipo provisório), espaçamento entre letras de −0,035em (−0,05em no "GWL" do rodapé). Grotesca neutra e justa, a mesma família visual das referências, livre (SIL OFL).
+- **Corpo e interface:** **Inter**, pesos 400 e 500. Alta legibilidade em tela, algarismos tabulares para numeração.
+- **Escala (desktop → celular):**
+  - legenda 13–15px (mínimo 13px, só em notas e legendas de imagem)
+  - corpo 18px (não diminui no celular)
+  - subtítulo 20px
+  - H3 24–28px
+  - H2 48 → 32px
+  - manifesto 44 → 30px
+  - H1 da home 76 → 42px
+  - título da chamada final 80 → 44px
 - **Regras:**
-  - Duas famílias com papéis distintos.
-  - Entrelinha de 1,6 no corpo e de 1,1 a 1,15 nos títulos.
-  - Linhas de no máximo 68 caracteres.
-  - Títulos em caixa normal (frase), nunca CAIXA ALTA; sem rótulos acima dos títulos.
-  - Nunca destacar uma palavra do título com outra cor ou itálico.
-  - Pesos finos (abaixo de 400) proibidos.
+  - Entrelinha 1,55 no corpo; 1,0 a 1,15 nos títulos.
+  - Linhas de no máximo 68 caracteres no texto corrido.
+  - Títulos em caixa normal (frase), terminados em ponto final nos H2 de seção, como nas referências.
+  - Uma única ênfase permitida: a segunda frase do manifesto em Cinza. Nada de itálico ou cor de destaque em palavra solta.
+  - Rótulo em caixa alta só no selo "CLIENTE GWL" (13px, espaçamento +0,06em).
   - Licença: SIL Open Font License (registrar no `LICENCAS.md`).
 
-## Imagens
-- **Origem:**
-  - **Versão final:** fotos reais feitas em Santana (equipe da GWL atendendo, fachada, rua, famílias e casais 60+ que sejam clientes reais com autorização). Proposta: uma sessão de fotos curta `[A CONFIRMAR com o cliente]`.
-  - **Demonstração:** ilustrações próprias em traço simples (folhas, árvore, mapa estilizado da zona norte), claramente provisórias. **Sem fotos de pessoas reais e sem banco de imagens.**
-- **Estilo:** luz natural de manhã, cores quentes e realistas, pessoas em momentos tranquilos (saindo de uma consulta, em casa, no comércio). Enquadramento à altura dos olhos, sem pose de anúncio. Nada de estetoscópio em primeiro plano, médica de jaleco sorrindo para a câmera, maca, ambulância ou UTI.
-- **Hospitais:** citados só em texto. Sem logos nem fotos de fachadas de hospitais (marcas de terceiros; R7 e R28 do harness).
-- **Operadoras:** em texto até haver autorização de uso de marca (R7).
-- **Direito de uso:** cada imagem registrada em `docs/LICENCAS.md`.
-- **Nunca:** fotos genéricas de banco de imagens (a Health Plus usa uma médica de banco e é justamente o que nos diferencia).
+## Imagens e vídeo
+- **Papel:** a imagem é o principal portador de emoção. Topo, tipos de plano e depoimentos dependem dela.
+- **Estilo:** luz natural, tons quentes e dessaturados, enquadramento à altura dos olhos, pessoas em momentos tranquilos (saindo de uma consulta, em casa, no trabalho, no comércio do bairro). Sem pose de anúncio.
+- **Topo:** vídeo em loop de 15 a 20 segundos, sem som, comprimido (alvo ≤ 2 MB no celular), com imagem estática (poster) enquanto carrega. Gradiente Noite de baixo para cima (0 → 92%) para garantir o contraste do título.
+- **Origem (decidido em 27/10/2026, harness Anexo D):** logos das operadoras baixados do site oficial de cada uma; fotos entregues pelo cliente (equipe, escritório, clientes com autorização); imagens de ambiente geradas por IA a partir dos prompts de `docs/IMAGENS.md`. Imagem gerada por IA **nunca** representa cliente, equipe, depoimento, hospital ou lugar identificável.
+- **Hospitais:** citados só em texto, sem logos ou fachadas (R7, R28).
+- **Operadoras:** logos monocromáticos (Cinza, uniformizados em altura) na esteira, só das operadoras confirmadas pela GWL (R3). Na prévia, marcados "em validação"; em produção, só com autorização escrita (R7). Sem autorização, nome em texto.
+- **Nunca:** estetoscópio em primeiro plano, médica de jaleco sorrindo para a câmera, maca, ambulância, UTI.
+- **Direito de uso:** cada imagem e vídeo registrado em `docs/LICENCAS.md`.
 
-## Elemento-assinatura (o único gesto ousado)
-- **O canto de folha:** os cantos superior esquerdo e inferior direito são bem arredondados e os outros dois quase retos (`border-radius: 32px 6px 32px 6px`), lembrando a folha da árvore do logo. É usado **só** em três lugares:
-  1. A moldura da imagem do topo.
-  2. O painel "Comece pelo hospital".
-  3. Os cartões de perfil.
-- Todo o resto usa cantos simples e discretos.
+## Movimento
+Três movimentos, todos com `prefers-reduced-motion` (param ou viram estáticos) e só `transform` e `opacity`:
+1. **Topo:** vídeo em loop (ou troca suave de cenas em 1,2s). Botão de pausar visível ao lado do botão principal (WCAG 2.2.2).
+2. **Esteira de operadoras:** desliza continuamente (uma volta em 45s), pausa ao passar o mouse ou com foco de teclado, botão "Pausar" visível. Com movimento reduzido vira faixa parada e rolável.
+3. **Carrosséis (tipos de plano, depoimentos):** deslizam 450ms com curva `cubic-bezier(.22,1,.36,1)` ao clicar nas setas. **Nunca giram sozinhos.**
 
-## Celular
-Decisões próprias, não o desktop encolhido:
-- **Ordem da home:**
-  1. Título.
-  2. Botão.
-  3. "Comece pelo hospital", que sobe para logo depois do topo, porque é o atalho mais útil.
-  4. Perfis.
-  5. Explicações.
-  6. Como funciona.
-  7. Provas.
-  8. Perguntas.
-  9. Contato.
-- **Barra fixa inferior** em Mel, ocupando a largura toda, 56px de altura.
-  - **Só aparece depois que o botão principal do topo sai da tela**, para nunca haver dois botões Mel visíveis ao mesmo tempo.
-  - Some quando o formulário ou o rodapé estão na tela.
-  - O texto da barra é **o mesmo do botão principal do topo**. A ação tem um nome só no site inteiro; a definição final fica para a pendência de copy.
-- **Sobretítulo no celular:** versão curta de uma linha ("Planos de saúde e odonto em Santana"). O texto completo fica no desktop.
-- **Título:** 36 a 40px, no máximo 4 linhas; o subtítulo fica inteiro visível na primeira tela, junto com o botão.
-- **Menu:** botão "Menu" escrito por extenso (não só o ícone de três linhas), porque o público 60+ reconhece melhor a palavra.
-- **Atalhos de hospital:** lista vertical de botões grandes (não carrossel horizontal), com no mínimo 48px de altura cada.
-- **Imagens:** recorte vertical 4:5 no topo; ilustrações menores que no desktop.
-- **Áreas de toque:** mínimo de 48 × 48px; espaço de 12px entre itens clicáveis.
-- **Perguntas frequentes:** em acordeão, com a pergunta inteira visível (sem cortar com "…").
+Microinterações: sublinhado que cresce da esquerda nos links de navegação (200ms); ícone "+" gira 45° ao abrir pergunta (200ms). Nenhuma animação de entrada de seção.
 
-## Espaçamento e forma
-- **Largura máxima:** 1200px para a página e 68 caracteres para o texto corrido.
-- **Unidade base:** 4px. Espaço entre elementos de 8 a 16px; padding de card de 24 a 32px.
-- **Espaço entre seções:** 96px no desktop e 64px no celular. As "salas" de cor vão de ponta a ponta da tela.
-- **Raio de borda:**
-  - folha `32px 6px 32px 6px` (só os três usos acima);
-  - cards 16px;
-  - botões 999px (pílula);
-  - campos 12px.
-- **Sombras:** nenhuma. A hierarquia vem da cor das salas e do tamanho do texto.
-- **Bordas:** 1px Tinta a 15% só em campos de formulário e no acordeão.
-- **Movimento:** um único momento, a abertura do acordeão das perguntas e do painel de hospital (200ms, só `transform` e `opacity`). Nenhuma animação de entrada de seção. `prefers-reduced-motion` desliga tudo.
+## Layout e forma
+- **Largura:** conteúdo até 1200px (1280 no topo e nos carrosséis); margem lateral 40px no desktop, 20px no celular.
+- **Ritmo vertical:** 128px entre seções no desktop, 80px no celular.
+- **Composição recorrente:** duas colunas (título à esquerda, lista ou conteúdo à direita, proporção 1 : 1,2) para hospitais, como funciona e perguntas.
+- **Listas com linhas finas:** 1px de Noite a 14% separa itens (hospitais, passos, perguntas). É o principal recurso de organização no lugar de caixas coloridas.
+- **Raios:** 999px em botões e pílulas; 20–24px em cards; 32px no card da chamada final; 12px em imagens dentro de cards.
+- **Sombras:** só no cabeçalho de vidro (`0 10px 30px` Noite a 6%). Nenhuma outra.
+- **Bordas:** 1px Noite a 14–25% em listas, botões de contorno e setas.
 
 ## Componentes
-- **Biblioteca principal:** **Spell UI** (o kit indica para site sóbrio e institucional) sobre shadcn/ui. Lacunas: Uiverse só para elementos pontuais, adaptados a este arquivo.
-- **Botão primário:** fundo Mel, texto Tinta 700, 18px, pílula, altura 56px, sem ícone de seta. Ao passar o mouse, Mel escurece 8%; foco com anel Rio de 3px.
-- **Botão secundário:** contorno de 2px em Copa, texto Copa, pílula. Em sala Copa: contorno e texto brancos.
-- **Link:** Rio, sempre sublinhado (o público 60+ precisa ver o que é clicável).
-- **Card de perfil:** fundo de uma sala clara, canto de folha, título 22,5px; o card inteiro é clicável.
-- **Atalho de hospital:** botão largo branco sobre a sala Copa, com o nome do hospital em Tinta e a nota "rede conferida em [data]" em texto secundário.
-- **Acordeão de perguntas:** pergunta 20px em negrito; resposta 18px; ícone + e − em Rio.
-- **Campos de formulário:** rótulo visível acima do campo (nunca só placeholder), 18px, altura 52px; erro com borda Rio de 2px e mensagem em Tinta logo abaixo.
-- **Faixa de demonstração:** fundo Mel claro, texto Tinta 14,4px, fixa no topo: "Versão de demonstração — conteúdo em validação com a GWL."
-- **Rodapé:** sala Copa com texto branco e identificação completa em linhas separadas (sem juntar dados com pontos no meio).
+- **Cabeçalho:** pílula de vidro fosco (Névoa a 72%, desfoque 24px, borda branca a 55%), fixa a 16px do topo, largura até 1200px. Logo à esquerda; no computador, links de texto (Hospitais, Tipos de plano, Como funciona, Perguntas, Sobre) e o botão escuro "Falar com a GWL"; no celular, botão escuro escrito "Menu" que abre um painel de vidro com os links em 26px. Sem suporte a desfoque ou com transparência reduzida: fundo Névoa sólido.
+- **Botão principal:** pílula de 60px, texto 18px peso 500, com a seta num círculo Broto de 44px à direita. Claro (Névoa) sobre fundo escuro; escuro (Noite) sobre fundo claro. Rótulo da ação: "Comparar planos pelo WhatsApp" `[pendência de copy]`.
+- **Botão secundário:** pílula de contorno 1px, sem seta.
+- **Botão de seta (carrosséis):** círculo de 56px com contorno 1px e chevron de 1,6px.
+- **Link em texto corrido:** sempre sublinhado (o público 60+ precisa ver o que é clicável). Links de navegação: sublinhado só ao passar o mouse, porque o contexto já indica que são clicáveis.
+- **Placa de dados do topo:** vidro escuro (branco a 8%, desfoque 24px), raio 24px, três linhas separadas por fio: rótulo à esquerda, valor em Inter Tight 28px à direita. Só dados confirmados (R1, R9); números de prova só com fonte.
+- **Esteira:** fundo Branco, fios em cima e embaixo, nomes em Inter Tight 26px Cinza, máscara de esmaecimento nas bordas, botão "Pausar".
+- **Card de tipo de plano:** dois blocos brancos empilhados: imagem (320px) com título e rótulo; "Em resumo" com texto e link. O card central fica em 100%; os vizinhos em 40% de opacidade e 92% de escala.
+- **Item de hospital:** linha com nome em Inter Tight 28px, nota "Rede conferida em [data]" (R28) e círculo com seta.
+- **Passo (como funciona):** número 01–04 em Cinza, título 26px e texto de apoio.
+- **Depoimento:** card de 500px de altura; alterna **foto** (citação em Névoa sobre gradiente Noite) e **texto** (fundo Mata, selo "CLIENTE GWL" em Broto, citação 30px, iniciais em círculo Broto). Só com depoimento real e autorização escrita.
+- **Pergunta (acordeão):** `<details>` nativo; pergunta em Inter Tight 24px, ícone "+" num círculo de contorno.
+- **Chamada final:** card Noite com raio 32px, título de 80px, fio, assinatura "Primeiro o hospital. Depois o plano." e os dois botões.
+- **Rodapé:** fundo Noite, "GWL" em 120px na cor Mata (decorativo, `aria-hidden`), identificação completa em colunas (R1, R19): razão social, CNPJ, SUSEP, responsável técnico, endereço, ANS, privacidade e termos.
+- **Barra do celular:** pílula escura flutuante a 12px das bordas, com o botão principal. Aparece quando o botão do topo sai da tela e some quando a chamada final ou o rodapé entram.
+- **Faixa de prévia:** fina, no topo, texto 14px: "Versão de prévia: conteúdo em validação com a GWL." (só em `SITE_STAGE=preview`).
+
+## Celular
+- Mesma ordem do desktop: topo, esteira, manifesto, hospitais, tipos de plano, como funciona, depoimentos, perguntas, chamada final.
+- Duas colunas viram uma; o título vem antes da lista.
+- Carrosséis com cards de 300px e setas acima.
+- Topo com recorte vertical do vídeo; título até 5 linhas; botão principal visível na primeira tela.
+- Áreas de toque mínimas de 48 × 48px; corpo 18px.
 
 ## Faça
-- Comece cada seção por uma frase que a pessoa entenda sem rolar.
-- Use uma "sala" de cor por seção, alternando com o branco.
-- Mantenha o corpo em 18px em todas as telas.
+- Deixe espaço: seções com 128px de respiro e poucos elementos por tela.
+- Organize com fios finos, não com caixas coloridas.
+- Use a fotografia para dar calor; mantenha a interface neutra.
 - Mostre a data de referência sempre que citar rede ou hospital.
-- Use números de passo só em "Como funciona", que é de fato uma sequência.
 - Teste cada tela em 375, 768 e 1280px e com zoom de 200%.
 
-## Prévia visual
-- **Arquivos:** `design-desktop.png` e `design-mobile.png`, gerados em 27/10/2026 a partir de uma página de prévia com estes tokens. Conferidos a 1280px e 375px, sem rolagem horizontal.
-- **Logotipo:** a prévia usa um desenho simplificado só para teste de cor. **O site usa o logotipo original da GWL.** Pendência: obter o arquivo em vetor (SVG ou PDF) e, se necessário, uma versão para fundo escuro (rodapé em Copa).
-
 ## Não faça
-- Não use Mel em nada que não seja botão de ação.
+- Não volte aos pastéis, ao canto de folha, a ilustrações infantis ou a ícones decorativos.
+- Não use Broto em texto sobre fundo claro nem em áreas grandes.
+- Não use números, prêmios ou depoimentos sem fonte e autorização.
+- Não faça carrossel que gira sozinho nem animação contínua sem botão de pausar.
 - Não use vermelho, sirene, ambulância ou imagens de urgência.
-- Não use sombras, gradientes decorativos ou fundo creme "editorial".
-- Não use o canto de folha fora dos três lugares definidos.
-- Não use logos de operadoras, hospitais, SUSEP ou ANS como selo.
-- Não use CAIXA ALTA em rótulos, nem setas "→" em botões e links.
-- Não use texto menor que 14,4px nem cinza-claro sobre branco.
-- Não use carrosséis automáticos.
+
+## Prévia visual
+- **Protótipo:** artefato "GWL — protótipo da home" (Design canvas, 27/10/2026), quadros "Home — computador" e "Home — celular". Os arquivos `design-desktop.png` e `design-mobile.png` são da v1 e ficam obsoletos.
+- **Logotipo:** o protótipo usa o nome "GWL" em Inter Tight como marca provisória. **O site usa o logotipo original da GWL**, redesenhado ou simplificado se o cliente aprovar. Pendência: arquivo em vetor e versão para fundo escuro.
