@@ -43,8 +43,8 @@ export function CardPlano({
         </div>
       </div>
       <div className="rounded-[1.25rem] bg-branco px-5 py-5.5">
-        <p className="m-0 text-legenda text-musgo">Em resumo</p>
-        <p className="mt-1.5 mb-0 text-[1.0625rem]">{resumo}</p>
+        <p className="m-0 text-nota text-musgo">Em resumo</p>
+        <p className="mt-1.5 mb-0 text-[1.0625rem] text-pretty">{resumo}</p>
         <div className="mt-3.5">{acao}</div>
       </div>
     </article>

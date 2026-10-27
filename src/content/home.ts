@@ -45,8 +45,8 @@ export const hospitais = {
   // R28: rede varia por produto e muda com o tempo.
   nota: "A rede de cada plano muda com o tempo e varia por produto. Conferimos a rede atual na operadora antes de você decidir.",
   lista: [
-    { nome: "Hospital São Camilo Santana", nota: "Ver quais planos incluem este hospital" },
-    { nome: "Hospital Nipo-Brasileiro", nota: "Ver quais planos incluem este hospital" },
+    { nome: "Hospital São Camilo Santana", nota: "Perguntar pelo WhatsApp quais planos incluem" },
+    { nome: "Hospital Nipo-Brasileiro", nota: "Perguntar pelo WhatsApp quais planos incluem" },
   ],
   avisoLista: "Lista de hospitais em validação com a GWL.",
 };
@@ -96,7 +96,7 @@ export const tipos = {
       acao: { rotulo: "Comparar planos odontológicos", whatsapp: true },
     },
   ],
-  perfis: "Procurando pelo seu caso?",
+  perfis: "Também por perfil:",
 };
 
 export const comoFunciona = {

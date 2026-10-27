@@ -31,13 +31,14 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): primeira versão feita no DESIGN.md v1 e refeita após a aprovação do v2. Vitrine interna em `/componentes/` (só em preview). Fontes Inter Tight e Inter (Fontsource). Rótulo da ação principal "Comparar planos pelo WhatsApp" segue provisório (pendência de copy). Links do rodapé para páginas das etapas 4 a 9 dão 404 até essas etapas. Imagens entram como blocos descritos até chegarem os arquivos de `docs/IMAGENS.md`.
 
 ## Etapa 3 — Home
-- [ ] Seções na ordem do DESIGN.md v2: topo com placa de dados, esteira de operadoras, manifesto, hospitais, tipos de plano (carrossel), como funciona, depoimentos (marcados até autorização), perguntas, chamada final
-- [ ] Texto da copy v3; trechos `[A CONFIRMAR]` renderizados como "a confirmar" em preview e bloqueando o build em production
-- [ ] Topo com as cenas IMG-01 e IMG-02 (geradas por IA, `docs/IMAGENS.md`) ou blocos descritos até chegarem; vídeo VID-01 opcional
-- [ ] `/impeccable critique` na home e `review-animations` no acordeão; corrigir o que contrariar o DESIGN.md
-- [ ] Prints com Playwright em 375, 768 e 1280px
-- [ ] Harness na home (R1, R4, R21, R24, R27, R28 e léxico)
+- [x] Seções na ordem do DESIGN.md v2: topo com placa de dados, esteira de operadoras, manifesto, hospitais, tipos de plano (carrossel), como funciona, depoimentos (marcados até autorização), perguntas, chamada final
+- [x] Texto da copy v3; trechos `[A CONFIRMAR]` renderizados como "a confirmar" em preview e bloqueando o build em production
+- [x] Topo com as cenas IMG-01 e IMG-02 (geradas por IA, `docs/IMAGENS.md`) ou blocos descritos até chegarem; vídeo VID-01 opcional
+- [x] `/impeccable critique` na home e `review-animations` no acordeão; corrigir o que contrariar o DESIGN.md
+- [x] Prints com Playwright em 375, 768 e 1280px
+- [x] Harness na home (R1, R4, R21, R24, R27, R28 e léxico)
 - Pronto quando: home completa no desktop e no celular, prints conferidos, harness sem alertas 🔴 (base do marco "demonstração")
+- Notas (27/10/2026): imagens ainda como blocos descritos (aguardam `docs/IMAGENS.md`). Critique do Impeccable (revisão de design + detector) aplicada: notas informativas a 16px, menu do celular sólido com botão do WhatsApp, carrossel abre no primeiro card, vizinhos a 60%, atalhos de hospital dizem que abrem o WhatsApp, perfis duplicados removidos. Review de animações: sublinhado de navegação só em aparelho com mouse. Pendências de conteúdo registradas em `src/content/home.ts` bloqueiam o build de produção (16 no total).
 
 ## Etapa 4 — Páginas por perfil
 - [ ] Modelo comum: topo da persona, dores e o que a GWL explica, perguntas da persona, chamada para o WhatsApp com mensagem pronta do perfil

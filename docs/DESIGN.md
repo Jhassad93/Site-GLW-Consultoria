@@ -59,7 +59,8 @@ Regras:
 - **Títulos:** **Inter Tight**, peso 500 (600 só no logotipo provisório), espaçamento entre letras de −0,035em (−0,05em no "GWL" do rodapé). Grotesca neutra e justa, a mesma família visual das referências, livre (SIL OFL).
 - **Corpo e interface:** **Inter**, pesos 400 e 500. Alta legibilidade em tela, algarismos tabulares para numeração.
 - **Escala (desktop → celular):**
-  - legenda 13–15px (mínimo 13px, só em notas e legendas de imagem)
+  - legenda 13px (só legendas de imagem e o selo "CLIENTE GWL")
+  - nota 16px (notas informativas, avisos legais, rótulos; nunca menor)
   - corpo 18px (não diminui no celular)
   - subtítulo 20px
   - H3 24–28px
@@ -103,16 +104,16 @@ Microinterações: sublinhado que cresce da esquerda nos links de navegação (2
 - **Bordas:** 1px Noite a 14–25% em listas, botões de contorno e setas.
 
 ## Componentes
-- **Cabeçalho:** pílula de vidro fosco (Névoa a 82%, desfoque 24px, borda branca a 55%), fixa a 16px do topo, largura até 1200px. Logo à esquerda; no computador, links de texto (Hospitais, Tipos de plano, Como funciona, Perguntas, Sobre) e o botão escuro "Falar com a GWL"; no celular, botão escuro escrito "Menu" que abre um painel de vidro com os links em 26px. Sem suporte a desfoque ou com transparência reduzida: fundo Névoa sólido.
+- **Cabeçalho:** pílula de vidro fosco (Névoa a 82%, desfoque 24px, borda branca a 55%), fixa a 16px do topo, largura até 1200px. Logo à esquerda; no computador, links de texto (Hospitais, Tipos de plano, Como funciona, Perguntas, Sobre) e o botão escuro "Falar com a GWL"; no celular, botão escuro escrito "Menu" que abre um painel **sólido** (Névoa, para não misturar com o texto de trás) com os links em 26px, fios entre todos e o botão do WhatsApp no fim. Sem suporte a desfoque ou com transparência reduzida: fundo Névoa sólido.
 - **Botão principal:** pílula de 60px, texto 18px peso 500, com a seta num círculo Broto de 44px à direita. Claro (Névoa) sobre fundo escuro; escuro (Noite) sobre fundo claro. Rótulo da ação: "Comparar planos pelo WhatsApp" `[pendência de copy]`.
 - **Botão secundário:** pílula de contorno 1px, sem seta.
 - **Botão de seta (carrosséis):** círculo de 56px com contorno 1px e chevron de 1,6px.
 - **Link em texto corrido:** sempre sublinhado (o público 60+ precisa ver o que é clicável). Links de navegação: sublinhado só ao passar o mouse, porque o contexto já indica que são clicáveis.
 - **Placa de dados do topo:** vidro escuro (branco a 8%, desfoque 24px), raio 24px, três linhas separadas por fio: rótulo à esquerda, valor em Inter Tight 28px à direita. Só dados confirmados (R1, R9); números de prova só com fonte.
 - **Esteira:** fundo Branco, fios em cima e embaixo, nomes em Inter Tight 26px Cinza, máscara de esmaecimento nas bordas, botão "Pausar".
-- **Card de tipo de plano:** dois blocos brancos empilhados: imagem (320px) com título e rótulo; "Em resumo" com texto e link. O card central fica em 100%; os vizinhos em 40% de opacidade e 92% de escala.
+- **Card de tipo de plano:** dois blocos brancos empilhados: imagem (320px) com título e rótulo; "Em resumo" com texto e link. O card central fica em 100%; os vizinhos em 60% de opacidade e 94% de escala. Abre no primeiro card (alinhado à margem).
 - **Item de hospital:** linha com nome em Inter Tight 28px, nota "Rede conferida em [data]" (R28) e círculo com seta.
-- **Passo (como funciona):** número 01–04 em Cinza, título 26px e texto de apoio.
+- **Passo (como funciona):** número 01–05 em Cinza, título 26px e texto de apoio.
 - **Depoimento:** card de 500px de altura; alterna **foto** (citação em Névoa sobre gradiente Noite) e **texto** (fundo Mata, selo "CLIENTE GWL" em Broto, citação 30px, iniciais em círculo Broto). Só com depoimento real e autorização escrita.
 - **Pergunta (acordeão):** `<details>` nativo; pergunta em Inter Tight 24px, ícone "+" num círculo de contorno.
 - **Chamada final:** card Noite com raio 32px, título de 80px, fio, assinatura "Primeiro o hospital. Depois o plano." e os dois botões.

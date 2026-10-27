@@ -49,7 +49,7 @@ export function TopoCenas({ cenas, children }: { cenas: readonly Cena[]; childre
               )}
             </div>
             {!c.src && isPreview && (
-              <p className="absolute top-32 right-10 m-0 hidden max-w-72 text-right text-legenda text-nevoa/75 md:block">
+              <p className="absolute top-32 right-10 m-0 hidden max-w-72 text-right text-legenda text-nevoa/75 lg:block">
                 {c.descricao}
               </p>
             )}

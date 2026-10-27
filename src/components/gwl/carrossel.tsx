@@ -34,9 +34,13 @@ export function Carrossel({ titulo, rotuloItem, larguraCard, centralizado = fals
   const mover = (delta: number) =>
     setAtual((a) => (centralizado ? (a + delta + total) % total : Math.max(0, Math.min(total - 1, a + delta))));
 
-  const deslocamento = centralizado
-    ? `translateX(calc(50% - var(--card) / 2 - ${atual} * (var(--card) + 1.5rem)))`
-    : `translateX(calc(-${atual} * (var(--card) + 1.5rem)))`;
+  // No primeiro card, o centralizado alinha à margem (sem vazio à esquerda); nos demais, centraliza.
+  const deslocamento =
+    centralizado && atual > 0
+      ? `translateX(calc(50% - var(--card) / 2 - ${atual} * (var(--card) + 1.5rem)))`
+      : centralizado
+        ? "translateX(max(1.25rem, calc((100% - 1200px) / 2)))"
+        : `translateX(calc(-${atual} * (var(--card) + 1.5rem)))`;
 
   return (
     <div className={larguras[larguraCard]}>
@@ -78,7 +82,7 @@ export function Carrossel({ titulo, rotuloItem, larguraCard, centralizado = fals
                 aria-label={`${i + 1} de ${total}`}
                 className={cn(
                   "shrink-0 basis-(--card) transition-[opacity,transform] duration-[450ms] ease-saida motion-reduce:transition-none",
-                  centralizado && !ativo && "scale-[0.92] opacity-40",
+                  centralizado && !ativo && "scale-[0.94] opacity-60",
                 )}
               >
                 {item}

@@ -82,7 +82,7 @@
   /* Escala do DESIGN.md v2 (valores de desktop; o celular usa as variantes -cel) */
   --text-legenda: 0.8125rem; /* 13px: mínimo, só notas e legendas */
   --text-legenda--line-height: 1.45;
-  --text-nota: 0.875rem; /* 14px */
+  --text-nota: 1rem; /* 16px: notas informativas (mínimo fora de legenda de imagem) */
   --text-nota--line-height: 1.5;
   --text-corpo: 1.125rem; /* 18px, não diminui */
   --text-corpo--line-height: 1.55;

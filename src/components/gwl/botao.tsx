@@ -108,7 +108,7 @@ export function BotaoSeta({
       type="button"
       aria-label={rotulo}
       className={cn(
-        "grid size-14 place-items-center rounded-full border transition-colors duration-200 disabled:opacity-35",
+        "grid size-14 place-items-center rounded-full border transition-colors duration-200 disabled:opacity-50",
         claro ? "border-nevoa/35 text-nevoa hover:border-nevoa" : "border-noite/25 text-noite hover:border-noite",
       )}
       {...props}

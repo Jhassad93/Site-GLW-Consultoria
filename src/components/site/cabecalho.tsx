@@ -73,11 +73,11 @@ export function Cabecalho() {
           id={idPainel}
           aria-label="Menu principal"
           hidden={!aberto}
-          className="vidro absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-[1.75rem] px-6 py-3 lg:hidden"
+          className="absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-[1.75rem] border border-fio bg-nevoa px-6 pt-3 pb-6 shadow-[0_10px_30px_rgb(15_26_18/0.08)] lg:hidden"
         >
           <ul className="m-0 list-none p-0">
             {menuPrincipal.map((item) => (
-              <li key={item.href} className="border-b border-fio last:border-0">
+              <li key={item.href} className="border-b border-fio">
                 <Link
                   href={item.href}
                   onClick={() => setAberto(false)}
@@ -88,6 +88,15 @@ export function Cabecalho() {
               </li>
             ))}
           </ul>
+          <LinkExternoBotao
+            href={linkWhatsApp()}
+            variante="escuro"
+            seta
+            className="mt-6 w-full justify-between"
+            data-evento="whatsapp_click"
+          >
+            Falar pelo WhatsApp
+          </LinkExternoBotao>
         </nav>
       </div>
     </header>

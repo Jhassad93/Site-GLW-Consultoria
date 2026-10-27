@@ -42,7 +42,7 @@ export default function Home() {
                   <BotaoWhatsApp fundo="escuro" principal />
                   <BotaoPausaTopo />
                 </div>
-                <p className="mt-5 max-w-[52ch] text-nota text-nevoa/75">{topo.nota}</p>
+                <p className="mt-5 max-w-[52ch] text-nota text-nevoa/80">{topo.nota}</p>
               </div>
               <PlacaDados
                 linhas={[
@@ -87,7 +87,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
           <div>
             <h2 id="t-hospital" className="text-h2-cel md:text-h2">{hospitais.titulo}</h2>
-            <p className="mt-6 max-w-[40ch] text-grafite">{hospitais.texto}</p>
+            <p className="mt-6 max-w-[40ch] text-pretty text-grafite">{hospitais.texto}</p>
             <p className="mt-6 max-w-[44ch] text-nota text-musgo">{hospitais.nota}</p>
           </div>
           <div>
@@ -95,7 +95,7 @@ export default function Home() {
               {hospitais.lista.map((h) => (
                 <ItemHospital key={h.nome} hospital={h.nome} nota={h.nota} />
               ))}
-              <ItemHospital hospital="Outro hospital" nota="Diga qual e conferimos para você" outro />
+              <ItemHospital hospital="Outro hospital" nota="Diga qual pelo WhatsApp e conferimos para você" outro />
             </ListaHospitais>
             <p className="mt-4 text-legenda text-musgo">{hospitais.avisoLista}</p>
           </div>
@@ -108,13 +108,12 @@ export default function Home() {
           titulo={
             <>
               <h2 id="t-tipos" className="max-w-[18ch] text-h2-cel md:text-h2">{tipos.titulo}</h2>
-              <p className="mt-4 max-w-[52ch] text-grafite">{tipos.texto}</p>
+              <p className="mt-4 max-w-[52ch] text-pretty text-grafite">{tipos.texto}</p>
             </>
           }
           rotuloItem="Tipo de plano"
           larguraCard="plano"
           centralizado
-          inicial={1}
         >
           {tipos.itens.map((t) => (
             <CardPlano
@@ -139,9 +138,9 @@ export default function Home() {
           ))}
         </Carrossel>
         <nav aria-label="Planos por perfil" className="mx-auto mt-14 max-w-[1280px] px-5 md:px-10">
-          <p className="text-[0.9375rem] text-musgo">{tipos.perfis}</p>
+          <p className="text-nota text-musgo">{tipos.perfis}</p>
           <ul className="mt-3 flex list-none flex-wrap gap-2 p-0">
-            {perfis.map((p) => (
+            {perfis.filter((p) => p.href === rotas.pais60 || p.href === rotas.trocar).map((p) => (
               <li key={p.href}>
                 <LinkBotao href={p.href} variante="contorno" tamanho="compacto">
                   {p.rotulo}
