@@ -81,10 +81,11 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): função em `functions/api/contato.ts`, regras compartilhadas em `src/lib/lead.ts`. Testes: `npm run test:contato` (15 casos com serviços simulados) e ponta a ponta no navegador com o simulador da Cloudflare (wrangler pages dev) e Supabase/Turnstile simulados: erros por campo com dados mantidos, prévia restrita a "TESTE", falha com "Tentar de novo", limite, sucesso para `/obrigado` (noindex). Na prévia, `ACEITAR_LEADS=teste` (Anexo D). **Fica para a etapa 11 (deploy):** regra de limite por IP na Cloudflare, chaves reais do Turnstile, Supabase e Resend nas variáveis da Cloudflare, e a repetição dos testes no endereço de prévia. Prazo de retorno da página de obrigado "a confirmar".
 
 ## Etapa 9 — Páginas legais e cookies
-- [ ] `/privacidade`: dados coletados, finalidade, base legal (art. 7º, V, a validar), operadores (Cloudflare, Supabase, Resend, Google), retenção (12 e 24 meses), direitos do titular, encarregado "a confirmar"
-- [ ] `/termos`: papel da corretora (não é operadora), sem promessa de preço, rede ou aceitação
-- [ ] Banner de cookies com Aceitar, Recusar e Preferências; link "Preferências de cookies" no rodapé; nada de analytics antes do aceite (R13)
+- [x] `/privacidade`: dados coletados, finalidade, base legal (art. 7º, V, a validar), operadores (Cloudflare, Supabase, Resend, Google), retenção (12 e 24 meses), direitos do titular, encarregado "a confirmar"
+- [x] `/termos`: papel da corretora (não é operadora), sem promessa de preço, rede ou aceitação
+- [x] Banner de cookies com Aceitar, Recusar e Preferências; link "Preferências de cookies" no rodapé; nada de analytics antes do aceite (R13)
 - Pronto quando: textos revisados juridicamente (João e cliente) e nenhum script de terceiros carrega antes do aceite (conferido na aba de rede)
+- Notas (27/10/2026): textos de `/privacidade` e `/termos` são RASCUNHO jurídico; a revisão por João e pelo cliente e o encarregado (DPO) seguem como pendências que bloqueiam a produção. Banner com Aceitar e Recusar com o mesmo destaque, Preferências e link no rodapé; escolha no localStorage, com evento `gwl:consentimento` para o GA4 da etapa 10. Conferido no navegador: nenhuma requisição a domínio de terceiros antes do aceite (home, perfil, privacidade e termos).
 
 ## Etapa 10 — SEO, IA e analytics
 - [ ] Title e description por página, Open Graph, favicons a partir do logo, sitemap.xml, canonical, alt text

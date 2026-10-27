@@ -10,6 +10,7 @@ import { PularConteudo } from "@/components/site/pular-conteudo";
 import { Cabecalho } from "@/components/site/cabecalho";
 import { Rodape } from "@/components/site/rodape";
 import { BarraWhatsApp } from "@/components/site/barra-whatsapp";
+import { BannerConsentimento } from "@/components/site/consentimento";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Rodape />
         <BarraWhatsApp />
+        <BannerConsentimento />
       </body>
     </html>
   );

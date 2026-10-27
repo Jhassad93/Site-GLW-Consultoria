@@ -11,6 +11,7 @@ import { validarGuias } from "../src/content/guias.ts";
 import "../src/content/home.ts";
 import "../src/content/perfis.ts";
 import "../src/content/institucional.ts";
+import "../src/content/legal.ts";
 
 const stage = process.env.SITE_STAGE === "production" ? "production" : "preview";
 

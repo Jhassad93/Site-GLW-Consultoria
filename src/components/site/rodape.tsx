@@ -2,6 +2,7 @@ import Link from "next/link";
 import { empresa, A_CONFIRMAR } from "@/content/empresa";
 import { exibir, formatarTelefone } from "@/lib/dados";
 import { linksExternos, perfis, rotas } from "@/content/navegacao";
+import { BotaoPreferenciasCookies } from "./consentimento";
 
 /**
  * Rodapé (DESIGN.md v2): fundo Noite, "GWL" enorme em Mata (decorativo), identificação completa em colunas
@@ -94,6 +95,7 @@ export function Rodape() {
               <li><Link href={rotas.contato} className="link-nav">Contato</Link></li>
               <li><Link href={rotas.privacidade} className="link-nav">Política de privacidade</Link></li>
               <li><Link href={rotas.termos} className="link-nav">Termos de uso</Link></li>
+              <li><BotaoPreferenciasCookies className="link-nav text-nevoa" /></li>
               <li>
                 <a href={empresa.instagram.valor} target="_blank" rel="noopener noreferrer" className="link-nav">
                   Instagram<span className="sr-only"> (abre em nova aba)</span>
