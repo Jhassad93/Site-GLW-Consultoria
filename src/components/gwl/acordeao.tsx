@@ -1,26 +1,29 @@
 import type { ReactNode } from "react";
 
 /**
- * Acordeão de perguntas (DESIGN.md › Componentes), com <details>/<summary> nativos:
- * funciona sem JavaScript, é acessível por teclado e o conteúdo fica no HTML do servidor (bom para SEO/IA).
- * Pergunta 20px em negrito; resposta 18px; ícone + e − em Rio. A resposta surge com opacidade
- * em 150ms (globals.css), desligada por prefers-reduced-motion.
+ * Perguntas em acordeão (DESIGN.md v2 › Componentes), com <details>/<summary> nativos:
+ * funciona sem JavaScript, é acessível por teclado e o conteúdo fica no HTML do servidor (SEO/IA).
+ * Pergunta em Inter Tight 24px; "+" num círculo de contorno que gira 45° ao abrir (globals.css).
  */
 type Item = { pergunta: string; resposta: ReactNode };
 
-export function Acordeao({ itens }: { itens: Item[] }) {
+export function Acordeao({ itens }: { itens: readonly Item[] }) {
   return (
-    <div className="divide-y divide-border border-y border-border">
+    <div className="border-t border-fio">
       {itens.map((item) => (
-        <details key={item.pergunta} className="group acordeao">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[1.25rem] leading-snug font-bold marker:hidden [&::-webkit-details-marker]:hidden">
-            <span>{item.pergunta}</span>
-            <span aria-hidden className="mt-0.5 shrink-0 text-2xl leading-none text-rio">
-              <span className="group-open:hidden">+</span>
-              <span className="hidden group-open:inline">−</span>
+        <details key={item.pergunta} className="acordeao border-b border-fio">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+            <span className="font-heading text-[1.375rem] leading-tight tracking-titulo md:text-2xl">{item.pergunta}</span>
+            <span
+              aria-hidden
+              className="acordeao-icone grid size-10 shrink-0 place-items-center rounded-full border border-noite/20 transition-transform duration-200 ease-out"
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12">
+                <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.6" />
+              </svg>
             </span>
           </summary>
-          <div className="max-w-[68ch] pb-6 text-corpo">{item.resposta}</div>
+          <div className="max-w-[62ch] pr-0 pb-7 text-grafite md:pr-16">{item.resposta}</div>
         </details>
       ))}
     </div>

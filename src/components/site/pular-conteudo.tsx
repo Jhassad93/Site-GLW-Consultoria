@@ -3,7 +3,7 @@ export function PularConteudo() {
   return (
     <a
       href="#conteudo"
-      className="sr-only z-50 rounded-full bg-tinta px-5 py-3 font-bold text-branco no-underline focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+      className="sr-only z-[60] rounded-full bg-noite px-5 py-3 font-medium text-nevoa no-underline focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
     >
       Pular para o conteúdo
     </a>

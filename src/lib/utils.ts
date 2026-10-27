@@ -1,14 +1,21 @@
 import { createCn } from "cn/config";
 
 /**
- * `cn` com as escalas do DESIGN.md registradas como tamanho de fonte e raio.
- * Sem isso, `text-corpo` era tratado como cor e apagava `text-tinta` ao lado (visto nos prints da etapa 2).
+ * `cn` com a escala do DESIGN.md v2 registrada como tamanho de fonte.
+ * Sem isso, `text-corpo` seria tratado como cor e apagaria `text-noite` ao lado.
  */
 export const cn = createCn({
   extend: {
     classGroups: {
-      "font-size": [{ text: ["legenda", "corpo", "sub", "h3", "h2", "h1", "h1-home"] }],
-      rounded: [{ rounded: ["folha"] }],
+      "font-size": [
+        {
+          text: [
+            "legenda", "nota", "corpo", "sub", "h3", "h2", "h2-cel", "manifesto", "manifesto-cel",
+            "h1", "h1-cel", "final", "final-cel",
+          ],
+        },
+      ],
+      tracking: [{ tracking: ["titulo", "marca"] }],
     },
   },
 });

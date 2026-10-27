@@ -15,10 +15,11 @@ export const rotas = {
   termos: "/termos/",
 } as const;
 
+/** Menu do cabeçalho (DESIGN.md v2 › Componentes › Cabeçalho). */
 export const menuPrincipal = [
-  { rotulo: "Para quem", href: "/#para-quem" },
-  { rotulo: "Guias", href: rotas.guias },
-  { rotulo: "Operadoras", href: rotas.operadoras },
+  { rotulo: "Hospitais", href: "/#hospital" },
+  { rotulo: "Tipos de plano", href: "/#tipos" },
+  { rotulo: "Como funciona", href: "/#como-funciona" },
   { rotulo: "Perguntas", href: rotas.perguntas },
   { rotulo: "Sobre", href: rotas.sobre },
 ] as const;

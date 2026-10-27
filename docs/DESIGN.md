@@ -103,7 +103,7 @@ Microinterações: sublinhado que cresce da esquerda nos links de navegação (2
 - **Bordas:** 1px Noite a 14–25% em listas, botões de contorno e setas.
 
 ## Componentes
-- **Cabeçalho:** pílula de vidro fosco (Névoa a 72%, desfoque 24px, borda branca a 55%), fixa a 16px do topo, largura até 1200px. Logo à esquerda; no computador, links de texto (Hospitais, Tipos de plano, Como funciona, Perguntas, Sobre) e o botão escuro "Falar com a GWL"; no celular, botão escuro escrito "Menu" que abre um painel de vidro com os links em 26px. Sem suporte a desfoque ou com transparência reduzida: fundo Névoa sólido.
+- **Cabeçalho:** pílula de vidro fosco (Névoa a 82%, desfoque 24px, borda branca a 55%), fixa a 16px do topo, largura até 1200px. Logo à esquerda; no computador, links de texto (Hospitais, Tipos de plano, Como funciona, Perguntas, Sobre) e o botão escuro "Falar com a GWL"; no celular, botão escuro escrito "Menu" que abre um painel de vidro com os links em 26px. Sem suporte a desfoque ou com transparência reduzida: fundo Névoa sólido.
 - **Botão principal:** pílula de 60px, texto 18px peso 500, com a seta num círculo Broto de 44px à direita. Claro (Névoa) sobre fundo escuro; escuro (Noite) sobre fundo claro. Rótulo da ação: "Comparar planos pelo WhatsApp" `[pendência de copy]`.
 - **Botão secundário:** pílula de contorno 1px, sem seta.
 - **Botão de seta (carrosséis):** círculo de 56px com contorno 1px e chevron de 1,6px.

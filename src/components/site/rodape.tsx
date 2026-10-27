@@ -2,110 +2,104 @@ import Link from "next/link";
 import { empresa, A_CONFIRMAR } from "@/content/empresa";
 import { exibir, formatarTelefone } from "@/lib/dados";
 import { linksExternos, perfis, rotas } from "@/content/navegacao";
-import { Logo } from "@/components/gwl/logo";
 
 /**
- * Rodapé em sala Copa (DESIGN.md › Componentes): identificação completa em linhas separadas (harness R1, R19).
- * Dados não confirmados aparecem com "(a confirmar)", nunca como fato. `data-oculta-barra` esconde a barra do WhatsApp.
+ * Rodapé (DESIGN.md v2): fundo Noite, "GWL" enorme em Mata (decorativo), identificação completa em colunas
+ * (harness R1, R19, R30). Dados não confirmados aparecem com "(a confirmar)", nunca como fato.
+ * `data-oculta-barra` esconde a barra do celular.
  */
 export function Rodape() {
   const { endereco, responsavelTecnico, registroSusep, whatsapp, telefone, email, horarioAtendimento } = empresa;
   const end = endereco.valor;
-  const textoEndereco = `${end.logradouro}, ${end.bairro}, ${end.cidade}/${end.uf}, CEP ${end.cep}`;
   const marca = (confirmado: boolean) => (confirmado ? "" : ` (${A_CONFIRMAR})`);
 
-  const linhasIdentificacao = [
-    ["Razão social", exibir(empresa.razaoSocial)],
-    ["CNPJ", exibir(empresa.cnpj)],
-    ["Registro SUSEP", exibir(registroSusep)],
-    [
-      "Responsável técnico",
-      responsavelTecnico.valor
-        ? `${responsavelTecnico.valor.nome}, SUSEP ${responsavelTecnico.valor.registroSusep}${marca(responsavelTecnico.confirmado)}`
-        : A_CONFIRMAR,
-    ],
-    ["Endereço", `${textoEndereco}${marca(endereco.confirmado)}`],
-  ] as const;
-
-  const linhasContato = [
-    ["WhatsApp", `${formatarTelefone(whatsapp.valor)}${marca(whatsapp.confirmado)}`],
-    ["Telefone", telefone.valor ? `${formatarTelefone(telefone.valor)}${marca(telefone.confirmado)}` : A_CONFIRMAR],
-    ["E-mail", exibir(email)],
-    ["Horário", exibir(horarioAtendimento)],
-  ] as const;
-
   return (
-    <footer data-oculta-barra className="mt-auto bg-copa text-branco [&_a]:text-branco">
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 md:grid-cols-[1.3fr_1fr_1fr] md:px-8">
-        <div>
-          <Logo claro />
-          <p className="mt-5 max-w-sm">
-            Corretora de planos de saúde e odontológicos em Santana, zona norte de São Paulo.
-          </p>
-          <dl className="mt-8 space-y-3 text-[1rem]">
-            {linhasIdentificacao.map(([rotulo, valor]) => (
-              <div key={rotulo}>
-                <dt className="font-bold">{rotulo}</dt>
-                <dd>{valor}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+    <footer data-oculta-barra className="escuro bg-noite px-5 pt-20 pb-28 text-nevoa md:px-10 md:pt-24 [&_a]:text-nevoa">
+      <div className="mx-auto max-w-[1200px]">
+        <p
+          aria-hidden
+          className="m-0 font-heading text-[5.5rem] leading-[0.9] font-medium tracking-marca text-mata md:text-[7.5rem]"
+        >
+          GWL
+        </p>
 
-        <div>
-          <h2 className="font-sans text-corpo font-bold">Atendimento</h2>
-          <dl className="mt-4 space-y-3 text-[1rem]">
-            {linhasContato.map(([rotulo, valor]) => (
-              <div key={rotulo}>
-                <dt className="font-bold">{rotulo}</dt>
-                <dd>{valor}</dd>
+        <div className="mt-12 grid gap-10 border-t border-fio-escuro pt-8 text-[0.9375rem] text-nevoa/80 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <h2 className="font-sans text-[0.9375rem] font-medium tracking-normal text-nevoa">
+              {empresa.nomeFantasia.valor}
+            </h2>
+            <dl className="mt-3 space-y-1.5">
+              <div><dt className="sr-only">Razão social</dt><dd className="m-0">{exibir(empresa.razaoSocial)}</dd></div>
+              <div><dt className="inline">CNPJ </dt><dd className="m-0 inline">{exibir(empresa.cnpj)}</dd></div>
+              <div><dt className="inline">Registro SUSEP: </dt><dd className="m-0 inline">{exibir(registroSusep)}</dd></div>
+              <div>
+                <dt className="inline">Responsável técnico: </dt>
+                <dd className="m-0 inline">
+                  {responsavelTecnico.valor
+                    ? `${responsavelTecnico.valor.nome}, SUSEP ${responsavelTecnico.valor.registroSusep}${marca(responsavelTecnico.confirmado)}`
+                    : A_CONFIRMAR}
+                </dd>
               </div>
-            ))}
-          </dl>
-          <p className="mt-6 text-[1rem]">
-            <a href={empresa.instagram.valor} target="_blank" rel="noopener noreferrer">
-              Instagram<span className="sr-only"> (abre em nova aba)</span>
-            </a>
-          </p>
-        </div>
+            </dl>
+            <p className="mt-3">
+              <a href={linksExternos.consultaSusep} target="_blank" rel="noopener noreferrer">
+                Consultar registro na SUSEP<span className="sr-only"> (abre em nova aba)</span>
+              </a>
+            </p>
+          </div>
 
-        <nav aria-label="Rodapé">
-          <h2 className="font-sans text-corpo font-bold">Planos por perfil</h2>
-          <ul className="mt-4 space-y-2 text-[1rem]">
-            {perfis.map((p) => (
-              <li key={p.href}>
-                <Link href={p.href}>{p.rotulo}</Link>
+          <div>
+            <h2 className="font-sans text-[0.9375rem] font-medium tracking-normal text-nevoa">Atendimento</h2>
+            <address className="mt-3 not-italic">
+              {end.logradouro}
+              <br />
+              {end.bairro}, {end.cidade}/{end.uf}
+              <br />
+              CEP {end.cep}
+              {marca(endereco.confirmado)}
+            </address>
+            <dl className="mt-3 space-y-1.5">
+              <div><dt className="inline">WhatsApp: </dt><dd className="m-0 inline">{formatarTelefone(whatsapp.valor)}{marca(whatsapp.confirmado)}</dd></div>
+              <div><dt className="inline">Telefone: </dt><dd className="m-0 inline">{telefone.valor ? `${formatarTelefone(telefone.valor)}${marca(telefone.confirmado)}` : A_CONFIRMAR}</dd></div>
+              <div><dt className="inline">E-mail: </dt><dd className="m-0 inline">{exibir(email)}</dd></div>
+              <div><dt className="inline">Horário: </dt><dd className="m-0 inline">{exibir(horarioAtendimento)}</dd></div>
+            </dl>
+          </div>
+
+          <nav aria-label="Planos por perfil">
+            <h2 className="font-sans text-[0.9375rem] font-medium tracking-normal text-nevoa">Planos por perfil</h2>
+            <ul className="mt-3 list-none space-y-1.5 p-0">
+              {perfis.map((p) => (
+                <li key={p.href}>
+                  <Link href={p.href} className="link-nav">{p.rotulo}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div>
+            <h2 className="font-sans text-[0.9375rem] font-medium tracking-normal text-nevoa">Regulação e privacidade</h2>
+            <p className="mt-3">
+              A GWL é uma corretora: intermediamos a contratação. Os planos são das operadoras, registradas na{" "}
+              <a href={linksExternos.ans} target="_blank" rel="noopener noreferrer">
+                ANS<span className="sr-only"> (abre em nova aba)</span>
+              </a>
+              .
+            </p>
+            <ul className="mt-3 list-none space-y-1.5 p-0">
+              <li><Link href={rotas.sobre} className="link-nav">Sobre a GWL</Link></li>
+              <li><Link href={rotas.privacidade} className="link-nav">Política de privacidade</Link></li>
+              <li><Link href={rotas.termos} className="link-nav">Termos de uso</Link></li>
+              <li>
+                <a href={empresa.instagram.valor} target="_blank" rel="noopener noreferrer" className="link-nav">
+                  Instagram<span className="sr-only"> (abre em nova aba)</span>
+                </a>
               </li>
-            ))}
-          </ul>
-          <h2 className="mt-8 font-sans text-corpo font-bold">Institucional</h2>
-          <ul className="mt-4 space-y-2 text-[1rem]">
-            <li><Link href={rotas.sobre}>Sobre a GWL</Link></li>
-            <li><Link href={rotas.contato}>Contato</Link></li>
-            <li><Link href={rotas.privacidade}>Política de privacidade</Link></li>
-            <li><Link href={rotas.termos}>Termos de uso</Link></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div className="border-t border-branco/20">
-        <div className="mx-auto max-w-6xl space-y-3 px-4 py-8 text-[1rem] md:px-8">
-          <p>
-            A GWL é uma corretora: intermediamos a contratação. Os planos são das operadoras, registradas na ANS.{" "}
-            <a href={linksExternos.ans} target="_blank" rel="noopener noreferrer">
-              Site da ANS<span className="sr-only"> (abre em nova aba)</span>
-            </a>
-            .
-          </p>
-          <p>
-            Confira o registro de qualquer corretor na{" "}
-            <a href={linksExternos.consultaSusep} target="_blank" rel="noopener noreferrer">
-              consulta oficial da SUSEP<span className="sr-only"> (abre em nova aba)</span>
-            </a>
-            .
-          </p>
-          <p>© {new Date().getFullYear()} {empresa.nomeFantasia.valor}</p>
+            </ul>
+          </div>
         </div>
+
+        <p className="mt-12 text-legenda text-nevoa/70">© {new Date().getFullYear()} {empresa.nomeFantasia.valor}</p>
       </div>
     </footer>
   );

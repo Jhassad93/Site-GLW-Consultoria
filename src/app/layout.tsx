@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "@fontsource/bricolage-grotesque/600.css";
-import "@fontsource/bricolage-grotesque/700.css";
-import "@fontsource/atkinson-hyperlegible-next/400.css";
-import "@fontsource/atkinson-hyperlegible-next/700.css";
+import "@fontsource/inter-tight/500.css";
+import "@fontsource/inter-tight/600.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
 import "./globals.css";
 import { SITE_URL, isPreview } from "@/config/site";
 import { FaixaPreview } from "@/components/faixa-preview";

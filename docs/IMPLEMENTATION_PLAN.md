@@ -19,21 +19,21 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas da execução (27/10/2026): repositório github.com/Jhassad93/Site-GLW-Consultoria; Next.js 16.4.3 sem `cacheComponents` (incompatível com exportação estática); shadcn preset base-nova com Base UI; scripts `verificar-dados.mts` (bloqueia produção) e `gerar-headers.mts` (`_headers` da Cloudflare com noindex em preview); PRODUCT.md em `docs/` para o Impeccable; verificação visual com Playwright local (o MCP do `.mcp.json` fica para quem abrir o projeto no Claude Code).
 - Pronto quando: página em branco roda local e no build estático com as fontes e cores da marca; `SITE_STAGE=preview` mostra a faixa e `production` não
 
-## Etapa 2 — Layout base e componentes
-- [x] Cabeçalho (menu desktop; botão "Menu" escrito no celular), rodapé em sala Copa com a identificação completa (R1) lida de `empresa.ts`, faixa de prévia, link "pular para o conteúdo"
-- [x] Barra fixa de WhatsApp no celular: aparece só depois que o CTA principal sai da tela e some no formulário e no rodapé
-- [x] Componentes do DESIGN.md: botão primário (Mel) e secundário, link sublinhado, card de perfil (canto de folha), atalho de hospital, acordeão, campos de formulário com rótulo e erro
+## Etapa 2 — Layout base e componentes (refeita no DESIGN.md v2)
+- [x] Cabeçalho em pílula de vidro fosco (links no computador; botão "Menu" escrito no celular), rodapé Noite com a identificação completa (R1) lida de `empresa.ts`, faixa de prévia, link "pular para o conteúdo"
+- [x] Barra do celular: pílula escura flutuante; aparece só depois que o botão do topo sai da tela e some na chamada final, no formulário e no rodapé
+- [x] Componentes do DESIGN.md v2: botões (escuro, claro, contorno, com seta Broto), placa de dados, esteira com pausa, carrossel sem giro automático, card de tipo de plano, lista de hospitais, passos, depoimento (foto e texto), acordeão, campos com rótulo e erro
 - [x] Helper de link do WhatsApp com mensagem pronta por contexto (perfil ou hospital), sem dados de saúde (R14)
 - [x] Página 404 personalizada ("qual hospital você quer usar?" e volta à Home)
-- [x] `lang="pt-BR"`, HTML semântico, foco de teclado visível (anel Rio), `prefers-reduced-motion`
+- [x] `lang="pt-BR"`, HTML semântico, foco de teclado visível, `prefers-reduced-motion` e `prefers-reduced-transparency`
 - [x] `noindex` global quando `SITE_STAGE=preview`
 - Pronto quando: navegação funciona no teclado; URL inexistente mostra a 404; prints 375/768/1280 sem rolagem horizontal; nenhum dado "a confirmar" aparece como fato
-- Notas (27/10/2026): vitrine interna em `/componentes/` (só em preview; 404 em production). Menu completo a partir de 1024px; abaixo, botão "Menu". Rótulo da ação principal: "Comparar planos pelo WhatsApp" (provisório, pendência de copy). Links do rodapé para páginas das etapas 4 a 9 dão 404 até essas etapas. Atalho "Preferências de cookies" entra com o banner de consentimento. Animações só com opacity/transform.
+- Notas (27/10/2026): primeira versão feita no DESIGN.md v1 e refeita após a aprovação do v2. Vitrine interna em `/componentes/` (só em preview). Fontes Inter Tight e Inter (Fontsource). Rótulo da ação principal "Comparar planos pelo WhatsApp" segue provisório (pendência de copy). Links do rodapé para páginas das etapas 4 a 9 dão 404 até essas etapas. Imagens entram como blocos descritos até chegarem os arquivos de `docs/IMAGENS.md`.
 
 ## Etapa 3 — Home
-- [ ] Seções na ordem do DESIGN.md (no celular, "Comece pelo hospital" logo após o topo): topo, faixa de confiança, hospital, perfis (5), explicações, como funciona, quem atende, depoimentos (vazio até autorização), operadoras (texto), perguntas (6), chamada final
+- [ ] Seções na ordem do DESIGN.md v2: topo com placa de dados, esteira de operadoras, manifesto, hospitais, tipos de plano (carrossel), como funciona, depoimentos (marcados até autorização), perguntas, chamada final
 - [ ] Texto da copy v3; trechos `[A CONFIRMAR]` renderizados como "a confirmar" em preview e bloqueando o build em production
-- [ ] Ilustração própria provisória no topo (sem foto de pessoa real e sem banco de imagens)
+- [ ] Topo com as cenas IMG-01 e IMG-02 (geradas por IA, `docs/IMAGENS.md`) ou blocos descritos até chegarem; vídeo VID-01 opcional
 - [ ] `/impeccable critique` na home e `review-animations` no acordeão; corrigir o que contrariar o DESIGN.md
 - [ ] Prints com Playwright em 375, 768 e 1280px
 - [ ] Harness na home (R1, R4, R21, R24, R27, R28 e léxico)
