@@ -21,6 +21,7 @@ export default function Operadoras() {
   return (
     <>
       <TopoInterno
+        caminho={"/operadoras/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Operadoras" }]}
         palavraChave={o.palavraChave}
         titulo={o.titulo}

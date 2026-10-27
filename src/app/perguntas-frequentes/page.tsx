@@ -4,6 +4,7 @@ import { rotas } from "@/content/navegacao";
 import { TopoInterno } from "@/components/paginas/topo-interno";
 import { Acordeao } from "@/components/gwl/acordeao";
 import { ChamadaFinal } from "@/components/gwl/chamada-final";
+import { JsonLd, dadosPerguntas } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
   title: "Perguntas frequentes sobre plano de saúde: carência, reajuste e rede",
@@ -14,9 +15,12 @@ export const metadata: Metadata = {
 
 /** Perguntas frequentes (COPY.md › 5): 14 respostas que abrem pela resposta, agrupadas por tema (R16, R24–R28). */
 export default function PerguntasFrequentes() {
+  const faqLd = dadosPerguntas(faq.flatMap((g) => g.itens));
   return (
     <>
+      {faqLd && <JsonLd dados={faqLd} />}
       <TopoInterno
+        caminho={"/perguntas-frequentes/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Perguntas frequentes" }]}
         palavraChave="Dúvidas sobre plano de saúde"
         titulo="Perguntas que todo mundo faz antes de assinar."

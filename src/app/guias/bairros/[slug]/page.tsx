@@ -33,6 +33,7 @@ export default async function GuiaBairro({ params }: PageProps<"/guias/bairros/[
   return (
     <>
       <TopoInterno
+        caminho={`/guias/bairros/${b.slug}/`}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Guias", href: rotas.guias }, { rotulo: b.nome }]}
         palavraChave={b.palavraChave}
         titulo={`Plano de saúde para quem mora em ${b.nome}.`}

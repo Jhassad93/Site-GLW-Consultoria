@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import "@fontsource/inter-tight/500.css";
-import "@fontsource/inter-tight/600.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
 import "./globals.css";
 import { SITE_URL, isPreview } from "@/config/site";
+import { inter, interTight } from "@/fonts";
 import { FaixaPreview } from "@/components/faixa-preview";
 import { PularConteudo } from "@/components/site/pular-conteudo";
 import { Cabecalho } from "@/components/site/cabecalho";
 import { Rodape } from "@/components/site/rodape";
 import { BarraWhatsApp } from "@/components/site/barra-whatsapp";
 import { BannerConsentimento } from "@/components/site/consentimento";
+import { JsonLd, dadosOrganizacao } from "@/components/seo/json-ld";
+import { Analytics } from "@/components/seo/analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -21,13 +20,19 @@ export const metadata: Metadata = {
   description:
     "Corretora de planos de saúde e odontológicos em Santana, zona norte de São Paulo. Comparamos planos de várias operadoras e explicamos carência, reajuste e tipo de contrato antes de você assinar.",
   // Prévia nunca é indexada (harness, Anexo D). Reforçado por X-Robots-Tag em out/_headers.
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "GWL Corretora de Seguros",
+  },
   robots: isPreview ? { index: false, follow: false } : { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${inter.variable} ${interTight.variable}`}>
       <body className="flex min-h-dvh flex-col">
+        <JsonLd dados={dadosOrganizacao()} />
         <PularConteudo />
         {isPreview && <FaixaPreview />}
         <Cabecalho />
@@ -37,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Rodape />
         <BarraWhatsApp />
         <BannerConsentimento />
+        <Analytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>
   );

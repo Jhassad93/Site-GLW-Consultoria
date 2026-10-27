@@ -33,6 +33,7 @@ export default function Contato() {
   return (
     <>
       <TopoInterno
+        caminho={"/contato/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Contato" }]}
         palavraChave={c.palavraChave}
         titulo={c.titulo}

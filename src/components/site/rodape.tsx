@@ -17,12 +17,12 @@ export function Rodape() {
   return (
     <footer data-oculta-barra className="escuro bg-noite px-5 pt-20 pb-28 text-nevoa md:px-10 md:pt-24 [&_a]:text-nevoa">
       <div className="mx-auto max-w-[1200px]">
-        <p
-          aria-hidden
-          className="m-0 font-heading text-[5.5rem] leading-[0.9] font-medium tracking-marca text-mata md:text-[7.5rem]"
-        >
-          GWL
-        </p>
+        {/* Marca decorativa em tom sobre tom: SVG fora da árvore de acessibilidade (o nome está no texto ao lado). */}
+        <svg aria-hidden focusable="false" viewBox="0 0 300 96" className="h-[5rem] w-auto md:h-[7rem]">
+          <text x="0" y="82" fill="#1f3d27" fontFamily="var(--fonte-inter-tight), sans-serif" fontWeight="500" fontSize="110" letterSpacing="-5.5">
+            GWL
+          </text>
+        </svg>
 
         <div className="mt-12 grid gap-10 border-t border-fio-escuro pt-8 text-[0.9375rem] text-nevoa/80 sm:grid-cols-2 lg:grid-cols-4">
           <div>

@@ -39,6 +39,7 @@ export default async function GuiaHospital({ params }: PageProps<"/guias/hospita
   return (
     <>
       <TopoInterno
+        caminho={`/guias/hospitais/${g.slug}/`}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Guias", href: rotas.guias }, { rotulo: g.nome }]}
         palavraChave={g.palavraChave}
         titulo={`Planos de saúde que incluem o ${g.nome}.`}

@@ -14,8 +14,11 @@ Preencher durante o projeto com cada componente de terceiros efetivamente usado.
 | [componente] | React Bits | MIT + Commons Clause | Uso livre no site; vedada a revenda dos componentes |
 | [componente] | 21st.dev / [autor] | [conforme autor] | Conferido em [data] |
 | [GSAP, se usado] | gsap.com | [licença vigente] | Conferir uso comercial |
-| Fonte Inter Tight (títulos) | Google Fonts / Fontsource (Rasmus Andersson) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026) |
-| Fonte Inter (corpo) | Google Fonts / Fontsource (Rasmus Andersson) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026) |
+| Fonte Inter Tight (títulos) | Fontsource (subconjunto latino, em `src/fonts/`) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026); servida pelo next/font |
+| Fonte Inter (corpo) | Fontsource (subconjunto latino, em `src/fonts/`) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026); servida pelo next/font |
+| @next/third-parties (GA4) | github.com/vercel/next.js | MIT | Carrega só depois do consentimento |
+| Zod | zod.dev | MIT | Validação na função /api/contato |
+| Wrangler (desenvolvimento) | Cloudflare | MIT / Apache 2.0 | Só para testar a função localmente; não vai para o site |
 | Referências visuais (só linguagem, nenhum asset copiado) | instituteofhealth.com · untillabs.com · hona.com | Referência de estilo | DESIGN.md v2 › Referências |
 | Imagens geradas por IA (uma linha por arquivo) | [ferramenta e versão] · prompt em `docs/IMAGENS.md` (ID) | [termos da ferramenta: uso comercial permitido? data da conferência] | Só ambiente; nunca cliente, equipe ou lugar identificável (Anexo D) |
 | Fotos do cliente (uma linha por arquivo) | GWL | Cessão do cliente + autorização de imagem de cada pessoa | [arquivo da autorização] |

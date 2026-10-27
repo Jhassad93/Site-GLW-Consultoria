@@ -17,6 +17,7 @@ export default function Guias() {
   return (
     <>
       <TopoInterno
+        caminho={"/guias/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Guias" }]}
         palavraChave="Planos de saúde por hospital na zona norte"
         titulo="Guias para escolher pelo hospital e pelo bairro."

@@ -28,6 +28,7 @@ export default function Sobre() {
   return (
     <>
       <TopoInterno
+        caminho={"/sobre/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Sobre" }]}
         palavraChave={sobre.palavraChave}
         titulo={sobre.titulo}

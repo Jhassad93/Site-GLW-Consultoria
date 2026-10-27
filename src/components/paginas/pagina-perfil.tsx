@@ -8,6 +8,7 @@ import { BotaoWhatsApp } from "@/components/gwl/botao-whatsapp";
 import { LinkBotao } from "@/components/gwl/botao";
 import { Acordeao } from "@/components/gwl/acordeao";
 import { ChamadaFinal } from "@/components/gwl/chamada-final";
+import { JsonLd, dadosPerguntas, dadosServico, dadosTrilha } from "@/components/seo/json-ld";
 import { ItemHospital, ListaHospitais } from "@/components/gwl/item-hospital";
 import { hospitais } from "@/content/home";
 
@@ -155,8 +156,12 @@ function OutrosPerfis({ atual }: { atual: PerfilId }) {
 
 export function PaginaPerfil({ id }: { id: PerfilId }) {
   const p = paginasPerfil[id];
+  const faqLd = dadosPerguntas(p.perguntas);
   return (
     <>
+      <JsonLd dados={dadosServico(p.tituloPagina, p.descricao, p.rota)} />
+      <JsonLd dados={dadosTrilha([{ rotulo: "Início", href: rotas.home }, { rotulo: p.sobretitulo.split(" · ")[0] }], p.rota)} />
+      {faqLd && <JsonLd dados={faqLd} />}
       <Topo p={p} />
       <Pares p={p} />
       {p.hospitais && <Hospitais />}

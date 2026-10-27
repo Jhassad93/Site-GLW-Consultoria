@@ -137,6 +137,7 @@ export default function Privacidade() {
   return (
     <>
       <TopoInterno
+        caminho={"/privacidade/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Política de privacidade" }]}
         titulo="Política de privacidade."
         abertura={<>Como tratamos os dados que você nos envia pelo site. Versão de {VERSAO_POLITICA}.</>}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { BotaoWhatsApp } from "@/components/gwl/botao-whatsapp";
 import type { ContextoWhatsApp } from "@/lib/whatsapp";
+import { JsonLd, dadosTrilha } from "@/components/seo/json-ld";
 
 /**
  * Topo das páginas internas (DESIGN.md v2): fundo Noite, trilha de navegação, palavra-chave como primeira
@@ -10,6 +11,7 @@ import type { ContextoWhatsApp } from "@/lib/whatsapp";
 type Trilha = { rotulo: string; href?: string }[];
 
 export function TopoInterno({
+  caminho,
   trilha,
   palavraChave,
   titulo,
@@ -18,6 +20,8 @@ export function TopoInterno({
   aviso,
   lateral,
 }: {
+  /** URL desta página (canônica), usada na BreadcrumbList do JSON-LD. */
+  caminho: string;
   trilha: Trilha;
   palavraChave?: string;
   titulo: string;
@@ -28,6 +32,7 @@ export function TopoInterno({
 }) {
   return (
     <section aria-labelledby="titulo-pagina" className="escuro bg-noite text-nevoa">
+      <JsonLd dados={dadosTrilha(trilha, caminho)} />
       <div className="mx-auto grid max-w-[1280px] items-end gap-10 px-5 pt-32 pb-14 md:px-10 md:pt-44 md:pb-20 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-16">
         <div>
           <nav aria-label="Você está em" className="mb-6 text-nota text-nevoa/70">

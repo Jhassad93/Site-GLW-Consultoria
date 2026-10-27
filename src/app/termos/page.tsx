@@ -87,6 +87,7 @@ export default function Termos() {
   return (
     <>
       <TopoInterno
+        caminho={"/termos/"}
         trilha={[{ rotulo: "Início", href: rotas.home }, { rotulo: "Termos de uso" }]}
         titulo="Termos de uso."
         abertura={<>Condições de uso do site. Versão de {VERSAO_TERMOS}.</>}
