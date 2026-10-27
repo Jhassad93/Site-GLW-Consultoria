@@ -65,7 +65,7 @@ export function BarraWhatsApp({ contexto }: { contexto?: ContextoWhatsApp }) {
         className="group/botao flex min-h-15 w-full items-center justify-between gap-3 rounded-full bg-noite py-2 pr-2 pl-6 font-medium text-nevoa no-underline"
       >
         {ROTULO_ACAO_PRINCIPAL}
-        <span className="sr-only"> (abre o WhatsApp em nova aba)</span>
+        <span className="sr-only"> pelo WhatsApp (abre em nova aba)</span>
         <Seta />
       </a>
     </div>

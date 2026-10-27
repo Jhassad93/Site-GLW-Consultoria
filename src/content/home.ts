@@ -8,6 +8,8 @@ import { pendente, registrarPendencia } from "./pendencias.ts";
 export const topo = {
   sobretitulo: "Planos de saúde e odontológicos · Santana, zona norte de São Paulo",
   sobretituloCurto: "Planos de saúde e odonto em Santana",
+  // Sinal para a persona prioritária (filha ou filho que decide pelos pais), pedido por João em 27/10/2026.
+  atalho60: { texto: "Escolhendo pelos seus pais?", link: "Veja planos para 60+" },
   // H1 v3 aprovado provisoriamente; pendência de copy aberta para melhorar (COPY.md › Pendências).
   titulo: "Para o dia em que você vai pensar: “ainda bem que eu tenho plano”.",
   subtitulo:

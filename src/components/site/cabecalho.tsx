@@ -56,6 +56,7 @@ export function Cabecalho() {
           data-evento="whatsapp_click"
         >
           Falar com a GWL
+          <span className="sr-only"> pelo WhatsApp</span>
         </LinkExternoBotao>
 
         <button
@@ -95,7 +96,8 @@ export function Cabecalho() {
             className="mt-6 w-full justify-between"
             data-evento="whatsapp_click"
           >
-            Falar pelo WhatsApp
+            Falar com a GWL
+            <span className="sr-only"> pelo WhatsApp</span>
           </LinkExternoBotao>
         </nav>
       </div>

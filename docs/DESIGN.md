@@ -105,7 +105,7 @@ Microinterações: sublinhado que cresce da esquerda nos links de navegação (2
 
 ## Componentes
 - **Cabeçalho:** pílula de vidro fosco (Névoa a 82%, desfoque 24px, borda branca a 55%), fixa a 16px do topo, largura até 1200px. Logo à esquerda; no computador, links de texto (Hospitais, Tipos de plano, Como funciona, Perguntas, Sobre) e o botão escuro "Falar com a GWL"; no celular, botão escuro escrito "Menu" que abre um painel **sólido** (Névoa, para não misturar com o texto de trás) com os links em 26px, fios entre todos e o botão do WhatsApp no fim. Sem suporte a desfoque ou com transparência reduzida: fundo Névoa sólido.
-- **Botão principal:** pílula de 60px, texto 18px peso 500, com a seta num círculo Broto de 44px à direita. Claro (Névoa) sobre fundo escuro; escuro (Noite) sobre fundo claro. Rótulo da ação: "Comparar planos pelo WhatsApp" `[pendência de copy]`.
+- **Botão principal:** pílula de 60px, texto 18px peso 500, com a seta num círculo Broto de 44px à direita. Claro (Névoa) sobre fundo escuro; escuro (Noite) sobre fundo claro. Rótulo da ação: **"Falar com a GWL"** em todo o site (decidido em 27/10/2026); o leitor de tela ouve também "pelo WhatsApp".
 - **Botão secundário:** pílula de contorno 1px, sem seta.
 - **Botão de seta (carrosséis):** círculo de 56px com contorno 1px e chevron de 1,6px.
 - **Link em texto corrido:** sempre sublinhado (o público 60+ precisa ver o que é clicável). Links de navegação: sublinhado só ao passar o mouse, porque o contexto já indica que são clicáveis.

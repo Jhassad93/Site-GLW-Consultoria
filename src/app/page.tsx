@@ -42,7 +42,13 @@ export default function Home() {
                   <BotaoWhatsApp fundo="escuro" principal />
                   <BotaoPausaTopo />
                 </div>
-                <p className="mt-5 max-w-[52ch] text-nota text-nevoa/80">{topo.nota}</p>
+                <p className="mt-6 text-corpo text-nevoa/85">
+                  {topo.atalho60.texto}{" "}
+                  <Link href={rotas.pais60} className="font-medium text-nevoa">
+                    {topo.atalho60.link} <span aria-hidden>→</span>
+                  </Link>
+                </p>
+                <p className="mt-4 max-w-[52ch] text-nota text-nevoa/80">{topo.nota}</p>
               </div>
               <PlacaDados
                 linhas={[

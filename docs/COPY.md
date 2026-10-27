@@ -45,7 +45,8 @@ Trechos entre `[ ]` dependem de dado do cliente e não vão ao ar como estão.
 - **Sobretítulo:** Corretora de planos de saúde e odontológicos em Santana, zona norte de SP
 - **H1 (recomendado):** **Para o dia em que você vai pensar: "ainda bem que eu tenho plano".**
 - **Subtítulo:** Esse dia começa numa boa escolha: o hospital em que você confia na rede, uma carência que cabe no seu momento e uma mensalidade que você consegue manter. A gente compara as opções e explica tudo antes de você assinar.
-- **CTA principal:** `Escolher meu plano com calma`
+- **CTA principal:** `Falar com a GWL` (rótulo único do site, decidido em 27/10/2026)
+- **Atalho para 60+ (abaixo do botão):** Escolhendo pelos seus pais? `Veja planos para 60+`
 - **CTA secundário (link):** `Falar no WhatsApp`
 - **Microcopy sob o botão:** Atendimento sem custo para você [A CONFIRMAR: vale para toda a jornada? R29]. Valores, rede e aceitação são definidos pela operadora.
 - **Imagem:** cena real e serena, sem drama de emergência. Por exemplo, uma família ou um casal 60+ saindo tranquilo de uma consulta, ou a equipe da GWL atendendo alguém. Foto própria, com autorização de imagem.
@@ -124,7 +125,7 @@ Mostrar 6 perguntas, uma por persona, com link "ver todas".
 ### 3.11 CTA final
 - **H2:** Para quando precisar, escolha hoje com calma.
 - **Assinatura logo abaixo:** *Primeiro o hospital. Depois o plano.*
-- **CTA:** `Comparar planos pelo WhatsApp` · secundário `Prefiro que me liguem` (formulário curto)
+- **CTA:** `Falar com a GWL` (rótulo único do site, decidido em 27/10/2026) · secundário `Prefiro que me liguem` (formulário curto)
 
 ### 3.12 Rodapé
 GWL Corretora de Seguros Ltda · CNPJ [41.131.963/0001-01] · Corretora de seguros registrada na SUSEP sob o nº [ ] · Responsável técnico: [nome, registro] · [Rua Salete, 251, 2º andar, Santana, São Paulo/SP, 02016-001] · [telefone oficial] · [e-mail] · Política de privacidade · Termos de uso · Planos de saúde são regulados pela ANS (gov.br/ans) · Disque ANS [conferir número] · *Primeiro o hospital. Depois o plano.*
@@ -204,3 +205,5 @@ GWL Corretora de Seguros Ltda · CNPJ [41.131.963/0001-01] · Corretora de segur
 - Confirmar o escopo do pós-venda (reajuste, inclusões, autorizações).
 - Conferir a norma da ANS de portabilidade de carências (FAQ 10) e o número do Disque ANS.
 - Tom de voz: validar os três adjetivos com o cliente (pergunta 7 do roteiro).
+- **[RESOLVIDA, 27/10/2026] Nome da ação principal.** João padronizou para "Falar com a GWL" em todo o site (topo, cabeçalho, barra do celular, chamada final e 404).
+- **[DECIDIDA, 27/10/2026] Destaque de "Comece pelo hospital".** Mantido como está; a copy do topo continua sendo o H1 v3.
