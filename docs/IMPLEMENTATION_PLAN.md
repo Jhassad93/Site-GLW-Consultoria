@@ -64,11 +64,12 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): conteúdo em `src/content/institucional.ts`. FAQ com as 14 perguntas em 4 temas; portabilidade e taxa "a confirmar". Operadoras: lista lida de `empresa.ts`, estado "em validação" e declaração de participações pendente (R3). Sobre: história e equipe só na prévia, como espaço marcado (R9, R19). Contato: canais, formulário do SCHEMA (botão desativado até a etapa 8) e canais oficiais de reclamação (R17). Rodapé com Operadoras, Perguntas e Contato. Detector: só os falsos positivos conhecidos.
 
 ## Etapa 7 — Banco de dados
-- [ ] Projeto Supabase de **desenvolvimento** (conta de João); o de produção é criado na conta do cliente na etapa 11
-- [ ] Aplicar `SCHEMA.md` como migração versionada no repositório; agendar `aplicar_retencao()` no pg_cron
-- [ ] Repetir `docs/schema.test.sql` e testar pela API REST com as chaves reais: leitura, inserção e chamada da função com a chave anon bloqueadas
-- [ ] Security Advisor do Supabase sem alertas
+- [x] Projeto Supabase de **desenvolvimento** (conta de João); o de produção é criado na conta do cliente na etapa 11
+- [x] Aplicar `SCHEMA.md` como migração versionada no repositório; agendar `aplicar_retencao()` no pg_cron
+- [x] Repetir `docs/schema.test.sql` e testar pela API REST com as chaves reais: leitura, inserção e chamada da função com a chave anon bloqueadas
+- [x] Security Advisor do Supabase sem alertas
 - Pronto quando: inserção pela função com service role funciona e todo acesso público é bloqueado
+- Notas (27/10/2026): projeto `gwl-corretora-dev` criado pelo conector do Supabase (região São Paulo). Três migrações em `supabase/migrations/` (a 3ª, política restritiva explícita, zerou o aviso INFO do advisor). Testes pela API REST feitos do navegador (o ambiente de nuvem não alcança o Supabase): tudo bloqueado para a chave pública. Testes com service_role via SQL, desfeitos ao fim. A chave service_role não passou pelo chat: vai direto para as variáveis da Cloudflare na etapa 8.
 
 ## Etapa 8 — Formulário e função da Cloudflare
 - [ ] Formulário "Prefiro que me liguem" com campos do SCHEMA.md, aviso de privacidade junto do botão, honeypot e Turnstile

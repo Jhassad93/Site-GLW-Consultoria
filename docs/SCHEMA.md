@@ -147,6 +147,8 @@ for each row execute function public.tocar_lead();
 alter table public.leads enable row level security;
 alter table public.leads force row level security;
 revoke all on public.leads from anon, authenticated;
+-- (migração 3) política restritiva explícita: nega tudo à API pública
+create policy leads_negar_api_publica on public.leads as restrictive for all to anon, authenticated using (false) with check (false);
 grant select, insert, update, delete on public.leads to service_role;  -- painel e rotinas internas
 
 -- 5. Função única de entrada, chamada só pela função da Cloudflare
