@@ -6,6 +6,10 @@ import "@fontsource/atkinson-hyperlegible-next/700.css";
 import "./globals.css";
 import { SITE_URL, isPreview } from "@/config/site";
 import { FaixaPreview } from "@/components/faixa-preview";
+import { PularConteudo } from "@/components/site/pular-conteudo";
+import { Cabecalho } from "@/components/site/cabecalho";
+import { Rodape } from "@/components/site/rodape";
+import { BarraWhatsApp } from "@/components/site/barra-whatsapp";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -23,8 +27,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="pt-BR">
       <body className="flex min-h-dvh flex-col">
+        <PularConteudo />
         {isPreview && <FaixaPreview />}
-        {children}
+        <Cabecalho />
+        <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
+          {children}
+        </main>
+        <Rodape />
+        <BarraWhatsApp />
       </body>
     </html>
   );

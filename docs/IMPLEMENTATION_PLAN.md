@@ -20,14 +20,15 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Pronto quando: página em branco roda local e no build estático com as fontes e cores da marca; `SITE_STAGE=preview` mostra a faixa e `production` não
 
 ## Etapa 2 — Layout base e componentes
-- [ ] Cabeçalho (menu desktop; botão "Menu" escrito no celular), rodapé em sala Copa com a identificação completa (R1) lida de `empresa.ts`, faixa de prévia, link "pular para o conteúdo"
-- [ ] Barra fixa de WhatsApp no celular: aparece só depois que o CTA principal sai da tela e some no formulário e no rodapé
-- [ ] Componentes do DESIGN.md: botão primário (Mel) e secundário, link sublinhado, card de perfil (canto de folha), atalho de hospital, acordeão, campos de formulário com rótulo e erro
-- [ ] Helper de link do WhatsApp com mensagem pronta por contexto (perfil ou hospital), sem dados de saúde (R14)
-- [ ] Página 404 personalizada ("qual hospital você quer usar?" e volta à Home)
-- [ ] `lang="pt-BR"`, HTML semântico, foco de teclado visível (anel Rio), `prefers-reduced-motion`
-- [ ] `noindex` global quando `SITE_STAGE=preview`
+- [x] Cabeçalho (menu desktop; botão "Menu" escrito no celular), rodapé em sala Copa com a identificação completa (R1) lida de `empresa.ts`, faixa de prévia, link "pular para o conteúdo"
+- [x] Barra fixa de WhatsApp no celular: aparece só depois que o CTA principal sai da tela e some no formulário e no rodapé
+- [x] Componentes do DESIGN.md: botão primário (Mel) e secundário, link sublinhado, card de perfil (canto de folha), atalho de hospital, acordeão, campos de formulário com rótulo e erro
+- [x] Helper de link do WhatsApp com mensagem pronta por contexto (perfil ou hospital), sem dados de saúde (R14)
+- [x] Página 404 personalizada ("qual hospital você quer usar?" e volta à Home)
+- [x] `lang="pt-BR"`, HTML semântico, foco de teclado visível (anel Rio), `prefers-reduced-motion`
+- [x] `noindex` global quando `SITE_STAGE=preview`
 - Pronto quando: navegação funciona no teclado; URL inexistente mostra a 404; prints 375/768/1280 sem rolagem horizontal; nenhum dado "a confirmar" aparece como fato
+- Notas (27/10/2026): vitrine interna em `/componentes/` (só em preview; 404 em production). Menu completo a partir de 1024px; abaixo, botão "Menu". Rótulo da ação principal: "Comparar planos pelo WhatsApp" (provisório, pendência de copy). Links do rodapé para páginas das etapas 4 a 9 dão 404 até essas etapas. Atalho "Preferências de cookies" entra com o banner de consentimento. Animações só com opacity/transform.
 
 ## Etapa 3 — Home
 - [ ] Seções na ordem do DESIGN.md (no celular, "Comece pelo hospital" logo após o topo): topo, faixa de confiança, hospital, perfis (5), explicações, como funciona, quem atende, depoimentos (vazio até autorização), operadoras (texto), perguntas (6), chamada final

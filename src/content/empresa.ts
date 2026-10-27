@@ -30,7 +30,8 @@ export const empresa = {
     "cnpja.com e Google Business",
   ),
   telefone: aConfirmar<string | null>(null),
-  whatsapp: aConfirmar<string | null>(null),
+  // Número publicado no site antigo; há três números em uso (site, Instagram, Google). Só dígitos, com 55.
+  whatsapp: aConfirmar("5511992793092", "site antigo gwlcorretora.com.br; divergente do Instagram e do Google"),
   email: aConfirmar<string | null>(null),
   horarioAtendimento: aConfirmar<string | null>(null),
   operadoras: aConfirmar<string[]>([], "a lista do site antigo depende de confirmação e autorização (R3, R7)"),
