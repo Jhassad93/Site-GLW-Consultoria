@@ -88,11 +88,12 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): textos de `/privacidade` e `/termos` são RASCUNHO jurídico; a revisão por João e pelo cliente e o encarregado (DPO) seguem como pendências que bloqueiam a produção. Banner com Aceitar e Recusar com o mesmo destaque, Preferências e link no rodapé; escolha no localStorage, com evento `gwl:consentimento` para o GA4 da etapa 10. Conferido no navegador: nenhuma requisição a domínio de terceiros antes do aceite (home, perfil, privacidade e termos).
 
 ## Etapa 10 — SEO, IA e analytics
-- [ ] Title e description por página, Open Graph, favicons a partir do logo, sitemap.xml, canonical, alt text
-- [ ] JSON-LD: `InsuranceAgency` (legalName, taxID, identifier SUSEP, endereço) em todas as páginas, `FAQPage`, `BreadcrumbList` e `Service` onde couber; só com dados confirmados em production
-- [ ] Verificar os nomes atuais dos robôs de IA (prompt do PROMPTS.md), aprovar a tabela e só então gerar `robots.txt` e `llms.txt`
-- [ ] GA4 com modo de consentimento; eventos `whatsapp_click` e `generate_lead`; grupo de canais de tráfego de IA
+- [x] Title e description por página, Open Graph, favicons a partir do logo, sitemap.xml, canonical, alt text
+- [x] JSON-LD: `InsuranceAgency` (legalName, taxID, identifier SUSEP, endereço) em todas as páginas, `FAQPage`, `BreadcrumbList` e `Service` onde couber; só com dados confirmados em production
+- [x] Verificar os nomes atuais dos robôs de IA (prompt do PROMPTS.md), aprovar a tabela e só então gerar `robots.txt` e `llms.txt`
+- [x] GA4 com modo de consentimento; eventos `whatsapp_click` e `generate_lead`; grupo de canais de tráfego de IA
 - Pronto quando: Lighthouse acima de 90 em SEO e acessibilidade e PageSpeed acima de 90 no celular, nas páginas principais
+- Notas (27/10/2026): JSON-LD só com dados confirmados (hoje: nome, site, Instagram, área). Tabela de robôs em `docs/ROBOS_IA.md`, aprovada; política "liberar todos" (decisão de João, a confirmar com o cliente). `robots.txt` e `llms.txt` gerados no build: na prévia, robots bloqueia tudo. GA4 só após aceite, com modo de consentimento; o grupo de canais "IA" é configurado no painel do GA4 com as origens do evento `trafego_ia`. Lighthouse local no celular: acessibilidade e boas práticas 100; desempenho 91–92 nas internas e 77–89 na home (variação da máquina local); SEO limitado só pelo noindex da prévia. **Repetir no PageSpeed após o deploy (etapa 11)** e desligar o bloqueio de robôs de IA da Cloudflare.
 
 ## Etapa 11 — Prévia para o cliente (marco "demonstração")
 - [ ] Deploy na Cloudflare Pages em endereço provisório, `SITE_STAGE=preview`, `noindex`, formulário restrito a testes da equipe

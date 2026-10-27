@@ -77,7 +77,7 @@
 - Registro SUSEP e responsável técnico: `[A CONFIRMAR]`
 
 ## Decisões técnicas
-- Política para robôs de IA (sugestão do kit): liberar robôs de busca e bloquear os de treino. `[A CONFIRMAR]`. Para a estratégia de visibilidade em IA, avaliar liberar também os robôs que fazem visitas a pedido do usuário.
+- Política para robôs de IA: **liberar todos** (busca, visita a pedido do usuário e treino), decidida por João em 27/10/2026 para aumentar a presença da GWL nos assistentes de IA. Tabela de robôs conferida em fontes oficiais na mesma data (`docs/ROBOS_IA.md`). Confirmar com o cliente no briefing.
 - Domínio: `[A CONFIRMAR: gwlcorretora.com.br × gwlcorretoradeseguros.com.br]`
 - Contas criadas em nome do cliente: `[A CONFIRMAR]`
 - **Demonstração:** publicada em endereço provisório e privado, nunca no domínio do cliente antes do aceite.
