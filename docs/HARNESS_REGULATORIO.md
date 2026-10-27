@@ -319,6 +319,7 @@ Rodar junto com `checklists/producao.md`, `seguranca.md` e `seo-ia.md`. Para cad
 | 1.1 | 27/10/2026 | Anexo F: roteiro e BRIEF.md do kit passam a ter o bloco regulatório (R-1 a R-12) que coleta F1–F14. Regras inalteradas. |
 | 2.0 | 27/10/2026 | O diagnóstico mostrou que a GWL vende só planos de saúde e odonto. Incluídos o bloco ANS (R21–R30), os fatos F15–F17, os itens A25–A35, o léxico de saúde, a linha de base ANS e as pendências E7–E11. O R15 passa a remeter ao bloco. |
 | 2.0.1 | 27/10/2026 | Fatos F1, F2 e F5 preenchidos com o cadastro público (cnpja.com), pendentes de confirmação do cliente. Regras inalteradas. |
+| 2.0.2 | 27/10/2026 | Anexo D: decisão sobre a origem das imagens (logos baixados das operadoras, fotos do cliente, imagens de ambiente geradas por IA). Regras inalteradas. |
 
 ---
 
