@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { guiaDoHospital } from "@/content/guias";
 import { empresa, A_CONFIRMAR } from "@/content/empresa";
 import { chamadaFinal, comoFunciona, depoimentos, esteira, hospitais, manifesto, perguntas, placa, tipos, topo } from "@/content/home";
 import { perfis, rotas } from "@/content/navegacao";
@@ -100,7 +101,12 @@ export default function Home() {
           <div>
             <ListaHospitais>
               {hospitais.lista.map((h) => (
-                <ItemHospital key={h.nome} hospital={h.nome} nota={h.nota} />
+                <ItemHospital
+                  key={h.nome}
+                  hospital={h.nome}
+                  nota={guiaDoHospital(h.nome) ? "Ver o guia deste hospital" : h.nota}
+                  hrefGuia={guiaDoHospital(h.nome)}
+                />
               ))}
               <ItemHospital hospital="Outro hospital" nota="Diga qual pelo WhatsApp e conferimos para você" outro />
             </ListaHospitais>

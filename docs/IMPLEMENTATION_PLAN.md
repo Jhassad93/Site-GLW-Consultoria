@@ -49,10 +49,11 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): botão principal com o rótulo único "Falar com a GWL" e mensagem pronta do perfil. Palavra-chave como primeira linha do H1. Critique aplicada: rótulos "O que preocupa / O que explicamos", atalhos de hospital em 60+, família e trocar, par "Quando não faz sentido" no MEI, "Não é o seu caso?" alinhado, bloco de imagem fora da árvore de acessibilidade. Portabilidade e pós-venda seguem "a confirmar" (bloqueiam produção).
 
 ## Etapa 5 — Guias
-- [ ] `/guias` (índice), modelo de guia por hospital e por bairro gerados a partir de um arquivo de dados com **data de referência obrigatória** (o build falha sem data; R28)
-- [ ] Um exemplo de cada: um hospital da zona norte e Santana, com conteúdo marcado "a validar com a GWL"
-- [ ] Atalhos de hospital da home ligados aos guias existentes; "Outro hospital" abre o WhatsApp
+- [x] `/guias` (índice), modelo de guia por hospital e por bairro gerados a partir de um arquivo de dados com **data de referência obrigatória** (o build falha sem data; R28)
+- [x] Um exemplo de cada: um hospital da zona norte e Santana, com conteúdo marcado "a validar com a GWL"
+- [x] Atalhos de hospital da home ligados aos guias existentes; "Outro hospital" abre o WhatsApp
 - Pronto quando: os guias renderizam no build estático, a data aparece em toda menção de rede e o caminho "hospital sem guia" leva ao WhatsApp
+- Notas (27/10/2026): dados em `src/content/guias.ts`. A trava do R28 roda antes de todo build (testada: rede sem data → build falha). O guia do São Camilo Santana está no estado "em validação": sem nenhuma linha de rede até a GWL conferir com as operadoras (nada inventado). Detector do Impeccable nas três páginas: só os falsos positivos já conhecidos (fios finos, marca decorativa do rodapé, fonte Inter, keyframes globais da esteira).
 
 ## Etapa 6 — Perguntas frequentes, Operadoras, Sobre e Contato
 - [ ] `/perguntas-frequentes` com as 14 perguntas (cada resposta abre pela resposta), pergunta 10 de portabilidade marcada até a conferência da norma

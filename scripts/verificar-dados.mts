@@ -1,15 +1,24 @@
 /**
  * Roda antes do build (npm run build).
- * Em SITE_STAGE=production, falha se algum dado da empresa ou trecho de conteúdo não estiver confirmado.
- * Em preview, só lista as pendências.
+ * - Em qualquer estágio: falha se um guia tiver rede sem data de referência, operadora ou produto (harness R28).
+ * - Em SITE_STAGE=production: falha se algum dado da empresa ou trecho de conteúdo não estiver confirmado.
+ * - Em preview: só lista as pendências.
  */
 import { camposNaoConfirmados } from "../src/content/empresa.ts";
 import { pendenciasDeConteudo } from "../src/content/pendencias.ts";
+import { validarGuias } from "../src/content/guias.ts";
 // Conteúdos que registram pendências ao serem carregados:
 import "../src/content/home.ts";
 import "../src/content/perfis.ts";
 
 const stage = process.env.SITE_STAGE === "production" ? "production" : "preview";
+
+const errosGuias = validarGuias();
+if (errosGuias.length > 0) {
+  console.error(`[verificar-dados] Build bloqueado (R28):\n${errosGuias.map((e) => `  - ${e}`).join("\n")}`);
+  process.exit(1);
+}
+
 const dados = camposNaoConfirmados();
 const conteudo = pendenciasDeConteudo();
 const total = dados.length + conteudo.length;
