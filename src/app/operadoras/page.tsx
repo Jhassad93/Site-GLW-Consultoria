@@ -4,6 +4,9 @@ import { operadorasPagina as o } from "@/content/institucional";
 import { linksExternos, rotas } from "@/content/navegacao";
 import { TopoInterno } from "@/components/paginas/topo-interno";
 import { ChamadaFinal } from "@/components/gwl/chamada-final";
+import { LogoOperadora } from "@/components/gwl/esteira";
+import { esteira } from "@/content/home";
+import { isPreview } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Operadoras com que trabalhamos",
@@ -48,6 +51,24 @@ export default function Operadoras() {
                 </li>
               ))}
             </ul>
+          ) : isPreview ? (
+            // Prévia: demonstração com grandes operadoras (decisão de João, 28/10/2026). Em produção, nunca (R3, R7).
+            <div>
+              <ul className="m-0 grid list-none grid-cols-1 border-t border-fio p-0 sm:grid-cols-2">
+                {esteira.logosDemonstracao.map((l) => (
+                  <li key={l.arquivo} className="flex min-h-28 flex-col justify-center gap-3 border-b border-fio py-6 sm:pr-6">
+                    <span className="flex h-12 items-center">
+                      <LogoOperadora nome={l.nome} arquivo={l.arquivo} altura={l.altura} />
+                    </span>
+                    <span aria-hidden className="text-nota text-musgo">{l.nome}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 max-w-[52ch] text-nota text-musgo">
+                Demonstração: lista e logos em validação com a GWL e as operadoras. A lista oficial entra aqui assim que a GWL
+                confirmar com quais operadoras atua.
+              </p>
+            </div>
           ) : (
             <div className="border-t border-fio pt-8">
               <p className="m-0 font-heading text-2xl leading-tight tracking-titulo md:text-h3">{o.listaVazia}</p>
