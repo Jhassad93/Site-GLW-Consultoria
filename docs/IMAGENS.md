@@ -1,6 +1,6 @@
 # IMAGENS.md — inventário e prompts
 
-> Versão 2 · 27/10/2026 · ajustada ao `DESIGN.md` v2 (verde-noite, editorial, tons escuros e dessaturados).
+> Versão 3 · 27/10/2026 · topo escuro (recebe o título em branco); cards e páginas de perfil claros e esperançosos, a pedido de João.
 > Base: harness, Anexo D (decisão de 27/10/2026 sobre a origem das imagens).
 > Cada arquivo gerado entra em `LICENCAS.md` com o ID abaixo, a ferramenta, a data e a conferência dos termos de uso comercial.
 
@@ -20,8 +20,16 @@
 
 ## Negativo (para ferramentas que aceitam)
 
+Para **todas** as imagens:
+
 ```
 stock photo look, posed smile at camera, looking at camera, stethoscope, white coat, scrubs, hospital bed, ambulance, syringe, IV drip, blood, logo, brand name, text, letters, watermark, signage, uniform, badge, oversaturated, HDR, bright white background, blown highlights, plastic skin, extra fingers, distorted hands, deformed face, cartoon, 3d render, illustration, anime
+```
+
+Para os **cards e as páginas de perfil** (IMG-04 a IMG-10), acrescente:
+
+```
+dark, gloomy, moody, underexposed, low-key lighting, heavy shadows, night, rain, gray overcast sky, sad, worried, lonely, tired, crying, cold blue tones, heavily desaturated
 ```
 
 ## Inventário
@@ -74,34 +82,42 @@ Slow, steady cinematic shot, 16:9, 15 seconds, single continuous take, no cuts. 
 
 ## 2ª leva — cards de tipo de plano (todos em 7:4)
 
+> **Revisão v3 (27/10/2026):** as cenas dos cards e das páginas de perfil deixaram de ser escuras. O pedido é **esperança**: luz do dia clara, cores verdadeiras, gente sorrindo e em movimento. Só o topo da home continua escuro, porque recebe o título em branco por cima.
+> Estilo comum (já incluído em cada prompt): Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera.
+
 ### IMG-04 — Individual ou familiar
+**Ideia:** decidir em família, com leveza; a filha e a mãe rindo juntas depois de resolver o assunto.
 
 ```
-Editorial documentary photograph, 7:4 horizontal. A Brazilian woman in her fifties and her elderly mother sitting at a kitchen table in the late morning, looking at papers together and talking calmly, the mother's hand resting on her daughter's arm. Close-medium shot, papers blurred and unreadable. Soft window light from the side, deep shadows, muted warm and green tones, slightly desaturated documentary color grade, dark and quiet exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid. Realistic people, natural skin, ordinary clothes. No text, no logos, no brands.
+Editorial lifestyle photograph, 7:4 horizontal. A Brazilian woman in her fifties and her elderly mother sitting together at a bright kitchen table by a large open window on a sunny morning, laughing together, the mother affectionately touching her daughter's arm, a few papers and two coffee cups on the table, potted herbs on the windowsill. Close-medium shot, papers blurred and unreadable. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, natural skin, ordinary colorful clothes. No text, no logos, no brands.
 ```
 
 ### IMG-05 — Coletivo por adesão
+**Ideia:** a profissional que se sente segura para crescer na carreira.
 
 ```
-Editorial documentary photograph, 7:4 horizontal. A Brazilian professional woman in her thirties, an architect, standing at a large work table with drawings and a laptop in a small studio, looking down, concentrated. Medium shot; drawings and screen blurred and unreadable. Soft daylight from a large window, deep shadows, muted neutral and green tones, slightly desaturated documentary color grade, dark and calm exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid. Realistic person, casual smart clothes. No text, no logos, no brands.
+Editorial lifestyle photograph, 7:4 horizontal. A Brazilian architect in her thirties in a light-filled small studio, smiling with satisfaction as she pins a drawing to a wall board, plants and natural wood around her, sunlight coming through tall windows. Medium shot; drawings softly blurred and unreadable. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic person, casual smart clothes. No text, no logos, no brands.
 ```
 
 ### IMG-06 — Empresarial
+**Ideia:** a empresa pequena que cuida do time; clima bom, gente unida.
 
 ```
-Editorial documentary photograph, 7:4 horizontal. A small team of four Brazilian people of different ages and skin tones in a modest office in São Paulo, having an informal meeting around a wooden table with coffee cups, one person laughing. Medium-wide shot, plants and shelves softly out of focus behind them, no screens with readable content. Soft daylight, deep shadows, muted warm and green tones, slightly desaturated documentary color grade, dark and calm exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid and unposed. Ordinary work clothes, no uniforms, no badges. No text, no logos, no brands.
+Editorial lifestyle photograph, 7:4 horizontal. A small team of four Brazilian people of different ages and skin tones in a bright, friendly office in São Paulo, gathered around a wooden table with coffee, one of them telling a story and the others laughing openly, sunlight from large windows, green plants around. Medium-wide shot, no screens with readable content. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Ordinary work clothes, no uniforms, no badges. No text, no logos, no brands.
 ```
 
 ### IMG-07 — MEI e autônomo
+**Ideia:** o pequeno empreendedor orgulhoso do próprio negócio, começando bem o dia.
 
 ```
-Editorial documentary photograph, 7:4 horizontal. A Brazilian man in his forties who runs a small neighborhood bakery, arranging bread on the wooden counter early in the morning, plain apron without any logo, the quiet street softly visible through the open door. Medium shot. Low warm morning light, deep shadows, muted earthy tones, slightly desaturated documentary color grade, dark and calm exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid. Realistic person. No text, no signs, no logos, no brands.
+Editorial lifestyle photograph, 7:4 horizontal. A cheerful Brazilian man in his forties who runs a small neighborhood bakery, smiling as he places a tray of fresh bread on the wooden counter in the morning, plain apron without any logo, bright sunlit street visible through the open door, warm light filling the shop. Medium shot. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic person. No text, no signs, no logos, no brands.
 ```
 
 ### IMG-08 — Odontológico
+**Ideia:** sorriso de todas as idades, sem consultório.
 
 ```
-Editorial documentary photograph, 7:4 horizontal. A Brazilian grandmother and her young grandson brushing their teeth side by side in front of a bathroom mirror at home, laughing. Close-medium shot, their reflection softly visible, plain toothbrushes and toothpaste without any visible brand. Soft morning light, muted neutral and green tones, slightly desaturated documentary color grade, calm and slightly dark exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid. Realistic people, natural skin. No text, no logos, no brands.
+Editorial lifestyle photograph, 7:4 horizontal. A Brazilian grandmother and her young grandson brushing their teeth side by side in front of a bright bathroom mirror at home in the morning, both laughing with foamy smiles, white tiles and a small plant, soft sunlight from a window. Close-medium shot, their reflection visible, plain toothbrushes and toothpaste without any visible brand. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, natural skin. No text, no logos, no brands.
 ```
 
 ---
@@ -109,15 +125,17 @@ Editorial documentary photograph, 7:4 horizontal. A Brazilian grandmother and he
 ## 3ª leva — páginas de perfil (verticais 4:5)
 
 ### IMG-09 — Planos para 60+
+**Ideia:** o pai ativo e bem, ao lado de quem cuida dele. Fala com o filho ou a filha que escolhe pelos pais.
 
 ```
-Editorial documentary photograph, 4:5 vertical. A Brazilian man in his seventies taking a slow morning walk in a neighborhood park with his adult daughter in her forties, talking and smiling, both in casual clothes, trees and a path behind them. Medium-wide shot, the pair in the center-lower part of the frame. Soft low morning sun through trees, deep green shadows, muted warm tones, slightly desaturated documentary color grade, dark and calm exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid. Realistic people, natural skin. No text, no signs, no logos, no brands.
+Editorial lifestyle photograph, 4:5 vertical. A Brazilian man in his seventies walking briskly through a sunny neighborhood park with his adult daughter in her forties, arm in arm, both laughing at something he just said, colorful casual clothes, green trees and a sunlit path behind them. Medium-wide shot, the pair in the center-lower part of the frame. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, natural skin. No text, no signs, no logos, no brands.
 ```
 
 ### IMG-10 — Planos para a família
+**Ideia:** família nova, fim de semana, vida de bairro na zona norte.
 
 ```
-Editorial documentary photograph, 4:5 vertical. A young Brazilian father carrying his toddler on his shoulders at a weekend street fair in a residential neighborhood, both smiling, the fair softly blurred behind them. Medium shot, the pair in the center of the frame. Late afternoon light, deep shadows, muted warm and green tones, slightly desaturated documentary color grade, dark and warm exposure, gentle 35mm film grain, shallow depth of field, eye-level, candid. Realistic people, ordinary clothes. No readable signs, no text, no logos, no brands.
+Editorial lifestyle photograph, 4:5 vertical. A young Brazilian father carrying his toddler on his shoulders at a lively weekend street fair in a residential neighborhood on a sunny morning, the child laughing and holding a piece of fruit, the father smiling up at the child, colorful fruit stalls softly blurred behind them. Medium shot, the pair in the center of the frame. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, ordinary clothes. No readable signs, no text, no logos, no brands.
 ```
 
 ---
