@@ -1,7 +1,7 @@
 /**
  * Estágio de publicação (decisão de 27/10/2026, harness, Anexo D).
  * O código é o mesmo da versão final; só a configuração muda:
- * - "preview": faixa de prévia, dados não confirmados aparecem como "a confirmar", noindex.
+ * - "preview": dados não confirmados aparecem como "a confirmar", noindex (a faixa de prévia saiu em 28/10/2026).
  * - "production": sem faixa, indexável; o build falha se restar algum dado não confirmado
  *   (scripts/verificar-dados.mts).
  * Lido no build (na Vercel, variável de ambiente do projeto). Padrão seguro: preview.

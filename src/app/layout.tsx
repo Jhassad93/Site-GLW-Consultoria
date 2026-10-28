@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE_URL, isPreview } from "@/config/site";
 import { inter, interTight } from "@/fonts";
-import { FaixaPreview } from "@/components/faixa-preview";
 import { PularConteudo } from "@/components/site/pular-conteudo";
 import { Cabecalho } from "@/components/site/cabecalho";
 import { Rodape } from "@/components/site/rodape";
@@ -34,7 +33,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-dvh flex-col">
         <JsonLd dados={dadosOrganizacao()} />
         <PularConteudo />
-        {isPreview && <FaixaPreview />}
         <Cabecalho />
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           {children}
