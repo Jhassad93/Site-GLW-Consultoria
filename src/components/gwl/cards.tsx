@@ -47,11 +47,12 @@ export function CardPlano({
   acao: ReactNode;
 }) {
   return (
-    <article className="flex flex-col gap-2.5">
+    <article className="flex min-w-0 flex-col gap-2.5">
       <div className="rounded-[1.25rem] bg-branco p-3">
         <BlocoImagem imagem={imagem} className="h-56 w-full rounded-xl md:h-80" />
-        <div className="flex items-baseline justify-between gap-4 px-2 pt-4.5 pb-2">
-          <h3 className="text-2xl leading-tight md:text-h3">{titulo}</h3>
+        {/* Rótulo longo desce para a linha de baixo em vez de empurrar o card (break-ui, 28/10/2026). */}
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 px-2 pt-4.5 pb-2">
+          <h3 className="min-w-0 text-2xl leading-tight md:text-h3">{titulo}</h3>
           <span className="shrink-0 text-nota text-musgo">{rotulo}</span>
         </div>
       </div>
@@ -100,7 +101,7 @@ export function CardDepoimento({
 }) {
   if (foto) {
     return (
-      <figure className="relative m-0 flex h-[30rem] flex-col justify-end overflow-hidden rounded-3xl md:h-[31.25rem]">
+      <figure className="relative m-0 flex min-h-[30rem] flex-col justify-end overflow-hidden rounded-3xl md:min-h-[31.25rem]">
         <BlocoImagem imagem={foto} className="absolute inset-0 size-full" />
         {ilustrativo && (
           <span className="absolute top-5 left-5 z-10 rounded-full bg-noite/75 px-3 py-1.5 text-legenda text-nevoa">
@@ -116,7 +117,7 @@ export function CardDepoimento({
     );
   }
   return (
-    <figure className="escuro m-0 flex h-[30rem] flex-col justify-between rounded-3xl bg-mata p-8 text-nevoa md:h-[31.25rem] md:p-9">
+    <figure className="escuro m-0 flex min-h-[30rem] flex-col justify-between gap-8 rounded-3xl bg-mata p-8 text-nevoa md:min-h-[31.25rem] md:p-9">
       <span className="text-legenda tracking-[0.06em] text-broto">{ilustrativo ? "DEPOIMENTO FICTÍCIO" : "CLIENTE GWL"}</span>
       <blockquote className="m-0 font-heading text-[1.625rem] leading-tight tracking-titulo md:text-[1.875rem]">
         {citacao}

@@ -28,7 +28,7 @@ export function Rodape() {
           </svg>
         </div>
 
-        <div className="mt-12 grid gap-10 border-t border-fio-escuro pt-8 text-[0.9375rem] text-nevoa/80 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-10 border-t border-fio-escuro pt-8 text-[0.9375rem] text-nevoa/80 [overflow-wrap:anywhere] sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <h2 className="font-sans text-[0.9375rem] font-medium tracking-normal text-nevoa">
               {empresa.nomeFantasia.valor}
@@ -91,6 +91,10 @@ export function Rodape() {
                 ANS<span className="sr-only"> (abre em nova aba)</span>
               </a>
               .
+            </p>
+            {/* Canal oficial da ANS ao consumidor (harness R30, A35); número conferido em gov.br em 28/10/2026. */}
+            <p className="mt-3">
+              Disque ANS: <a href="tel:08007019656" className="whitespace-nowrap">0800 701 9656</a> (ligação gratuita)
             </p>
             <ul className="mt-3 list-none space-y-1.5 p-0">
               <li><Link href={rotas.sobre} className="link-nav">Sobre a GWL</Link></li>

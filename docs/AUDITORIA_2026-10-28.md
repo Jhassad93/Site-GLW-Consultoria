@@ -28,6 +28,8 @@ Dados extremos em `/componentes#pior-caso` (só prévia), pelas mesmas props dos
 | 2 | Quebrado | Card de depoimento em texto: citação | Depoimento de ~330 caracteres | Altura fixa (480–500 px): a citação passa do card e cobre o nome do autor | Altura mínima em vez de fixa, ou limite de 240 caracteres no conteúdo · `cards.tsx` |
 | 3 | Frágil | Rodapé: e-mail | e-mail longo sem espaço (ex.: `atendimento.planosdesaude@gwlcorretoradeseguros.com.br`) | Pode passar da coluna no celular | `overflow-wrap: anywhere` nos dados do rodapé · `src/components/site/rodape.tsx` |
 
+**Correções aplicadas (28/10, "corrige tudo"):** 1, 2 e 3 acima; retestado em 320, 390 e 1280 px sem rolagem lateral, depoimentos com altura igual (480/500 px) e citação longa sem sobrepor o autor. axe-core segue sem violações, exceto a legenda provisória da foto IMG-14 no celular (texto de prévia sobre o bloco cinza, falso positivo de cálculo do fundo; some quando a foto entrar).
+
 **Aguentou:** item de hospital com nome de 3 linhas e nota longa (quebra e mantém a seta); nome curto ("HCor", "Jo"); formulário com nome longo (limite de 120 no campo e no servidor) e telefone com "ramal" (erro claro por campo, sem rolagem lateral); cabeçalho em uma linha de 320 a 1280 px.
 
 ## 3. Quarta auditoria do harness (Anexo A)
@@ -70,6 +72,6 @@ Legenda: **OK** · **Pendente** (depende do cliente; o build de produção já e
 | A32 | Nenhuma promessa sobre reajuste | OK | Busca do léxico |
 | A33 | Sem "cobertura completa"; hospitais com condição e data | OK | Atalhos de hospital remetem ao WhatsApp; guias com "rede conferida em [data]" |
 | A34 | MPS antes da proposta; nenhuma taxa sem base | OK / Pendente | "Como funciona" cita o manual da ANS antes da proposta; taxa a confirmar (pendência `taxa`) |
-| A35 | Link da ANS e canal do consumidor no FAQ ou rodapé | Parcial | Link da ANS no rodapé; Disque ANS só na página "Trocar de plano". Proposta: incluir "Disque ANS 0800 701 9656" no rodapé |
+| A35 | Link da ANS e canal do consumidor no FAQ ou rodapé | OK (corrigido) | Rodapé com link da ANS e "Disque ANS: 0800 701 9656 (ligação gratuita)", número conferido em gov.br em 28/10/2026 |
 
-**Resumo:** 20 OK, 4 N/A, 3 exceções da prévia (logos, lista de operadoras, depoimentos), 7 pendentes do cliente e 1 parcial (A35).
+**Resumo:** 21 OK, 4 N/A, 3 exceções da prévia (logos, lista de operadoras, depoimentos) e 7 pendentes do cliente.
