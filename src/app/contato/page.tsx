@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * Contato (APP_FLOW › Fluxo 3; harness R12, R17, R25). O formulário segue o SCHEMA.md (sem dado de saúde, CPF ou
+ * Contato (APP_FLOW › Fluxo 3; harness R12, R17, R25). Formulário logo após o topo (pedido de João, 28/10/2026). O formulário segue o SCHEMA.md (sem dado de saúde, CPF ou
  * de terceiros). O envio vai para a rota /api/contato (src/app/api/contato/route.ts, na Vercel).
  */
 export default function Contato() {
@@ -41,21 +41,7 @@ export default function Contato() {
         contexto={{ tipo: "geral" }}
       />
 
-      <section aria-labelledby="t-canais" className="bg-branco px-5 py-20 md:px-10 md:py-28">
-        <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
-          <h2 id="t-canais" className="text-h2-cel md:text-h2">Canais de atendimento.</h2>
-          <dl className="m-0 border-t border-fio">
-            {canais.map(([rotulo, valor]) => (
-              <div key={rotulo} className="grid gap-1 border-b border-fio py-5 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6">
-                <dt className="text-nota text-musgo">{rotulo}</dt>
-                <dd className="m-0">{valor}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section id="formulario" aria-labelledby="t-form" data-oculta-barra className="px-5 py-20 md:px-10 md:py-32">
+      <section id="formulario" aria-labelledby="t-form" data-oculta-barra className="px-5 py-20 md:px-10 md:py-28">
         <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
           <div>
             <h2 id="t-form" className="text-h2-cel md:text-h2">{c.formulario.titulo}</h2>
@@ -72,6 +58,20 @@ export default function Contato() {
               </>
             }
           />
+        </div>
+      </section>
+
+      <section aria-labelledby="t-canais" className="bg-branco px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto grid max-w-[1200px] gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] md:gap-20">
+          <h2 id="t-canais" className="text-h2-cel md:text-h2">Canais de atendimento.</h2>
+          <dl className="m-0 border-t border-fio">
+            {canais.map(([rotulo, valor]) => (
+              <div key={rotulo} className="grid gap-1 border-b border-fio py-5 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6">
+                <dt className="text-nota text-musgo">{rotulo}</dt>
+                <dd className="m-0">{valor}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

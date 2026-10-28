@@ -52,5 +52,5 @@ export function validarLead(d: DadosLead): Partial<Record<CampoLead, string>> {
 /** Respostas da função, lidas pelo formulário. */
 export type RespostaContato =
   | { ok: true }
-  | { ok: false; erro: "validacao"; campos: Partial<Record<CampoLead, string>> }
+  | { ok: false; erro: "validacao"; campos: Partial<Record<CampoLead, string>>; diagnostico?: string }
   | { ok: false; erro: "bloqueado" | "limite" | "previa" | "falha"; diagnostico?: string };

@@ -68,6 +68,8 @@ export function FormularioContato({
     try {
       const r = await fetch("/api/contato/", {
         method: "POST",
+        // Nunca deixa a pessoa presa em "Enviando…": depois de 20 s vira "Tentar de novo" com o WhatsApp.
+        signal: AbortSignal.timeout(20000),
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           ...dados,
@@ -84,6 +86,7 @@ export function FormularioContato({
         router.push("/obrigado/");
         return;
       }
+      if ("diagnostico" in resposta && resposta.diagnostico) console.warn(`[contato] ${resposta.diagnostico}`);
       window.turnstile?.reset();
       if (resposta.erro === "validacao") {
         setErros(resposta.campos);

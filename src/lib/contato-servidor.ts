@@ -105,7 +105,7 @@ async function turnstileValido(token: string, ip: string | null, env: Env): Prom
   if (ip) corpo.append("remoteip", ip);
   const url = env.TURNSTILE_VERIFY_URL || "https://challenges.cloudflare.com/turnstile/v0/siteverify";
   try {
-    const r = await fetch(url, { method: "POST", body: corpo });
+    const r = await fetch(url, { method: "POST", body: corpo, signal: AbortSignal.timeout(8000) });
     const dados = (await r.json()) as { success?: boolean; "error-codes"?: string[] };
     const codigos = dados["error-codes"] ?? [];
     // Códigos da Cloudflare (ex.: invalid-input-secret) vão para o log, sem dado pessoal.
@@ -159,7 +159,7 @@ async function avisarPorEmail(lead: z.infer<typeof esquema>, env: Env): Promise<
 export async function processarContato(request: Request, env: Env, agendar?: Agendar): Promise<Response> {
   if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY || !env.TURNSTILE_SECRET_KEY) {
     console.error("[contato] variáveis de ambiente do servidor ausentes");
-    return json({ ok: false, erro: "falha" }, 500);
+    return json({ ok: false, erro: "falha", ...diag(env, "config:variaveis-ausentes") }, 500);
   }
   if (!origemPermitida(request)) return json({ ok: false, erro: "bloqueado" }, 403);
 
@@ -193,8 +193,7 @@ export async function processarContato(request: Request, env: Env, agendar?: Age
   const verificacao = await turnstileValido(lead.turnstile, ipDoVisitante(request), env);
   if (!verificacao.ok) {
     // Na prévia, o motivo técnico volta na resposta para diagnosticar a configuração; em produção, nunca.
-    const diagnostico = env.SITE_STAGE === "production" ? {} : { diagnostico: `turnstile:${verificacao.codigos.join(",")}` };
-    return json({ ok: false, erro: "bloqueado", ...diagnostico }, 403);
+    return json({ ok: false, erro: "bloqueado", ...diag(env, `turnstile:${verificacao.codigos.join(",")}`) }, 403);
   }
 
   // Prévia (harness, Anexo D): só envios de teste da equipe.
@@ -212,6 +211,7 @@ export async function processarContato(request: Request, env: Env, agendar?: Age
         ...(env.SUPABASE_SERVICE_ROLE_KEY.startsWith("eyJ") ? { authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}` } : {}),
         "content-type": "application/json",
       },
+      signal: AbortSignal.timeout(8000),
       body: JSON.stringify({
         p_nome: lead.nome,
         p_telefone: lead.telefone,
@@ -225,16 +225,17 @@ export async function processarContato(request: Request, env: Env, agendar?: Age
         p_aviso_versao: AVISO_PRIVACIDADE_VERSAO,
       }),
     });
-  } catch {
-    console.error("[contato] Supabase inacessível");
-    return json({ ok: false, erro: "falha" }, 500);
+  } catch (e) {
+    const motivo = e instanceof Error && e.name === "TimeoutError" ? "tempo-esgotado" : "rede";
+    console.error(`[contato] Supabase inacessível (${motivo})`);
+    return json({ ok: false, erro: "falha", ...diag(env, `supabase:${motivo}`) }, 500);
   }
 
   if (!r.ok) {
     const erro = (await r.json().catch(() => ({}))) as { message?: string; code?: string };
     if (erro.message === "limite_envios") return json({ ok: false, erro: "limite" }, 429);
     console.error(`[contato] registrar_lead falhou (status ${r.status}, código ${erro.code ?? "?"})`);
-    return json({ ok: false, erro: "falha" }, 500);
+    return json({ ok: false, erro: "falha", ...diag(env, `supabase:${r.status}:${erro.code ?? "?"}`) }, 500);
   }
 
   const envio = avisarPorEmail(lead, env);
@@ -244,7 +245,47 @@ export async function processarContato(request: Request, env: Env, agendar?: Age
   return json({ ok: true }, 200);
 }
 
+/** Na prévia, o motivo técnico de uma recusa volta na resposta para diagnosticar a configuração; em produção, nunca. */
+function diag(env: Env, motivo: string): { diagnostico?: string } {
+  return env.SITE_STAGE === "production" ? {} : { diagnostico: motivo };
+}
+
 /** Qualquer método além de POST. */
 export function metodoNaoPermitido(): Response {
   return new Response(null, { status: 405, headers: { allow: "POST" } });
+}
+
+/**
+ * Só na prévia: GET /api/contato/?diagnostico=1 mostra QUAIS variáveis estão preenchidas (nunca os valores)
+ * e o endereço do Supabase, para conferir a configuração da Vercel. Em produção, 405 como qualquer GET.
+ */
+export async function diagnosticoConfig(env: Env): Promise<Response> {
+  if (env.SITE_STAGE === "production") return metodoNaoPermitido();
+  let supabase: string;
+  try {
+    const u = new URL(env.SUPABASE_URL);
+    const r = await fetch(`${u.origin}/rest/v1/`, {
+      headers: { apikey: env.SUPABASE_SERVICE_ROLE_KEY },
+      signal: AbortSignal.timeout(6000),
+    });
+    supabase = `${u.host} respondeu ${r.status}`;
+  } catch (e) {
+    supabase = env.SUPABASE_URL ? `erro: ${e instanceof Error ? e.name : "desconhecido"}` : "vazio";
+  }
+  const preenchida = (v?: string) => Boolean(v && v.trim());
+  return new Response(
+    JSON.stringify({
+      SITE_STAGE: env.SITE_STAGE ?? null,
+      ACEITAR_LEADS: env.ACEITAR_LEADS ?? null,
+      SUPABASE_URL: supabase,
+      SUPABASE_SERVICE_ROLE_KEY: preenchida(env.SUPABASE_SERVICE_ROLE_KEY)
+        ? env.SUPABASE_SERVICE_ROLE_KEY.startsWith("sb_secret_") ? "preenchida (sb_secret_)" : env.SUPABASE_SERVICE_ROLE_KEY.startsWith("eyJ") ? "preenchida (JWT antiga)" : "preenchida (formato inesperado)"
+        : "vazia",
+      TURNSTILE_SECRET_KEY: preenchida(env.TURNSTILE_SECRET_KEY) ? "preenchida" : "vazia",
+      RESEND_API_KEY: preenchida(env.RESEND_API_KEY) ? "preenchida" : "vazia",
+      LEAD_NOTIFY_FROM: preenchida(env.LEAD_NOTIFY_FROM) ? "preenchido" : "vazio",
+      LEAD_NOTIFY_TO: preenchida(env.LEAD_NOTIFY_TO) ? "preenchido" : "vazio",
+    }, null, 2),
+    { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } },
+  );
 }
