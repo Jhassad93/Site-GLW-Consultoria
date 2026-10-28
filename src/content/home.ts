@@ -38,6 +38,21 @@ export const esteira = {
   titulo: "Comparamos planos de operadoras registradas na ANS",
   nota: "Lista e logos em validação com a GWL e as operadoras.",
   exemplos: Array.from({ length: 8 }, (_, i) => `[Operadora ${i + 1}]`),
+  // DEMONSTRAÇÃO (decisão de João, 28/10/2026): supõe que a GWL trabalhe com grandes operadoras do país.
+  // Logos baixados dos sites oficiais e convertidos para Cinza (DESIGN.md › Imagens). Só na prévia:
+  // em produção, valem a lista confirmada (F7, F15) e a autorização escrita de cada marca (R3, R7).
+  logosDemonstracao: [
+    { nome: "Bradesco Saúde", arquivo: "bradesco-saude", altura: 44 },
+    { nome: "Amil", arquivo: "amil", altura: 30 },
+    { nome: "SulAmérica", arquivo: "sulamerica", altura: 36 },
+    { nome: "Hapvida", arquivo: "hapvida", altura: 30 },
+    { nome: "Unimed", arquivo: "unimed", altura: 23 },
+    { nome: "Porto Saúde", arquivo: "porto", altura: 32 },
+    { nome: "Prevent Senior", arquivo: "prevent-senior", altura: 26 },
+    { nome: "Care Plus", arquivo: "care-plus", altura: 48 },
+    { nome: "Omint", arquivo: "omint", altura: 30 },
+    { nome: "MedSênior", arquivo: "medsenior", altura: 38 },
+  ],
 };
 
 export const manifesto = {

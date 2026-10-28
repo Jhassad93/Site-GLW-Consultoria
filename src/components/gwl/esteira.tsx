@@ -53,3 +53,21 @@ export function Esteira({ titulo, itens, nota }: Props) {
 export function NomeOperadora({ nome }: { nome: string }) {
   return <span className="font-heading text-[1.625rem] tracking-titulo whitespace-nowrap text-cinza">{nome}</span>;
 }
+
+/**
+ * Logo de operadora (DESIGN.md v2 › Imagens): monocromático em Cinza, altura ajustada por logo para equilibrar o peso
+ * visual. O arquivo tem 96px de altura (nítido até 2x). O nome vai no alt para o leitor de tela.
+ */
+export function LogoOperadora({ nome, arquivo, altura }: { nome: string; arquivo: string; altura: number }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- export estático
+    <img
+      src={`/midia/operadoras/${arquivo}.png`}
+      alt={nome}
+      height={altura}
+      decoding="async"
+      className="w-auto max-w-none select-none"
+      style={{ height: altura }}
+    />
+  );
+}

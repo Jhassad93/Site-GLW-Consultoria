@@ -49,7 +49,7 @@ dark, gloomy, moody, underexposed, low-key lighting, heavy shadows, night, rain,
 | IMG-03 | Topo da home (cena 3) | **Cliente**: equipe da GWL atendendo | 16:9 e 4:5 | Pedir ao cliente |
 | IMG-11 | Página "Sobre": equipe e escritório | **Cliente** | 3:2 | Pedir ao cliente |
 | IMG-12 | Depoimentos com foto | **Cliente**, com autorização de imagem | 4:5 (mín. 1200×1500) | Pedir ao cliente |
-| LOGO-xx | Esteira de operadoras | Site oficial de cada operadora | SVG ou PNG transparente ≥ 400 px | Depende da lista (F15) |
+| LOGO-xx | Esteira de operadoras | Site oficial de cada operadora | SVG ou PNG transparente ≥ 400 px | **Demonstração na prévia** (28/10): 10 grandes operadoras, a pedido de João; lista real depende de F15 e autorização (R7) |
 
 ---
 

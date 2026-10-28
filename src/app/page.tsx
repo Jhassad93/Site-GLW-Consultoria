@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { isPreview } from "@/config/site";
 import { guiaDoHospital } from "@/content/guias";
 import { empresa, A_CONFIRMAR } from "@/content/empresa";
 import { chamadaFinal, comoFunciona, depoimentos, esteira, hospitais, manifesto, perguntas, placa, tipos, topo } from "@/content/home";
@@ -8,7 +9,7 @@ import { LinkBotao } from "@/components/gwl/botao";
 import { BotaoWhatsApp } from "@/components/gwl/botao-whatsapp";
 import { TopoCenas, BotaoPausaTopo } from "@/components/gwl/topo-cenas";
 import { PlacaDados } from "@/components/gwl/placa-dados";
-import { Esteira, NomeOperadora } from "@/components/gwl/esteira";
+import { Esteira, LogoOperadora, NomeOperadora } from "@/components/gwl/esteira";
 import { ItemHospital, ListaHospitais } from "@/components/gwl/item-hospital";
 import { Carrossel } from "@/components/gwl/carrossel";
 import { CardDepoimento, CardPlano, ListaPassos } from "@/components/gwl/cards";
@@ -75,7 +76,11 @@ export default function Home() {
       {/* Esteira de operadoras (R3, R7) */}
       <Esteira
         titulo={esteira.titulo}
-        itens={nomesOperadoras.map((nome) => <NomeOperadora key={nome} nome={nome} />)}
+        itens={
+          operadoras.confirmado || !isPreview
+            ? nomesOperadoras.map((nome) => <NomeOperadora key={nome} nome={nome} />)
+            : esteira.logosDemonstracao.map((l) => <LogoOperadora key={l.arquivo} {...l} />)
+        }
         nota={operadoras.confirmado ? undefined : esteira.nota}
       />
 
