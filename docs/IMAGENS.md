@@ -28,9 +28,9 @@ stock photo look, posed smile at camera, looking at camera, stethoscope, white c
 
 | ID | Onde no site | Origem | Formato | Situação |
 | --- | --- | --- | --- | --- |
-| IMG-01 | Topo da home (cena 1) | IA | 16:9 (mín. 2560×1440) **e** 4:5 (mín. 1440×1800) | Pendente |
+| IMG-01 | Topo da home (cena 1) | IA | 16:9 (mín. 2560×1440) **e** 4:5 (mín. 1440×1800) | Dispensável: o VID-01 ocupa o topo (pôster tirado do próprio vídeo) |
 | IMG-02 | Topo da home (cena 2) | IA | 16:9 (mín. 2560×1440) **e** 4:5 (mín. 1440×1800) | Pendente |
-| VID-01 | Topo da home (vídeo, opcional) | IA (vídeo) | 16:9, 15–20 s, sem som | Opcional |
+| VID-01 | Topo da home (vídeo) | IA (vídeo) | 16:9, 15–20 s, sem som | **No site** (27/10): 12,5 s em laço; 1600×900 (2,2 MB) e recorte 4:5 720×900 (0,9 MB) |
 | IMG-04 | Card "Individual ou familiar" | IA | 7:4 (mín. 1680×960) | Pendente |
 | IMG-05 | Card "Coletivo por adesão" | IA | 7:4 | Pendente |
 | IMG-06 | Card "Empresarial" | IA | 7:4 | Pendente |

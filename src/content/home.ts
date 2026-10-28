@@ -16,6 +16,14 @@ export const topo = {
     "Esse dia começa numa boa escolha: o hospital em que você confia na rede, uma carência que cabe no seu momento e uma mensalidade que você consegue manter. Comparamos as opções e explicamos tudo antes de você assinar.",
   // R29: "sem custo" só se for verdade para toda a jornada.
   nota: `${pendente("sem-custo", "Atendimento sem custo para você.", "Atendimento sem custo para toda a jornada (R29)")} Valores, rede e aceitação são definidos pela operadora.`,
+  // VID-01 (IA, só ambiente; docs/IMAGENS.md e LICENCAS.md). Com vídeo, as cenas abaixo ficam de reserva.
+  video: {
+    id: "VID-01",
+    desktop: "/midia/topo/vid-01-1600.mp4",
+    posterDesktop: "/midia/topo/vid-01-poster-1600.webp",
+    celular: "/midia/topo/vid-01-720x900.mp4",
+    posterCelular: "/midia/topo/vid-01-poster-720x900.webp",
+  },
   cenas: [
     { id: "IMG-01", src: undefined as string | undefined, alt: "", descricao: "Cena IMG-01 · casal 60+ saindo tranquilo de uma consulta, luz da manhã" },
     { id: "IMG-02", src: undefined as string | undefined, alt: "", descricao: "Cena IMG-02 · família em casa, fim de tarde" },

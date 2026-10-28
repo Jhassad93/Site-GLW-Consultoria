@@ -25,5 +25,8 @@ if (stage === "preview") linhas.push("  X-Robots-Tag: noindex, nofollow");
 // Imagens geradas no build sem extensão (Open Graph e ícone da Apple): tipo explícito.
 linhas.push("", "/opengraph-image", "  Content-Type: image/png", "", "/apple-icon", "  Content-Type: image/png");
 
+// Vídeo e pôster do topo: arquivos grandes, trocados raramente (nome muda a cada nova versão).
+linhas.push("", "/midia/*", "  Cache-Control: public, max-age=2592000");
+
 writeFileSync("out/_headers", linhas.join("\n") + "\n");
 console.log(`[gerar-headers] out/_headers gerado (${stage}).`);

@@ -28,7 +28,7 @@ export default function Home() {
     <>
       {/* Topo */}
       <section aria-labelledby="titulo-home" className="escuro relative flex min-h-[min(46rem,calc(100svh-2.25rem))] items-end overflow-hidden bg-noite text-nevoa md:min-h-[min(57.5rem,calc(100svh-2.25rem))]">
-        <TopoCenas cenas={topo.cenas}>
+        <TopoCenas cenas={topo.cenas} video={topo.video}>
           <div className="relative mx-auto w-full max-w-[1280px] px-5 pt-32 pb-12 md:px-10 md:pb-14">
             <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-16">
               <div>
