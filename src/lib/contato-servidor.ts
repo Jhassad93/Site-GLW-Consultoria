@@ -197,9 +197,10 @@ export async function processarContato(request: Request, env: Env, agendar?: Age
   try {
     r = await fetch(`${env.SUPABASE_URL}/rest/v1/rpc/registrar_lead`, {
       method: "POST",
+      // Chave secreta nova (sb_secret_…) vai só no apikey; a service_role antiga (JWT, "eyJ…") também no Authorization.
       headers: {
         apikey: env.SUPABASE_SERVICE_ROLE_KEY,
-        authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`,
+        ...(env.SUPABASE_SERVICE_ROLE_KEY.startsWith("eyJ") ? { authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}` } : {}),
         "content-type": "application/json",
       },
       body: JSON.stringify({
