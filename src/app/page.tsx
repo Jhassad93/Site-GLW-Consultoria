@@ -75,11 +75,11 @@ export default function Home() {
             </h2>
             <p className="mt-6 text-nota text-musgo">{manifesto.fonte}</p>
           </div>
-          {/* IMG-13 (docs/IMAGENS.md): enquanto não há arquivo, bloco em tom com a descrição só na prévia. */}
+          {/* IMG-13 (docs/IMAGENS.md), decorativa; sem arquivo, bloco em tom com a descrição só na prévia. */}
           <div aria-hidden className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-pedra">
             {manifesto.imagem.src ? (
               // eslint-disable-next-line @next/next/no-img-element -- export estático
-              <img src={manifesto.imagem.src} alt="" loading="lazy" decoding="async" className="size-full object-cover" />
+              <img src={manifesto.imagem.src} srcSet={manifesto.imagem.srcSet} sizes="(min-width: 768px) 460px, 90vw" width={1024} height={1280} alt="" loading="lazy" decoding="async" className="size-full object-cover" />
             ) : (
               isPreview && <span className="absolute bottom-4 left-5 text-legenda text-musgo">{manifesto.imagem.descricao}</span>
             )}
@@ -191,7 +191,7 @@ export default function Home() {
               citacao={d.citacao}
               autor={d.autor}
               iniciais={"iniciais" in d ? d.iniciais : undefined}
-              foto={"foto" in d && d.foto ? { alt: "", descricao: d.foto, src: d.fotoSrc } : undefined}
+              foto={"foto" in d && d.foto ? { alt: "", descricao: d.foto, src: d.fotoSrc, srcSet: d.fotoSrcSet, sizes: "(min-width: 768px) 440px, 300px" } : undefined}
               ilustrativo={depoimentos.ilustrativo}
             />
           ))}

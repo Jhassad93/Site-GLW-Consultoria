@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
  * Imagens: enquanto não há arquivo (docs/IMAGENS.md), um bloco em tom escuro com a descrição da cena.
  */
 
-type Imagem = { src?: string; srcSet?: string; alt: string; descricao: string };
+type Imagem = { src?: string; srcSet?: string; sizes?: string; alt: string; descricao: string };
 
 function BlocoImagem({ imagem, className }: { imagem: Imagem; className: string }) {
   if (imagem.src) {
@@ -14,7 +14,7 @@ function BlocoImagem({ imagem, className }: { imagem: Imagem; className: string 
       <img
         src={imagem.src}
         srcSet={imagem.srcSet}
-        sizes="(min-width: 768px) 560px, 300px"
+        sizes={imagem.sizes ?? "(min-width: 768px) 560px, 300px"}
         width={720}
         height={411}
         alt={imagem.alt}
@@ -106,13 +106,13 @@ export function CardDepoimento({
   if (foto) {
     return (
       <figure className="relative m-0 flex min-h-[30rem] flex-col justify-end overflow-hidden rounded-3xl md:min-h-[31.25rem]">
-        <BlocoImagem imagem={foto} className="absolute inset-0 size-full" />
+        <BlocoImagem imagem={foto} className="absolute inset-0 size-full object-top" />
         {ilustrativo && (
           <span className="absolute top-5 left-5 z-10 rounded-full bg-noite/75 px-3 py-1.5 text-legenda text-nevoa">
             Fictício · imagem gerada por IA
           </span>
         )}
-        <div aria-hidden className="absolute inset-x-0 top-2/5 bottom-0 bg-linear-to-b from-noite/0 to-noite/85" />
+        <div aria-hidden className="absolute inset-x-0 top-1/4 bottom-0 bg-linear-to-b from-noite/0 via-noite/65 via-55% to-noite/90" />
         <figcaption className="relative p-7 text-nevoa">
           <blockquote className="m-0 font-heading text-2xl leading-tight tracking-titulo">{citacao}</blockquote>
           <span className="mt-3.5 block text-nota text-nevoa/75">{autor}</span>

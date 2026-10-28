@@ -63,7 +63,7 @@ export const manifesto = {
   frase: "Quase metade de quem tem plano não leu o contrato antes de assinar.",
   complemento: "Nós lemos com você: carência, reajuste, tipo de contrato e rede, por escrito, antes da assinatura.",
   fonte: "46% não leram ou só passaram os olhos no contrato. Fonte: pesquisa Datafolha/Abramge, 2023.",
-  imagem: { id: "IMG-13", src: undefined as string | undefined, descricao: "Imagem IMG-13 · duas pessoas lendo um contrato juntas, à mesa" },
+  imagem: { id: "IMG-13", src: "/midia/imagens/img-13-1024.webp" as string | undefined, srcSet: "/midia/imagens/img-13-640.webp 640w, /midia/imagens/img-13-1024.webp 1024w", descricao: "Imagem IMG-13 · duas pessoas lendo um contrato juntas, à mesa" },
 };
 
 registrarPendencia("hospitais", "Hospitais dos atalhos validados com a GWL");
@@ -170,7 +170,8 @@ export const depoimentos = {
       citacao: "“Eu queria um plano para a minha mãe com o hospital em que ela já se trata. Recebi a comparação por escrito e entendi a carência antes de assinar.”",
       autor: "Cláudia, 52 anos, Santana · personagem fictícia",
       foto: "Imagem IMG-14 · mulher de 50 e poucos anos em casa, gerada por IA",
-      fotoSrc: undefined as string | undefined,
+      fotoSrc: "/midia/imagens/img-14-600.webp" as string | undefined,
+      fotoSrcSet: "/midia/imagens/img-14-600.webp 600w, /midia/imagens/img-14-900.webp 900w",
     },
     {
       citacao: "“Eu não sabia a diferença entre adesão e empresarial. Me explicaram as duas com calma, e escolhi sabendo como funciona o reajuste.”",
@@ -181,7 +182,8 @@ export const depoimentos = {
       citacao: "“Com a bebê a caminho, a dúvida era a maternidade. Conferiram a rede do plano antes da proposta, e eu soube a carência para o parto.”",
       autor: "Felipe, 34 anos, Mandaqui · personagem fictício",
       foto: "Imagem IMG-15 · casal jovem esperando um bebê, gerada por IA",
-      fotoSrc: undefined as string | undefined,
+      fotoSrc: "/midia/imagens/img-15-600.webp" as string | undefined,
+      fotoSrcSet: "/midia/imagens/img-15-600.webp 600w, /midia/imagens/img-15-900.webp 900w",
     },
     {
       citacao: "“Somos cinco na empresa. Recebemos as opções lado a lado, com coparticipação e reajuste explicados, e decidimos sem pressa.”",

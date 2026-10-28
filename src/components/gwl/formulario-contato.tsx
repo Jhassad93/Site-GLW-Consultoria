@@ -81,7 +81,10 @@ export function FormularioContato({
           empresa_site: String(f.get("empresa_site") ?? ""),
         }),
       });
-      const resposta = (await r.json().catch(() => ({ ok: false, erro: "falha" }))) as RespostaContato;
+      // 429 vem do limite por IP do Vercel Firewall (sem corpo JSON): mesma mensagem do limite do servidor.
+      const resposta = (r.status === 429
+        ? { ok: false, erro: "limite" }
+        : await r.json().catch(() => ({ ok: false, erro: "falha" }))) as RespostaContato;
       if (resposta.ok) {
         router.push("/obrigado/");
         return;

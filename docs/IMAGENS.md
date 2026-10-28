@@ -46,9 +46,9 @@ dark, gloomy, moody, underexposed, low-key lighting, heavy shadows, night, rain,
 | IMG-08 | Card "Odontológico" | IA | 7:4 | **No site** (28/10): 7:4 900 e 720 px; recortado só no espelho (o primeiro plano tinha a posição das pessoas invertida) |
 | IMG-09 | Página "Planos para 60+" | IA | 4:5 (mín. 1440×1800) | **No site** (28/10): 4:5 1024 e 640 px |
 | IMG-10 | Página "Planos para a família" | IA | 4:5 (mín. 1440×1800) | **No site** (28/10): 4:5 1024 e 640 px |
-| IMG-13 | Home, seção "Por que uma corretora" | IA | 4:5 (mín. 1440×1800) | Pendente |
-| IMG-14 | Depoimento 1 (**fictício**, só na prévia) | IA | 4:5 (mín. 1200×1500) | Pendente |
-| IMG-15 | Depoimento 3 (**fictício**, só na prévia) | IA | 4:5 (mín. 1200×1500) | Pendente |
+| IMG-13 | Home, seção "Por que uma corretora" | IA | 4:5 (mín. 1440×1800) | No site (28/10): recebida em 1024×1536, recortada para 4:5, WebP 640/1024 |
+| IMG-14 | Depoimento 1 (**fictício**, só na prévia) | IA | 4:5 (mín. 1200×1500) | No site, só na prévia (28/10): 2:3, WebP 600/900 |
+| IMG-15 | Depoimento 3 (**fictício**, só na prévia) | IA | 4:5 (mín. 1200×1500) | No site, só na prévia (28/10): 2:3, WebP 600/900 |
 | IMG-03 | Topo da home (cena 3) | **Cliente**: equipe da GWL atendendo | 16:9 e 4:5 | Pedir ao cliente |
 | IMG-11 | Página "Sobre": equipe e escritório | **Cliente** | 3:2 | Pedir ao cliente |
 | IMG-12 | Depoimentos com foto | **Cliente**, com autorização de imagem | 4:5 (mín. 1200×1500) | Pedir ao cliente |
