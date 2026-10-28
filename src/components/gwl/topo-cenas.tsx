@@ -161,9 +161,9 @@ export function BotaoPausaTopo() {
       onClick={ctx.alternar}
       aria-pressed={ctx.pausado}
       aria-label={ctx.pausado ? `Retomar ${alvo}` : `Pausar ${alvo}`}
-      className="grid size-15 shrink-0 place-items-center rounded-full border border-nevoa/35 text-nevoa transition-colors duration-200 hover:border-nevoa"
+      className="absolute right-4 bottom-4 z-10 grid size-11 place-items-center rounded-full border border-nevoa/25 text-nevoa/70 transition-colors duration-200 hover:border-nevoa/60 hover:text-nevoa md:right-8 md:bottom-8"
     >
-      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+      <svg width="12" height="12" viewBox="0 0 14 14" aria-hidden>
         <path d={ctx.pausado ? "M3 1.5v11l9-5.5z" : "M3 2h3v10H3zM8 2h3v10H8z"} fill="currentColor" />
       </svg>
     </button>

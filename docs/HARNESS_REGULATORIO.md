@@ -2,7 +2,7 @@
 
 > **Cópia de trabalho.** A fonte da verdade fica no Project "[Site] GWL Corretora de Seguros" (claude.ai). Ao alterar, atualizar os dois lugares.
 
-Versão: **2.0** · Criado em: 27/10/2026 · Última verificação da linha de base: 27/10/2026
+Versão: **2.1** · Criado em: 27/10/2026 · Última verificação da linha de base: 27/10/2026
 Responsável pelo aceite regulatório: [A CONFIRMAR]
 
 > **Escopo do negócio:** segundo o site e o Instagram (`claude/diagnostico-presenca-atual.md`), a GWL vende **exclusivamente planos de saúde e odontológicos**. Por isso há duas camadas:
@@ -102,6 +102,7 @@ Harness 🔴 > BRIEF.md > DESIGN.md > regras inegociáveis do CLAUDE.md > Harnes
 
 ### R9 — Depoimentos, avaliações, números e cases
 - Só depoimentos reais, com autorização escrita do autor para uso de nome e imagem. Nada de depoimento inventado ou "ilustrativo" (CDC, art. 37; Código CONAR, Anexo Q, orientativo). 🔴 se for fictício.
+  - **Exceção (v2.1, Anexo D, 28/10/2026):** só na prévia (`noindex`, fora do domínio do cliente), depoimentos fictícios são aceitos se cada card disser que é fictício e que a imagem foi gerada por IA. Em produção continuam 🔴: a seção não aparece e o build é bloqueado enquanto houver depoimento fictício.
 - Nunca expor dados de sinistro, apólice ou valores de cliente sem autorização (LGPD). 🔴
 - Números ("+X clientes", "R$ Y em indenizações acompanhadas", "Z anos") só com fonte guardada e data. 🟡
 - Avaliações de terceiros (Google, Reclame Aqui) só por reprodução fiel, com fonte e data.
@@ -320,6 +321,7 @@ Rodar junto com `checklists/producao.md`, `seguranca.md` e `seo-ia.md`. Para cad
 | 2.0 | 27/10/2026 | O diagnóstico mostrou que a GWL vende só planos de saúde e odonto. Incluídos o bloco ANS (R21–R30), os fatos F15–F17, os itens A25–A35, o léxico de saúde, a linha de base ANS e as pendências E7–E11. O R15 passa a remeter ao bloco. |
 | 2.0.1 | 27/10/2026 | Fatos F1, F2 e F5 preenchidos com o cadastro público (cnpja.com), pendentes de confirmação do cliente. Regras inalteradas. |
 | 2.0.2 | 27/10/2026 | Anexo D: decisão sobre a origem das imagens (logos baixados das operadoras, fotos do cliente, imagens de ambiente geradas por IA). Regras inalteradas. |
+| 2.1 | 28/10/2026 | R9 ganha exceção restrita à prévia para depoimentos fictícios rotulados (pedido de João). Anexo D: logos de demonstração, pausa discreta e depoimentos fictícios. |
 
 ---
 
@@ -331,6 +333,9 @@ Rodar junto com `checklists/producao.md`, `seguranca.md` e `seo-ia.md`. Para cad
 | 27/10/2026 | Construir com arquitetura de **versão final** (formulário real com banco, e-mail de aviso, antispam, retenção LGPD), sem modo simulado | Leads reais gravados antes do aceite do cliente; dados pessoais sem controlador definido | R12, R13, LGPD | Aprovado. Condições anteriores mantidas, agora como **configuração** (`SITE_STAGE=preview` liga a faixa, os "a confirmar" e o `noindex`; `production` desliga). Banco e contas de produção criados **em nome do cliente** antes de receber qualquer lead real. Até lá, o formulário em preview só aceita envios de teste da equipe. | O código é o mesmo da entrega final; o que muda é só a configuração de publicação | João (responsável) |
 | 27/10/2026 | Origem das imagens: (a) logos de operadoras recolhidos da internet; (b) fotos entregues pelo cliente; (c) imagens geradas por IA a partir de prompts do projeto | (a) uso de marca sem autorização e lista que não bate com as operadoras reais; (b) uso de imagem de pessoa sem autorização; (c) imagem gerada apresentada como cliente, equipe ou lugar real (publicidade enganosa) e termos de uso da ferramenta | R3, R7, R9; CDC, art. 37, § 1º; CC, art. 20; LGPD | Aprovado, com condições: (a) só operadoras confirmadas pela GWL (F15), arquivo baixado do site oficial ou kit de imprensa da operadora; na prévia (`noindex`) podem aparecer marcados "em validação", o que altera a condição (2) da 1ª decisão apenas para logos; em produção, só com autorização escrita (F12, E6). (b) só com autorização de imagem de cada pessoa retratada. (c) só imagens de ambiente e situação; **nunca** apresentadas como cliente, equipe da GWL, depoimento, hospital ou lugar identificável; sem marcas, uniformes ou fachadas reais; ferramenta com uso comercial permitido. Cada imagem registrada em `LICENCAS.md` (origem, ferramenta, data, prompt ou autorização) | Viabiliza o padrão visual do DESIGN.md v2 sem banco genérico e sem atribuir a imagens geradas uma realidade que elas não têm | João (responsável) |
 
+| 28/10/2026 | Logos de 10 grandes operadoras na esteira e na página "Operadoras", supondo que a GWL trabalhe com elas | Lista que não corresponde às operadoras reais (R3); uso de marca sem autorização (R7) | R3, R7; CDC, art. 37 | Aprovado só na prévia, como demonstração: nota "em validação" visível; arquivos baixados dos sites oficiais e registrados em `LICENCAS.md`; em produção a esteira volta aos nomes confirmados e logos só com autorização escrita | Mostrar ao cliente o visual final da esteira antes de ele enviar a lista | João (responsável) |
+| 28/10/2026 | Remover os botões de pausa do topo e da esteira | Conteúdo em movimento por mais de 5 s sem forma de pausar (WCAG 2.2.2, nível A) | R18; Lei 13.146/2015, art. 63 (vinculante) | Aprovada a alternativa "discreta": sem botão ao lado da ação principal; ícone pequeno de pausa no canto do topo; esteira pausa com mouse, foco de teclado (Tab) ou toque; com movimento reduzido nada se move | Visual mais limpo sem perder o mecanismo de pausa exigido | João (responsável) |
+| 28/10/2026 | Depoimentos com textos e imagens fictícios, marcados como meramente ilustrativos | Depoimento inventado é publicidade enganosa (🔴 na R9); imagem de IA apresentada como cliente | R9; CDC, art. 37; Código CONAR, Anexo Q (orientativo) | Exceção aprovada só para a prévia (`noindex`, fora do domínio do cliente): cada card diz "fictício" e "imagem gerada por IA"; aviso na seção; nomes seguidos de "personagem fictícia(o)"; textos sem promessa (R4, R24–R28). Em produção: a seção some e a pendência "depoimentos" bloqueia o build até haver depoimentos reais com autorização escrita | Demonstrar ao cliente o formato da seção; o risco fica contido porque a prévia não é pública nem oficial e a produção é bloqueada no código | João (responsável) |
 ---
 
 ## Anexo E — Pendências

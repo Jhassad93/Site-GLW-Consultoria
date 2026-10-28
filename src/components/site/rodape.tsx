@@ -33,6 +33,7 @@ export function Rodape() {
               <div><dt className="sr-only">Razão social</dt><dd className="m-0">{exibir(empresa.razaoSocial)}</dd></div>
               <div><dt className="inline">CNPJ </dt><dd className="m-0 inline">{exibir(empresa.cnpj)}</dd></div>
               <div><dt className="inline">Registro SUSEP: </dt><dd className="m-0 inline">{exibir(registroSusep)}</dd></div>
+              <div><dt className="inline">Atuação: </dt><dd className="m-0 inline">planos de saúde e odontológicos ({A_CONFIRMAR})</dd></div>
               <div>
                 <dt className="inline">Responsável técnico: </dt>
                 <dd className="m-0 inline">

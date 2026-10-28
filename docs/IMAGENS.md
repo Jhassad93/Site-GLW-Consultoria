@@ -46,6 +46,9 @@ dark, gloomy, moody, underexposed, low-key lighting, heavy shadows, night, rain,
 | IMG-08 | Card "Odontológico" | IA | 7:4 | **No site** (28/10): 7:4 900 e 720 px; recortado só no espelho (o primeiro plano tinha a posição das pessoas invertida) |
 | IMG-09 | Página "Planos para 60+" | IA | 4:5 (mín. 1440×1800) | **No site** (28/10): 4:5 1024 e 640 px |
 | IMG-10 | Página "Planos para a família" | IA | 4:5 (mín. 1440×1800) | **No site** (28/10): 4:5 1024 e 640 px |
+| IMG-13 | Home, seção "Por que uma corretora" | IA | 4:5 (mín. 1440×1800) | Pendente |
+| IMG-14 | Depoimento 1 (**fictício**, só na prévia) | IA | 4:5 (mín. 1200×1500) | Pendente |
+| IMG-15 | Depoimento 3 (**fictício**, só na prévia) | IA | 4:5 (mín. 1200×1500) | Pendente |
 | IMG-03 | Topo da home (cena 3) | **Cliente**: equipe da GWL atendendo | 16:9 e 4:5 | Pedir ao cliente |
 | IMG-11 | Página "Sobre": equipe e escritório | **Cliente** | 3:2 | Pedir ao cliente |
 | IMG-12 | Depoimentos com foto | **Cliente**, com autorização de imagem | 4:5 (mín. 1200×1500) | Pedir ao cliente |
@@ -136,6 +139,34 @@ Editorial lifestyle photograph, 4:5 vertical. A Brazilian man in his seventies w
 
 ```
 Editorial lifestyle photograph, 4:5 vertical. A young Brazilian father carrying his toddler on his shoulders at a lively weekend street fair in a residential neighborhood on a sunny morning, the child laughing and holding a piece of fruit, the father smiling up at the child, colorful fruit stalls softly blurred behind them. Medium shot, the pair in the center of the frame. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, ordinary clothes. No readable signs, no text, no logos, no brands.
+```
+
+---
+
+## 4ª leva — manifesto e depoimentos (28/10/2026)
+
+### IMG-13 — "Nós lemos com você" (seção "Por que uma corretora")
+**Ideia:** ler o contrato com calma, em família. Ninguém da cena representa a equipe da GWL.
+**Formato:** 4:5 vertical.
+
+```
+Editorial lifestyle photograph, 4:5 vertical. A Brazilian woman in her sixties and her adult son in his thirties sitting side by side at a bright kitchen table, reading a printed contract together, he points at a paragraph with a pen while she reads attentively and smiles slightly, two coffee cups, a small plant. Close-medium shot from slightly above, the pages softly blurred and unreadable. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, natural skin, ordinary clothes. No readable text, no logos, no brands.
+```
+
+### Depoimentos fictícios (IMG-14 e IMG-15)
+> **Exceção da prévia (harness v2.1, Anexo D, 28/10/2026).** Fotos e textos são **fictícios, meramente ilustrativos**. O card mostra "Fictício · imagem gerada por IA" e o nome vem com "personagem fictícia(o)". Em produção a seção não aparece até haver depoimentos reais com autorização por escrito.
+> O texto do depoimento fica sobre a parte de baixo da foto: deixe a metade inferior mais calma (roupa, mesa, fundo liso).
+
+### IMG-14 — Cláudia, 52 anos (escolheu o plano da mãe)
+
+```
+Editorial lifestyle portrait, 4:5 vertical. A Brazilian woman in her early fifties with shoulder-length dark wavy hair and a light linen blouse, standing at home next to a large window with plants, relaxed and content, a gentle natural smile, looking slightly off-camera. Framed from the waist up, her face in the upper third of the frame; the lower half is calm, softly lit fabric and background. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic person, natural skin texture. No text, no logos, no brands.
+```
+
+### IMG-15 — Felipe, 34 anos (bebê a caminho)
+
+```
+Editorial lifestyle portrait, 4:5 vertical. A young Brazilian couple at home in a sunlit living room: a man in his mid-thirties with short curly hair and a casual t-shirt, and his visibly pregnant partner beside him, both laughing together, his hand resting gently on her shoulder. Framed from the waist up, faces in the upper third of the frame; the lower half is calm, softly lit clothes and sofa. Bright, airy natural daylight, warm and optimistic mood, soft gentle contrast, true-to-life colors with fresh natural greens and warm skin tones, lightly muted (not saturated), clean editorial documentary look, subtle 35mm film grain, shallow depth of field, eye-level, candid moment, never looking at the camera. Realistic people, natural skin texture. No text, no logos, no brands.
 ```
 
 ---

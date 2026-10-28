@@ -15,7 +15,9 @@ export const topo = {
   subtitulo:
     "Esse dia começa numa boa escolha: o hospital em que você confia na rede, uma carência que cabe no seu momento e uma mensalidade que você consegue manter. Comparamos as opções e explicamos tudo antes de você assinar.",
   // R29: "sem custo" só se for verdade para toda a jornada.
-  nota: `${pendente("sem-custo", "Atendimento sem custo para você.", "Atendimento sem custo para toda a jornada (R29)")} Valores, rede e aceitação são definidos pela operadora.`,
+  // "Atendimento sem custo para você" volta aqui quando a GWL confirmar que vale para toda a jornada (R29).
+  // Até lá, a frase sai do topo em vez de aparecer com "(a confirmar)" (pedido de João, 28/10/2026).
+  nota: "Valores, rede e aceitação são definidos pela operadora.",
   // VID-01 (IA, só ambiente; docs/IMAGENS.md e LICENCAS.md). Com vídeo, as cenas abaixo ficam de reserva.
   video: {
     id: "VID-01",
@@ -30,6 +32,7 @@ export const topo = {
   ],
 } as const;
 
+registrarPendencia("sem-custo", "Atendimento sem custo para toda a jornada (R29): confirmar para voltar ao topo da home");
 registrarPendencia("atuacao", "Ramos que a GWL comercializa (F6)");
 export const placa = { atuacao: "só saúde e odonto" };
 
@@ -60,6 +63,7 @@ export const manifesto = {
   frase: "Quase metade de quem tem plano não leu o contrato antes de assinar.",
   complemento: "Nós lemos com você: carência, reajuste, tipo de contrato e rede, por escrito, antes da assinatura.",
   fonte: "46% não leram ou só passaram os olhos no contrato. Fonte: pesquisa Datafolha/Abramge, 2023.",
+  imagem: { id: "IMG-13", src: undefined as string | undefined, descricao: "Imagem IMG-13 · duas pessoas lendo um contrato juntas, à mesa" },
 };
 
 registrarPendencia("hospitais", "Hospitais dos atalhos validados com a GWL");
@@ -150,15 +154,40 @@ export const comoFunciona = {
   ],
 };
 
-registrarPendencia("depoimentos", "Depoimentos reais com autorização escrita (R9)");
+registrarPendencia("depoimentos", "Depoimentos reais com autorização escrita (R9): os atuais são fictícios e bloqueiam a produção");
+/**
+ * DEPOIMENTOS FICTÍCIOS, MERAMENTE ILUSTRATIVOS (RASCUNHO). Decisão de João em 28/10/2026, registrada no harness
+ * (Anexo D, exceção à R9 só para a prévia). Cada card diz que é fictício; fotos geradas por IA (IMG-14, IMG-15).
+ * Em produção a seção não aparece enquanto `ilustrativo` for true, e a pendência "depoimentos" bloqueia o build.
+ * Textos sem promessa de aprovação, preço, prazo ou cobertura (R4, R24–R28).
+ */
 export const depoimentos = {
+  ilustrativo: true,
   titulo: "Quem chegou com dúvida e saiu sabendo o que assinou.",
-  aviso: "Depoimentos e fotos reais, com autorização por escrito: em validação.",
+  aviso: "Depoimentos fictícios, meramente ilustrativos, com imagens geradas por IA. Serão substituídos por depoimentos reais, com autorização por escrito.",
   itens: [
-    { citacao: "“[Trecho de depoimento real, com autorização por escrito]”", autor: "[Nome do cliente], [bairro]", foto: "Foto do cliente, autorizada (IMG-12)" },
-    { citacao: "“[Depoimento real sobre entender carência e reajuste antes de assinar]”", autor: "[Nome do cliente], cliente desde [ano]", iniciais: "AB" },
-    { citacao: "“[Trecho de depoimento real, com autorização por escrito]”", autor: "[Nome do cliente], [bairro]", foto: "Foto do cliente, autorizada (IMG-12)" },
-    { citacao: "“[Depoimento real de empresa cliente, com autorização]”", autor: "[Nome], [empresa]", iniciais: "CD" },
+    {
+      citacao: "“Eu queria um plano para a minha mãe com o hospital em que ela já se trata. Recebi a comparação por escrito e entendi a carência antes de assinar.”",
+      autor: "Cláudia, 52 anos, Santana · personagem fictícia",
+      foto: "Imagem IMG-14 · mulher de 50 e poucos anos em casa, gerada por IA",
+      fotoSrc: undefined as string | undefined,
+    },
+    {
+      citacao: "“Eu não sabia a diferença entre adesão e empresarial. Me explicaram as duas com calma, e escolhi sabendo como funciona o reajuste.”",
+      autor: "Ricardo, 41 anos, Tucuruvi · personagem fictício",
+      iniciais: "R",
+    },
+    {
+      citacao: "“Com a bebê a caminho, a dúvida era a maternidade. Conferiram a rede do plano antes da proposta, e eu soube a carência para o parto.”",
+      autor: "Felipe, 34 anos, Mandaqui · personagem fictício",
+      foto: "Imagem IMG-15 · casal jovem esperando um bebê, gerada por IA",
+      fotoSrc: undefined as string | undefined,
+    },
+    {
+      citacao: "“Somos cinco na empresa. Recebemos as opções lado a lado, com coparticipação e reajuste explicados, e decidimos sem pressa.”",
+      autor: "Sônia, sócia de uma loja em Santana · personagem fictícia",
+      iniciais: "S",
+    },
   ],
 };
 

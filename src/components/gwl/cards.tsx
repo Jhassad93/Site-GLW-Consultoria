@@ -86,16 +86,24 @@ export function CardDepoimento({
   autor,
   iniciais,
   foto,
+  ilustrativo = false,
 }: {
   citacao: string;
   autor: string;
   iniciais?: string;
   foto?: Imagem;
+  /** Depoimento fictício (só na prévia): troca o selo "Cliente GWL" e marca a foto como gerada por IA. */
+  ilustrativo?: boolean;
 }) {
   if (foto) {
     return (
       <figure className="relative m-0 flex h-[30rem] flex-col justify-end overflow-hidden rounded-3xl md:h-[31.25rem]">
         <BlocoImagem imagem={foto} className="absolute inset-0 size-full" />
+        {ilustrativo && (
+          <span className="absolute top-5 left-5 z-10 rounded-full bg-noite/75 px-3 py-1.5 text-legenda text-nevoa">
+            Fictício · imagem gerada por IA
+          </span>
+        )}
         <div aria-hidden className="absolute inset-x-0 top-2/5 bottom-0 bg-linear-to-b from-noite/0 to-noite/85" />
         <figcaption className="relative p-7 text-nevoa">
           <blockquote className="m-0 font-heading text-2xl leading-tight tracking-titulo">{citacao}</blockquote>
@@ -106,7 +114,7 @@ export function CardDepoimento({
   }
   return (
     <figure className="escuro m-0 flex h-[30rem] flex-col justify-between rounded-3xl bg-mata p-8 text-nevoa md:h-[31.25rem] md:p-9">
-      <span className="text-legenda tracking-[0.06em] text-broto">CLIENTE GWL</span>
+      <span className="text-legenda tracking-[0.06em] text-broto">{ilustrativo ? "DEPOIMENTO FICTÍCIO" : "CLIENTE GWL"}</span>
       <blockquote className="m-0 font-heading text-[1.625rem] leading-tight tracking-titulo md:text-[1.875rem]">
         {citacao}
       </blockquote>
