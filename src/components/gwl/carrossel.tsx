@@ -72,8 +72,6 @@ export function Carrossel({ titulo, rotuloItem, larguraCard, centralizado = fals
             melhor = i;
           }
         }
-        // No fim da faixa, o último card pode não alcançar a margem: considera o último.
-        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) melhor = el.children.length - 1;
         setAtual(melhor);
       });
     };
@@ -174,7 +172,12 @@ export function Carrossel({ titulo, rotuloItem, larguraCard, centralizado = fals
         onPointerUp={aoSoltar}
         onPointerCancel={aoSoltar}
         className="sem-barra relative m-0 mt-12 flex cursor-grab list-none snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain p-0 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-noite md:mt-16"
-        style={{ paddingInline: MARGEM, scrollPaddingInline: MARGEM }}
+        style={{
+          paddingLeft: MARGEM,
+          // Folga à direita para que todo card, inclusive o último, consiga encostar na margem e virar o card em foco.
+          paddingRight: `max(${MARGEM}, calc(100% - var(--card) - ${MARGEM}))`,
+          scrollPaddingInline: MARGEM,
+        }}
       >
         {itens.map((item, i) => {
           const ativo = i === atual;
