@@ -71,12 +71,12 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Pronto quando: inserção pela função com service role funciona e todo acesso público é bloqueado
 - Notas (27/10/2026): projeto `gwl-corretora-dev` criado pelo conector do Supabase (região São Paulo). Três migrações em `supabase/migrations/` (a 3ª, política restritiva explícita, zerou o aviso INFO do advisor). Testes pela API REST feitos do navegador (o ambiente de nuvem não alcança o Supabase): tudo bloqueado para a chave pública. Testes com service_role via SQL, desfeitos ao fim. A chave service_role não passou pelo chat: vai direto para as variáveis da Cloudflare na etapa 8.
 
-## Etapa 8 — Formulário e função da Cloudflare
+## Etapa 8 — Formulário (função da Cloudflare até 28/10/2026; hoje rota da Vercel)
 - [x] Formulário "Prefiro que me liguem" com campos do SCHEMA.md, aviso de privacidade junto do botão, honeypot e Turnstile
 - [x] Função `/api/contato`: validação Zod, verificação do Turnstile, chamada de `registrar_lead()`, respostas 400, 403, 429 e 500 com mensagens da copy
 - [x] E-mail de aviso via Resend; falha no e-mail não perde o lead (registro em log)
 - [x] Estados: erro por campo com dados mantidos, carregando, falha com "tentar de novo" e WhatsApp, redirecionamento para `/obrigado` (noindex, com próximos passos)
-- [ ] Regra de limite por IP na Cloudflare
+- [ ] Regra de limite por IP (agora no Vercel Firewall; feita na etapa 11)
 - Pronto quando: todos os caminhos do Fluxo 2 do APP_FLOW foram testados de ponta a ponta no ambiente de prévia
 - Notas (27/10/2026): função em `functions/api/contato.ts`, regras compartilhadas em `src/lib/lead.ts`. Testes: `npm run test:contato` (15 casos com serviços simulados) e ponta a ponta no navegador com o simulador da Cloudflare (wrangler pages dev) e Supabase/Turnstile simulados: erros por campo com dados mantidos, prévia restrita a "TESTE", falha com "Tentar de novo", limite, sucesso para `/obrigado` (noindex). Na prévia, `ACEITAR_LEADS=teste` (Anexo D). **Fica para a etapa 11 (deploy):** regra de limite por IP na Cloudflare, chaves reais do Turnstile, Supabase e Resend nas variáveis da Cloudflare, e a repetição dos testes no endereço de prévia. Prazo de retorno da página de obrigado "a confirmar".
 
