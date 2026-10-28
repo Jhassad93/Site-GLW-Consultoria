@@ -31,6 +31,7 @@ export type Env = {
   LEAD_NOTIFY_FROM?: string;
   ACEITAR_LEADS?: string;
   TURNSTILE_VERIFY_URL?: string;
+  SITE_STAGE?: string;
 };
 
 /** Agenda trabalho para depois da resposta (na Vercel, `after` do Next). Sem ele, espera o envio. */
@@ -46,6 +47,7 @@ export function lerEnv(origem: Record<string, string | undefined> = process.env)
     LEAD_NOTIFY_FROM: origem.LEAD_NOTIFY_FROM,
     ACEITAR_LEADS: origem.ACEITAR_LEADS,
     TURNSTILE_VERIFY_URL: origem.TURNSTILE_VERIFY_URL,
+    SITE_STAGE: origem.SITE_STAGE,
   };
 }
 
@@ -96,7 +98,7 @@ function origemPermitida(request: Request): boolean {
   }
 }
 
-async function turnstileValido(token: string, ip: string | null, env: Env): Promise<boolean> {
+async function turnstileValido(token: string, ip: string | null, env: Env): Promise<{ ok: boolean; codigos: string[] }> {
   const corpo = new FormData();
   corpo.append("secret", env.TURNSTILE_SECRET_KEY);
   corpo.append("response", token);
@@ -104,10 +106,14 @@ async function turnstileValido(token: string, ip: string | null, env: Env): Prom
   const url = env.TURNSTILE_VERIFY_URL || "https://challenges.cloudflare.com/turnstile/v0/siteverify";
   try {
     const r = await fetch(url, { method: "POST", body: corpo });
-    const dados = (await r.json()) as { success?: boolean };
-    return dados.success === true;
+    const dados = (await r.json()) as { success?: boolean; "error-codes"?: string[] };
+    const codigos = dados["error-codes"] ?? [];
+    // Códigos da Cloudflare (ex.: invalid-input-secret) vão para o log, sem dado pessoal.
+    if (dados.success !== true) console.error(`[contato] Turnstile recusou: ${codigos.join(",") || "sem código"}`);
+    return { ok: dados.success === true, codigos };
   } catch {
-    return false;
+    console.error("[contato] Turnstile inacessível");
+    return { ok: false, codigos: ["rede"] };
   }
 }
 
@@ -184,8 +190,11 @@ export async function processarContato(request: Request, env: Env, agendar?: Age
   }
   const lead = analise.data;
 
-  if (!(await turnstileValido(lead.turnstile, ipDoVisitante(request), env))) {
-    return json({ ok: false, erro: "bloqueado" }, 403);
+  const verificacao = await turnstileValido(lead.turnstile, ipDoVisitante(request), env);
+  if (!verificacao.ok) {
+    // Na prévia, o motivo técnico volta na resposta para diagnosticar a configuração; em produção, nunca.
+    const diagnostico = env.SITE_STAGE === "production" ? {} : { diagnostico: `turnstile:${verificacao.codigos.join(",")}` };
+    return json({ ok: false, erro: "bloqueado", ...diagnostico }, 403);
   }
 
   // Prévia (harness, Anexo D): só envios de teste da equipe.
