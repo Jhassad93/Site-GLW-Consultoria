@@ -238,3 +238,6 @@
 /* Faixas roláveis sem barra visível (carrosséis): a rolagem continua por toque, trackpad, mouse e teclado. */
 .sem-barra { scrollbar-width: none; }
 .sem-barra::-webkit-scrollbar { display: none; }
+
+/* Evita palavra sozinha na última linha dos parágrafos (auditoria de 28/10/2026). */
+p { text-wrap: pretty; }

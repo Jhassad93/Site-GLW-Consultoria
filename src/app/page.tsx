@@ -147,7 +147,7 @@ export default function Home() {
             />
           ))}
         </Carrossel>
-        <nav aria-label="Planos por perfil" className="mx-auto mt-14 max-w-[1280px] px-5 md:px-10">
+        <nav aria-label="Atalhos por perfil" className="mx-auto mt-14 max-w-[1280px] px-5 md:px-10">
           <p className="text-nota text-musgo">{tipos.perfis}</p>
           <ul className="mt-3 flex list-none flex-wrap gap-2 p-0">
             {perfis.filter((p) => p.href === rotas.pais60 || p.href === rotas.trocar).map((p) => (

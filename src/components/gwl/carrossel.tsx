@@ -8,7 +8,8 @@ import { cn } from "@/lib/utils";
  * Carrossel (DESIGN.md v2 › Movimento 3), nunca gira sozinho. Desde 28/10/2026 (pedido de João) também anda com o
  * gesto da pessoa: arrastar no celular, rolagem lateral do trackpad, arrastar com o mouse e setas do teclado
  * (com foco na faixa). Rolagem nativa com encaixe (scroll-snap); as setas levam ao card anterior ou seguinte.
- * - `centralizado`: o card em foco fica a 100% e os vizinhos a 60% de opacidade e 94% de escala (tipos de plano).
+ * - `centralizado`: o card em foco fica a 100% e os vizinhos a 85% de opacidade e 94% de escala (tipos de plano);
+ *   85% mantém o texto dos vizinhos acima de 4,5:1 (auditoria de 28/10/2026).
  * - sem `centralizado`: todos com opacidade cheia (depoimentos).
  * A posição é anunciada em aria-live. O cabeçalho (título à esquerda, setas à direita) vem como `titulo`.
  */
@@ -188,7 +189,7 @@ export function Carrossel({ titulo, rotuloItem, larguraCard, centralizado = fals
               aria-label={`${i + 1} de ${total}`}
               className={cn(
                 "shrink-0 basis-(--card) snap-start select-none transition-[opacity,transform] duration-[450ms] ease-saida motion-reduce:transition-none [&_img]:pointer-events-none",
-                centralizado && !ativo && "scale-[0.94] opacity-60",
+                centralizado && !ativo && "scale-[0.94] opacity-85",
               )}
             >
               {item}

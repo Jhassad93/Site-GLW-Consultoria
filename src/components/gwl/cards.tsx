@@ -23,7 +23,10 @@ function BlocoImagem({ imagem, className }: { imagem: Imagem; className: string 
     );
   }
   return (
-    <div role="img" aria-label={imagem.alt} className={`${className} relative bg-[#4a5a4b]`}>
+    <div
+      {...(imagem.alt ? { role: "img", "aria-label": imagem.alt } : { "aria-hidden": true })}
+      className={`${className} relative bg-[#4a5a4b]`}
+    >
       <span className="absolute bottom-3.5 left-4 text-legenda text-nevoa/85">{imagem.descricao}</span>
     </div>
   );

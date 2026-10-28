@@ -160,6 +160,40 @@ export default function Componentes() {
           </form>
         </div>
       </section>
+
+      {/* break-ui (28/10/2026): pior caso realista, entrando pelas mesmas props dos dados de demonstração. Só na prévia. */}
+      <section id="pior-caso" aria-labelledby="t-pior" className="border-t-4 border-broto bg-nevoa px-5 py-24 md:px-10">
+        <div className="mx-auto max-w-[1200px]">
+          <h2 id="t-pior" className="text-h2-cel md:text-h2">Pior caso (dados extremos).</h2>
+          <p className="mt-4 max-w-[60ch] text-nota text-musgo">
+            Nomes longos, rótulos longos, textos no limite e o caso de texto curto, para conferir quebras de linha e alinhamento.
+          </p>
+          <div className="mt-12">
+            <ListaHospitais>
+              <ItemHospital hospital="Hospital e Maternidade Nossa Senhora de Lourdes – Unidade Santana" nota="Rede conferida em 12/03/2027 para o produto Ideal Saúde Nacional Flex Coparticipação Enfermaria" />
+              <ItemHospital hospital="HCor" nota="Rede conferida em 01/2027" />
+              <ItemHospital hospital="Hospital Municipal Dr. Fernando Mauro Pires da Rocha (Campo Limpo)" nota="Perguntar pelo WhatsApp quais planos incluem" />
+            </ListaHospitais>
+          </div>
+        </div>
+        <div className="mx-auto mt-16 grid max-w-[1200px] gap-6 md:grid-cols-2 [--card:100%]">
+          <CardPlano
+            titulo="Coletivo empresarial para PME a partir de duas vidas"
+            rotulo="Microempreendedor individual"
+            imagem={{ alt: "", descricao: "Imagem com descrição longa para testar a legenda sobre o bloco de imagem em telas estreitas" }}
+            resumo="Contratado pela empresa para sócios, funcionários e dependentes com vínculo comprovado. O reajuste anual e as regras de cancelamento seguem o contrato coletivo empresarial, e a carência pode variar conforme o número de vidas e a data de entrada de cada pessoa."
+            acao={<a href="#pior-caso" className="font-medium">Comparar planos empresariais com coparticipação e reembolso →</a>}
+          />
+          <CardPlano titulo="Odonto" rotulo="Dental" imagem={{ alt: "", descricao: "Img" }} resumo="Só saúde bucal." acao={<a href="#pior-caso" className="font-medium">Ver →</a>} />
+          <CardDepoimento
+            citacao="“Eu cuidava da papelada da minha mãe, do meu sogro e da minha tia ao mesmo tempo, cada um com uma operadora, uma carência e uma rede diferente. Recebi tudo por escrito, lado a lado, e consegui decidir com calma, sem medo de descobrir depois que o hospital de sempre não estava na rede.”"
+            autor="Maria Aparecida dos Santos Albuquerque de Oliveira, 67 anos, Jardim São Paulo · personagem fictícia"
+            iniciais="MA"
+            ilustrativo
+          />
+          <CardDepoimento citacao="“Ótimo.”" autor="Jo · personagem fictício" foto={{ alt: "", descricao: "Foto" }} ilustrativo />
+        </div>
+      </section>
     </>
   );
 }

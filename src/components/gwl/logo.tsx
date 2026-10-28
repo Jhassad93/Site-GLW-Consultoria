@@ -15,7 +15,6 @@ export function Logo({ claro = false, className }: { claro?: boolean; className?
         claro ? "text-nevoa" : "text-noite",
         className,
       )}
-      aria-label="GWL Corretora de Seguros, página inicial"
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
       <img
@@ -26,10 +25,17 @@ export function Logo({ claro = false, className }: { claro?: boolean; className?
         className="h-8 w-auto"
       />
       <span className="font-heading text-2xl leading-none font-semibold tracking-marca">GWL</span>
-      {/* Some no celular estreito e entre 1024 e 1279px (onde entra o menu completo); a expressão segue no rodapé (R1). */}
-      <span className={cn("hidden text-legenda leading-none sm:inline lg:hidden xl:inline", claro ? "text-nevoa/75" : "text-musgo")}>
-        Corretora de Seguros
+      {/* Visualmente some no celular estreito e entre 1024 e 1279px (onde entra o menu completo), mas segue no nome
+          acessível do link; a expressão também fica visível no rodapé (R1). */}
+      <span
+        className={cn(
+          "sr-only text-legenda leading-none sm:not-sr-only lg:sr-only xl:not-sr-only",
+          claro ? "text-nevoa/80" : "text-grafite",
+        )}
+      >
+        {" "}Corretora de Seguros
       </span>
+      <span className="sr-only">, página inicial</span>
     </Link>
   );
 }
