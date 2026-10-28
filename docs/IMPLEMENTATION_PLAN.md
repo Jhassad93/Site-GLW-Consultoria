@@ -96,7 +96,8 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Notas (27/10/2026): JSON-LD só com dados confirmados (hoje: nome, site, Instagram, área). Tabela de robôs em `docs/ROBOS_IA.md`, aprovada; política "liberar todos" (decisão de João, a confirmar com o cliente). `robots.txt` e `llms.txt` gerados no build: na prévia, robots bloqueia tudo. GA4 só após aceite, com modo de consentimento; o grupo de canais "IA" é configurado no painel do GA4 com as origens do evento `trafego_ia`. Lighthouse local no celular: acessibilidade e boas práticas 100; desempenho 91–92 nas internas e 77–89 na home (variação da máquina local); SEO limitado só pelo noindex da prévia. **Repetir no PageSpeed após o deploy (etapa 11)** e desligar o bloqueio de robôs de IA da Cloudflare.
 
 ## Etapa 11 — Prévia para o cliente (marco "demonstração")
-- [ ] Deploy na Cloudflare Pages em endereço provisório, `SITE_STAGE=preview`, `noindex`, formulário restrito a testes da equipe
+- [x] Adaptação para a Vercel (decisão de João, 28/10/2026): sem exportação estática; `/api/contato` como rota do Next (`src/app/api/contato/route.ts`, lógica em `src/lib/contato-servidor.ts`); cabeçalhos no `next.config.ts`; saem `functions/`, `gerar-headers.mts` e o wrangler. Testes: 16 casos (`npm run test:contato`) e rota testada com `next start` e serviços simulados
+- [ ] Deploy na Vercel em endereço `.vercel.app`, `SITE_STAGE=preview`, `noindex`, formulário restrito a testes da equipe; chaves reais (Supabase, Turnstile, Resend) nas variáveis da Vercel; limite por IP no Vercel Firewall; repetir os testes do formulário e o PageSpeed na prévia
 - [ ] Rodada completa de prints e `/impeccable audit` na prévia
 - [ ] Roteiro de apresentação: pitch (`claude/argumentos-pitch.md`) mais a navegação da prévia e as perguntas do briefing
 - Pronto quando: link da prévia funcionando no celular e no computador, sem nenhum dado não confirmado apresentado como fato
@@ -108,12 +109,12 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 - Pronto quando: o build em `production` passa sem nenhum marcador `aConfirmar` restante
 
 ## Etapa 13 — Publicação
-- [ ] Contas no nome do cliente (Cloudflare, Supabase de produção, Resend, GA4, Search Console, Google Business) conforme `PUBLICACAO.md`; migração do banco para a conta do cliente
+- [ ] Contas no nome do cliente (Vercel Pro, Cloudflare, Supabase de produção, Resend, GA4, Search Console, Google Business) conforme `PUBLICACAO.md`; migração do banco para a conta do cliente
 - [ ] `/impeccable polish` e `/impeccable audit`; `npx impeccable detect` sem achados críticos; `break-ui` com dados extremos (nomes longos, telefones inválidos, hospitais com nomes grandes)
 - [ ] Auditoria contra `checklists/producao.md`, `checklists/seguranca.md`, `checklists/seo-ia.md` e a **quarta auditoria do harness (Anexo A)**
 - [ ] Reverificação da linha de base regulatória (R20), incluindo a Res. CNSP 493/2026 e as pendências E2, E5, E7 e E9
 - [ ] `docs/LICENCAS.md` completo
-- [ ] Domínio escolhido (um só), DNS na Cloudflare, HTTPS forçado, redirecionamento do domínio secundário, SPF, DKIM e DMARC do e-mail, robôs de IA conferidos
+- [ ] Domínio escolhido (um só), DNS na Cloudflare em modo somente DNS apontando para a Vercel, HTTPS forçado, redirecionamento do domínio secundário, SPF, DKIM e DMARC do e-mail, robôs de IA conferidos
 - [ ] Ficha do Google Business corrigida (categoria e dados iguais ao site); Search Console e Bing com sitemap enviado
 - [ ] `SITE_STAGE=production`
 - Pronto quando: todos os itens aplicáveis dos três checklists e da quarta auditoria estão OK no site publicado

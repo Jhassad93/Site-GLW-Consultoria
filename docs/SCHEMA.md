@@ -18,7 +18,7 @@ Não há login, área do cliente, simulador nem contratação online (brief v0).
 
 | Entidade | Campos | Regras de acesso | Integrações | Retenção (LGPD) |
 | --- | --- | --- | --- | --- |
-| `leads` | id, criado_em, atualizado_em, nome, telefone, para_quem (lista fechada), hospital_preferido (opcional, até 120 caracteres), melhor_horario (lista fechada), pagina_origem, utm_source/medium/campaign, aviso_privacidade_versao, status, contatado_em, anonimizado_em | RLS ligado e **sem nenhuma política** para `anon` e `authenticated`: ninguém lê, insere nem altera pela API pública. Entrada só pela função `registrar_lead()`, executável **apenas** pelo `service_role`, que fica guardado como segredo na função da Cloudflare. Leitura pela GWL no painel do Supabase (conta do cliente). | Função da Cloudflare `/api/contato` (Zod + Turnstile) → `registrar_lead()` → e-mail de aviso (Resend) para `LEAD_NOTIFY_TO` | Não convertidos: **excluídos 12 meses** após a última atualização. Convertidos: **anonimizados 24 meses** após a última atualização (fica só a métrica). Rotina diária `aplicar_retencao()` via pg_cron. |
+| `leads` | id, criado_em, atualizado_em, nome, telefone, para_quem (lista fechada), hospital_preferido (opcional, até 120 caracteres), melhor_horario (lista fechada), pagina_origem, utm_source/medium/campaign, aviso_privacidade_versao, status, contatado_em, anonimizado_em | RLS ligado e **sem nenhuma política** para `anon` e `authenticated`: ninguém lê, insere nem altera pela API pública. Entrada só pela função `registrar_lead()`, executável **apenas** pelo `service_role`, que fica guardado como segredo nas variáveis da Vercel. Leitura pela GWL no painel do Supabase (conta do cliente). | Rota `/api/contato` na Vercel (Zod + Turnstile) → `registrar_lead()` → e-mail de aviso (Resend) para `LEAD_NOTIFY_TO` | Não convertidos: **excluídos 12 meses** após a última atualização. Convertidos: **anonimizados 24 meses** após a última atualização (fica só a métrica). Rotina diária `aplicar_retencao()` via pg_cron. |
 
 **O que fica de fora de propósito (harness R12 e R25):** CPF, RG, e-mail, data de nascimento, idade, doenças, sintomas, medicamentos, peso, altura e qualquer dado de dependentes ou beneficiários. "Para quem" é uma categoria fechada, não identifica terceiros. O hospital preferido é texto curto e opcional. O formulário avisa para não escrever informação de saúde ali.
 
@@ -28,7 +28,7 @@ Não há login, área do cliente, simulador nem contratação online (brief v0).
 
 ```mermaid
 flowchart TD
-    F[Formulário no navegador] -->|POST com token do Turnstile| W[Função Cloudflare /api/contato]
+    F[Formulário no navegador] -->|POST com token do Turnstile| W[Rota /api/contato na Vercel]
     W --> V{Zod: campos válidos?}
     V -- Não --> E1[400 com erros por campo]
     V -- Sim --> T{Turnstile válido?}
@@ -42,7 +42,7 @@ flowchart TD
     M -. falha no e-mail .-> LOG[Lead já gravado; erro registrado no log para reenvio]
 ```
 
-**Camadas contra abuso:** honeypot no formulário, Turnstile, regra de limite por IP na Cloudflare (sugestão: 5 envios a cada 10 minutos por IP), limite por telefone no banco (3 a cada 24 horas) e validação dupla (Zod na função e restrições no banco).
+**Camadas contra abuso:** honeypot no formulário, Turnstile, regra de limite por IP no Vercel Firewall (sugestão: 5 envios a cada 10 minutos por IP), limite por telefone no banco (3 a cada 24 horas) e validação dupla (Zod na função e restrições no banco).
 
 ## Diagrama
 
@@ -74,8 +74,8 @@ erDiagram
 -- GWL Corretora de Seguros — esquema do banco (Supabase/Postgres)
 -- Versão 1 · 27/10/2026 · ver docs/SCHEMA.md
 -- Regra: nenhum acesso direto à tabela pelo navegador. O formulário chega pela
--- função da Cloudflare (/api/contato), que valida, confere o Turnstile e chama
--- public.registrar_lead() com a chave secreta (service role), guardada só na Cloudflare.
+-- rota /api/contato (Vercel), que valida, confere o Turnstile e chama
+-- public.registrar_lead() com a chave secreta (service role), guardada só nas variáveis da Vercel.
 
 -- 1. Tipos fechados (evitam texto livre com dado sensível)
 create type public.para_quem as enum (
@@ -151,7 +151,7 @@ revoke all on public.leads from anon, authenticated;
 create policy leads_negar_api_publica on public.leads as restrictive for all to anon, authenticated using (false) with check (false);
 grant select, insert, update, delete on public.leads to service_role;  -- painel e rotinas internas
 
--- 5. Função única de entrada, chamada só pela função da Cloudflare
+-- 5. Função única de entrada, chamada só pela rota /api/contato
 create function public.registrar_lead(
   p_nome text,
   p_telefone text,
@@ -246,7 +246,7 @@ Rodados com os papéis `anon`, `authenticated` e `service_role` simulados como n
 
 Antes de publicar: rodar o **Security Advisor** do Supabase sem alertas (item 7 do checklist de segurança) e repetir os testes 2 a 5 com as chaves reais pela API REST.
 
-## Variáveis de ambiente (função da Cloudflare)
+## Variáveis de ambiente (Vercel › Project › Settings › Environment Variables)
 
 | Variável | Onde | Observação |
 | --- | --- | --- |
@@ -257,6 +257,8 @@ Antes de publicar: rodar o **Security Advisor** do Supabase sem alertas (item 7 
 | `RESEND_API_KEY`, `LEAD_NOTIFY_TO` | Segredo da função | E-mail de aviso; domínio com SPF, DKIM e DMARC |
 | `NEXT_PUBLIC_GA_ID` | Build do site | Carregado só após consentimento |
 | `SITE_STAGE` | Build do site | `preview` (faixa de prévia, "a confirmar" visíveis, `noindex`) ou `production` |
+| `ACEITAR_LEADS`, `LEAD_NOTIFY_FROM` | Segredo da função | `teste` na prévia, `todos` em produção; remetente verificado na Resend |
+| `SITE_URL` | Build do site | Endereço público; vazio na prévia (usa o `.vercel.app`) |
 
 O site **não usa** a chave `anon` do Supabase: não há nenhum acesso do navegador ao banco. `NEXT_PUBLIC_SUPABASE_ANON_KEY` fica vazia.
 
@@ -268,6 +270,6 @@ O site **não usa** a chave `anon` do Supabase: não há nenhum acesso do navega
 
 ## Cuidados
 - A chave service role nunca vai ao navegador.
-- O banco e as contas (Supabase, Resend, Cloudflare) são criados **em nome do cliente** antes de receber qualquer lead real. Em `preview`, o formulário só recebe envios de teste da equipe.
+- O banco e as contas (Supabase, Resend, Vercel, Cloudflare) são criados **em nome do cliente** antes de receber qualquer lead real. Em `preview`, o formulário só recebe envios de teste da equipe.
 - Pedidos de titulares (acesso, correção, exclusão): atendidos pelo painel do Supabase; prazo e canal definidos na política de privacidade.
 - Este arquivo descreve a estrutura de dados do cliente: tratar como confidencial.

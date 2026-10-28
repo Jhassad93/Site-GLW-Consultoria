@@ -1,7 +1,7 @@
 /**
  * Regras do formulário "Prefiro que me liguem", compartilhadas entre o navegador e a função /api/contato.
  * Espelham as restrições do banco (docs/SCHEMA.md). Harness R12/R25: nada de saúde, documento ou dado de terceiros.
- * Sem imports com "@/" e sem dependências: a função da Cloudflare importa este arquivo.
+ * Sem imports com "@/" e sem dependências: a lógica do servidor (src/lib/contato-servidor.ts) e os testes importam este arquivo.
  */
 export const PARA_QUEM = ["eu", "familia", "pais_60_mais", "empresa", "mei_autonomo", "trocar_plano"] as const;
 export const MELHOR_HORARIO = ["qualquer", "manha", "tarde", "noite"] as const;

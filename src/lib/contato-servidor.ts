@@ -1,14 +1,16 @@
 /**
- * Cloudflare Pages Function: POST /api/contato (APP_FLOW › Fluxo 2; docs/SCHEMA.md).
+ * Lógica do POST /api/contato (APP_FLOW › Fluxo 2; docs/SCHEMA.md), separada da rota para ser testável.
+ * Usada por src/app/api/contato/route.ts (Vercel) e por scripts/testar-contato.mts.
  *
  * Camadas, nesta ordem: método e origem → tamanho → honeypot → validação (Zod) → Turnstile →
  * restrição da prévia → registrar_lead() no Supabase com a service role → aviso por e-mail (Resend).
  * Falha no e-mail não perde o lead: o registro já está no banco, e o erro vai para o log sem dados pessoais.
  *
- * Variáveis (Cloudflare › Settings › Variables; nunca no código):
+ * Variáveis (Vercel › Project › Settings › Environment Variables; nunca no código nem com NEXT_PUBLIC_):
  *   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, TURNSTILE_SECRET_KEY, RESEND_API_KEY, LEAD_NOTIFY_TO, LEAD_NOTIFY_FROM,
  *   ACEITAR_LEADS ("teste" na prévia: só aceita nomes que começam com "TESTE"; "todos" em produção),
  *   TURNSTILE_VERIFY_URL (opcional, só para testes locais).
+ * Arquivo só de servidor: nunca importar em componente do navegador.
  */
 import { z } from "zod";
 import {
@@ -18,7 +20,7 @@ import {
   PARA_QUEM,
   normalizarTelefone,
   type RespostaContato,
-} from "../../src/lib/lead.ts";
+} from "./lead.ts";
 
 export type Env = {
   SUPABASE_URL: string;
@@ -31,7 +33,27 @@ export type Env = {
   TURNSTILE_VERIFY_URL?: string;
 };
 
-type Contexto = { request: Request; env: Env; waitUntil?: (p: Promise<unknown>) => void };
+/** Agenda trabalho para depois da resposta (na Vercel, `after` do Next). Sem ele, espera o envio. */
+type Agendar = (p: Promise<unknown>) => void;
+
+export function lerEnv(origem: Record<string, string | undefined> = process.env): Env {
+  return {
+    SUPABASE_URL: origem.SUPABASE_URL ?? "",
+    SUPABASE_SERVICE_ROLE_KEY: origem.SUPABASE_SERVICE_ROLE_KEY ?? "",
+    TURNSTILE_SECRET_KEY: origem.TURNSTILE_SECRET_KEY ?? "",
+    RESEND_API_KEY: origem.RESEND_API_KEY,
+    LEAD_NOTIFY_TO: origem.LEAD_NOTIFY_TO,
+    LEAD_NOTIFY_FROM: origem.LEAD_NOTIFY_FROM,
+    ACEITAR_LEADS: origem.ACEITAR_LEADS,
+    TURNSTILE_VERIFY_URL: origem.TURNSTILE_VERIFY_URL,
+  };
+}
+
+/** IP do visitante para o Turnstile: Vercel (x-real-ip, x-forwarded-for) ou Cloudflare com proxy. */
+function ipDoVisitante(request: Request): string | null {
+  const h = request.headers;
+  return h.get("x-real-ip") ?? h.get("cf-connecting-ip") ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+}
 
 const TAMANHO_MAXIMO = 4096;
 
@@ -128,7 +150,11 @@ async function avisarPorEmail(lead: z.infer<typeof esquema>, env: Env): Promise<
   }
 }
 
-export async function onRequestPost({ request, env, waitUntil }: Contexto): Promise<Response> {
+export async function processarContato(request: Request, env: Env, agendar?: Agendar): Promise<Response> {
+  if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY || !env.TURNSTILE_SECRET_KEY) {
+    console.error("[contato] variáveis de ambiente do servidor ausentes");
+    return json({ ok: false, erro: "falha" }, 500);
+  }
   if (!origemPermitida(request)) return json({ ok: false, erro: "bloqueado" }, 403);
 
   const texto = await request.text();
@@ -158,7 +184,7 @@ export async function onRequestPost({ request, env, waitUntil }: Contexto): Prom
   }
   const lead = analise.data;
 
-  if (!(await turnstileValido(lead.turnstile, request.headers.get("cf-connecting-ip"), env))) {
+  if (!(await turnstileValido(lead.turnstile, ipDoVisitante(request), env))) {
     return json({ ok: false, erro: "bloqueado" }, 403);
   }
 
@@ -202,13 +228,13 @@ export async function onRequestPost({ request, env, waitUntil }: Contexto): Prom
   }
 
   const envio = avisarPorEmail(lead, env);
-  if (waitUntil) waitUntil(envio);
+  if (agendar) agendar(envio);
   else await envio;
 
   return json({ ok: true }, 200);
 }
 
-export async function onRequest({ request }: Contexto): Promise<Response> {
-  if (request.method === "POST") return json({ ok: false, erro: "falha" }, 500);
+/** Qualquer método além de POST. */
+export function metodoNaoPermitido(): Response {
   return new Response(null, { status: 405, headers: { allow: "POST" } });
 }

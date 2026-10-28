@@ -1,10 +1,10 @@
 /**
- * Testes da função /api/contato com Supabase, Turnstile e Resend simulados (fetch interceptado).
+ * Testes da lógica de /api/contato (src/lib/contato-servidor.ts) com Supabase, Turnstile e Resend simulados.
  * Rodar: node scripts/testar-contato.mts   (sai com código 1 se algum caso falhar)
  * Cobre os caminhos do Fluxo 2 do APP_FLOW: origem, tamanho, honeypot, validação, Turnstile, prévia,
  * sucesso, limite (429), falha do banco (500) e falha do e-mail sem perder o lead.
  */
-import { onRequestPost, onRequest, type Env } from "../functions/api/contato.ts";
+import { metodoNaoPermitido, processarContato, type Env } from "../src/lib/contato-servidor.ts";
 
 type Simulacao = { turnstile: boolean; supabase: "ok" | "limite" | "erro" | "rede"; resend: "ok" | "erro" };
 let sim: Simulacao;
@@ -60,7 +60,7 @@ let falhas = 0;
 async function caso(nome: string, corpo: unknown, s: Partial<Simulacao>, esperado: { status: number; erro?: string }, e: Env = env, origem?: string) {
   sim = { turnstile: true, supabase: "ok", resend: "ok", ...s };
   chamadas.length = 0;
-  const r = await onRequestPost({ request: pedido(corpo, origem), env: e });
+  const r = await processarContato(pedido(corpo, origem), e);
   const json = (await r.json()) as { ok: boolean; erro?: string; campos?: Record<string, string> };
   const passou = r.status === esperado.status && (esperado.erro ? json.erro === esperado.erro : json.ok === true);
   if (!passou) falhas++;
@@ -86,8 +86,9 @@ await caso("11 erro no banco", valido, { supabase: "erro" }, { status: 500, erro
 await caso("12 banco fora do ar", valido, { supabase: "rede" }, { status: 500, erro: "falha" });
 await caso("13 e-mail falha, lead gravado", valido, { resend: "erro" }, { status: 200 });
 await caso("14 JSON inválido", "{nome:", {}, { status: 400, erro: "bloqueado" });
+await caso("14b servidor sem variáveis", valido, {}, { status: 500, erro: "falha" }, { ...env, SUPABASE_SERVICE_ROLE_KEY: "" });
 
-const get = await onRequest({ request: new Request("https://gwl.exemplo/api/contato"), env });
+const get = metodoNaoPermitido();
 const okGet = get.status === 405;
 if (!okGet) falhas++;
 console.log(`${okGet ? "OK  " : "FALHA"} 15 GET → ${get.status}`);

@@ -16,7 +16,7 @@
 | 10 | Conteúdo em formato de resposta | AEO/GEO | Perguntas reais do BRIEF.md respondidas na primeira frase de cada seção |
 | 11 | Fatos verificáveis | AEO/GEO | Números, preços ou faixas, prazos, área de atendimento e data de atualização visíveis |
 | 12 | Entidade consistente | AEO/GEO | Nome, CNPJ, endereço e redes idênticos no site, no JSON-LD (sameAs), no Google e no LinkedIn |
-| 13 | Política para robôs de IA | AEO/GEO | Nomes confirmados na documentação oficial antes de gerar o arquivo; política do BRIEF.md aplicada no robots.txt e testada após o deploy (inclusive configuração de robôs de IA da Cloudflare) |
+| 13 | Política para robôs de IA | AEO/GEO | Nomes confirmados na documentação oficial antes de gerar o arquivo; política do BRIEF.md aplicada no robots.txt e testada após o deploy (e, se o proxy da Cloudflare estiver ligado, a configuração de robôs de IA dela) |
 | 14 | Autoria e credenciais | AEO/GEO | Página Sobre com pessoas, experiência, clientes e certificações |
 | 15 | Tráfego vindo de IA | AEO/GEO | GA4 separa chatgpt.com, perplexity.ai, gemini.google.com, claude.ai, copilot.microsoft.com |
 | 16 | llms.txt (opcional) | AEO/GEO | /llms.txt com resumo e links principais, gerado do BRIEF.md |
@@ -31,4 +31,4 @@ for bot in OAI-SearchBot ChatGPT-User Claude-SearchBot Claude-User PerplexityBot
 done
 ```
 
-O teste simula só o nome do robô; firewalls que checam IP podem tratar os robôs reais de outra forma. Confira nos logs da Cloudflare.
+O teste simula só o nome do robô; firewalls que checam IP podem tratar os robôs reais de outra forma. Confira nos logs da hospedagem (Vercel) ou da Cloudflare, se o proxy estiver ligado.

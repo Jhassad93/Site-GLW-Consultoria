@@ -7,12 +7,12 @@
     "dev": "next dev",
     "prebuild": "node scripts/verificar-dados.mts",
     "build": "next build",
-    "postbuild": "node scripts/gerar-headers.mts",
     "build:preview": "SITE_STAGE=preview npm run build",
     "build:production": "SITE_STAGE=production npm run build",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test:contato": "node scripts/testar-contato.mts"
+    "test:contato": "node scripts/testar-contato.mts",
+    "start": "next start"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -30,7 +30,6 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261027.1",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -38,8 +37,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "wrangler": "^4.154.0"
+    "typescript": "^5"
   },
   "engines": {
     "node": ">=22.18"

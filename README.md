@@ -19,7 +19,7 @@ Tudo o que o processo exige está neste repositório, inclusive o roteiro da reu
 CLAUDE.md                  Processo e regras para o agente (AGENTS.md aponta para cá)
 docs/
   ROTEIRO_BRIEFING.md      Roteiro oficial da reunião com o cliente (12 perguntas)
-  PUBLICACAO.md            Contas do cliente, publicação na Cloudflare e operação
+  PUBLICACAO.md            Contas do cliente, publicação na Vercel (DNS na Cloudflare) e operação
   CONCORRENTES.md          Matriz de concorrentes, lacunas e diferencial
   BRIEF.md                 Por que, para quem, qual resultado
   APP_FLOW.md              Páginas e fluxo (Mermaid)
@@ -58,7 +58,7 @@ São instaladas por projeto, não copiadas para este repositório, para sempre u
 
 ## Stack padrão
 
-Next.js + TypeScript + Tailwind + shadcn/ui · Cloudflare (hospedagem e DNS) · Supabase (quando houver dados) · GA4 com consentimento · sem CMS.
+Next.js + TypeScript + Tailwind + shadcn/ui · Vercel (hospedagem) + Cloudflare (DNS e Turnstile) · Supabase (quando houver dados) · GA4 com consentimento · sem CMS.
 
 ## Manutenção do kit
 

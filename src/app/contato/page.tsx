@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 /**
  * Contato (APP_FLOW › Fluxo 3; harness R12, R17, R25). O formulário segue o SCHEMA.md (sem dado de saúde, CPF ou
- * de terceiros). O envio vai para a função da Cloudflare /api/contato (functions/api/contato.ts).
+ * de terceiros). O envio vai para a rota /api/contato (src/app/api/contato/route.ts, na Vercel).
  */
 export default function Contato() {
   const { whatsapp, telefone, email, horarioAtendimento, endereco } = empresa;

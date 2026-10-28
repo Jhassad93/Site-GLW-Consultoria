@@ -10,7 +10,7 @@
 web
 
 ## Stack
-Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui, exportação estática para Cloudflare Pages; formulário por função da Cloudflare + Supabase (definido pelo kit e pelo SCHEMA.md).
+Next.js (App Router) + TypeScript + Tailwind CSS v4 + shadcn/ui, hospedado na Vercel, com DNS e Turnstile na Cloudflare; páginas geradas no build e formulário pela rota `/api/contato` + Supabase (SCHEMA.md).
 
 ## Users
 - Pessoas da zona norte de São Paulo escolhendo plano de saúde ou odontológico **(hipótese, proto-personas)**:

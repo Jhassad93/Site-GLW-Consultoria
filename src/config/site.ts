@@ -4,7 +4,7 @@
  * - "preview": faixa de prévia, dados não confirmados aparecem como "a confirmar", noindex.
  * - "production": sem faixa, indexável; o build falha se restar algum dado não confirmado
  *   (scripts/verificar-dados.mts).
- * Lido no build (exportação estática). Padrão seguro: preview.
+ * Lido no build (na Vercel, variável de ambiente do projeto). Padrão seguro: preview.
  */
 export type SiteStage = "preview" | "production";
 
@@ -14,4 +14,6 @@ export const SITE_STAGE: SiteStage = raw === "production" ? "production" : "prev
 
 export const isPreview = SITE_STAGE === "preview";
 
-export const SITE_URL = process.env.SITE_URL ?? "https://gwlcorretora.com.br";
+// Na prévia da Vercel sem SITE_URL definido, usa o endereço .vercel.app do projeto.
+const urlVercel = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
+export const SITE_URL = process.env.SITE_URL ?? urlVercel ?? "https://gwlcorretora.com.br";

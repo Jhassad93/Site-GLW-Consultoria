@@ -66,7 +66,7 @@ export function FormularioContato({
     setEstado("enviando");
     const params = new URLSearchParams(window.location.search);
     try {
-      const r = await fetch("/api/contato", {
+      const r = await fetch("/api/contato/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({

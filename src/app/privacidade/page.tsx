@@ -67,7 +67,8 @@ const secoes: { titulo: string; corpo: React.ReactNode }[] = [
       <>
         <p>Usamos fornecedores que tratam dados em nosso nome, só para operar o site:</p>
         <ul>
-          <li>Cloudflare: hospedagem do site, envio do formulário e proteção contra robôs (Turnstile).</li>
+          <li>Vercel: hospedagem do site e envio do formulário.</li>
+          <li>Cloudflare: proteção contra robôs no formulário (Turnstile).</li>
           <li>Supabase: banco de dados onde ficam os pedidos de contato.</li>
           <li>Resend: envio do e-mail que avisa a equipe sobre um novo pedido.</li>
           <li>Google: estatísticas de visita, só com o seu consentimento.</li>

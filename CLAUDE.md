@@ -47,7 +47,7 @@ Execute o plano etapa por etapa, conforme a regra principal.
 - Next.js (App Router) + TypeScript + Tailwind CSS + shadcn/ui.
 - Componentes: escolha **uma** biblioteca principal por site (ver tabela abaixo) e use as outras só para lacunas.
 - Registros já configurados em `components.json` (copie de `config/components.json`): `@spell`, `@cult-ui`, `@componentry`. `@react-bits` funciona sem registro (diretório oficial do shadcn).
-- Hospedagem: **Cloudflare**. Prefira exportação estática (`output: "export"`) quando o site não precisar de servidor. Para recursos de servidor, rode `npx vinext check` antes de qualquer outra coisa e reporte o resultado.
+- Hospedagem: **Vercel**; DNS e Turnstile na **Cloudflare** (decisão de João, 28/10/2026). Páginas de conteúdo geradas no build; só rotas como `/api/contato` rodam no servidor (função da Vercel). DNS da Cloudflare em modo "somente DNS" (nuvem cinza) apontando para a Vercel.
 - Banco (se houver): Supabase com RLS em todas as tabelas.
 - Analytics: GA4 via `@next/third-parties`, carregado só após consentimento no banner de cookies.
 - Sem painel de edição (CMS): conteúdo fica no código.

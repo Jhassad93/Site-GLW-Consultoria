@@ -18,7 +18,6 @@ Preencher durante o projeto com cada componente de terceiros efetivamente usado.
 | Fonte Inter (corpo) | Fontsource (subconjunto latino, em `src/fonts/`) | SIL Open Font License 1.1 | Definida no DESIGN.md v2 (27/10/2026); servida pelo next/font |
 | @next/third-parties (GA4) | github.com/vercel/next.js | MIT | Carrega só depois do consentimento |
 | Zod | zod.dev | MIT | Validação na função /api/contato |
-| Wrangler (desenvolvimento) | Cloudflare | MIT / Apache 2.0 | Só para testar a função localmente; não vai para o site |
 | Referências visuais (só linguagem, nenhum asset copiado) | instituteofhealth.com · untillabs.com · hona.com | Referência de estilo | DESIGN.md v2 › Referências |
 | Imagens geradas por IA (uma linha por arquivo) | [ferramenta e versão] · prompt em `docs/IMAGENS.md` (ID) | [termos da ferramenta: uso comercial permitido? data da conferência] | Só ambiente; nunca cliente, equipe ou lugar identificável (Anexo D) |
 | VID-01 · `public/midia/topo/vid-01-*` (vídeo do topo, 2 cortes e 2 pôsteres) | [ferramenta a informar por João] · gerado por João em 27/10/2026 · prompt VID-01 de `docs/IMAGENS.md` | [conferir termos de uso comercial da ferramenta] | Revisado em 27/10/2026: sem texto, logos, placas, uniformes ou equipamento médico; mãos e rostos naturais. Editado: 0–12,5 s, entrada e saída em Noite para o laço, sem áudio |
