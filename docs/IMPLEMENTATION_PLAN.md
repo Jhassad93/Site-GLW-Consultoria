@@ -98,6 +98,7 @@ Arquitetura de versão final; prévia e produção diferem só por `SITE_STAGE` 
 ## Etapa 11 — Prévia para o cliente (marco "demonstração")
 - [x] Adaptação para a Vercel (decisão de João, 28/10/2026): sem exportação estática; `/api/contato` como rota do Next (`src/app/api/contato/route.ts`, lógica em `src/lib/contato-servidor.ts`); cabeçalhos no `next.config.ts`; saem `functions/`, `gerar-headers.mts` e o wrangler. Testes: 16 casos (`npm run test:contato`) e rota testada com `next start` e serviços simulados
 - [ ] Deploy na Vercel em endereço `.vercel.app`, `SITE_STAGE=preview`, `noindex`, formulário restrito a testes da equipe; chaves reais (Supabase, Turnstile, Resend) nas variáveis da Vercel; limite por IP no Vercel Firewall; repetir os testes do formulário e o PageSpeed na prévia
+  - Progresso (28/10/2026): deploy, variáveis e PageSpeed (celular 92/100/100) OK. Teste real do formulário OK: envio de João com Turnstile real, registro no Supabase e e-mail do Resend recebido. Envio com tempo-limite (20 s no navegador, 8 s por serviço) e diagnóstico só na prévia. Falta: limite por IP no Vercel Firewall (precisa do OK de João).
 - [ ] Rodada completa de prints e `/impeccable audit` na prévia
 - [ ] Roteiro de apresentação: pitch (`claude/argumentos-pitch.md`) mais a navegação da prévia e as perguntas do briefing
 - Pronto quando: link da prévia funcionando no celular e no computador, sem nenhum dado não confirmado apresentado como fato
