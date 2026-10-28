@@ -133,7 +133,7 @@ export default function Home() {
               key={t.titulo}
               titulo={t.titulo}
               rotulo={t.rotulo}
-              imagem={{ alt: "", descricao: t.imagem.descricao }}
+              imagem={{ alt: "", descricao: t.imagem.descricao, src: t.imagem.src, srcSet: t.imagem.srcSet }}
               resumo={t.resumo}
               acao={
                 t.acao.href ? (

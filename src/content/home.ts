@@ -68,7 +68,7 @@ export const tipos = {
     {
       titulo: "Individual ou familiar",
       rotulo: "Pessoa física",
-      imagem: { id: "IMG-04", descricao: "Imagem IMG-04 · mãe e filha à mesa da cozinha" },
+      imagem: { id: "IMG-04", descricao: "Imagem IMG-04 · mãe e filha à mesa da cozinha", src: "/midia/imagens/img-04-720.webp", srcSet: "/midia/imagens/img-04-720.webp 720w, /midia/imagens/img-04-1200.webp 1200w" },
       resumo:
         "Contratado direto por você, para você e sua família. O reajuste anual tem teto definido pela ANS, e a operadora só pode cancelar por fraude ou falta de pagamento.",
       acao: { rotulo: "Ver planos para a família", href: "/planos-de-saude-familia/" },
@@ -76,7 +76,7 @@ export const tipos = {
     {
       titulo: "Coletivo por adesão",
       rotulo: "Entidade de classe",
-      imagem: { id: "IMG-05", descricao: "Imagem IMG-05 · profissional no estúdio" },
+      imagem: { id: "IMG-05", descricao: "Imagem IMG-05 · profissional no estúdio", src: "/midia/imagens/img-05-720.webp", srcSet: "/midia/imagens/img-05-720.webp 720w, /midia/imagens/img-05-1200.webp 1200w" },
       resumo:
         "Pelo vínculo com uma entidade de classe ou profissional. O reajuste e as regras de cancelamento seguem o contrato coletivo.",
       acao: { rotulo: "Ver se você pode aderir", whatsapp: true },
@@ -84,7 +84,7 @@ export const tipos = {
     {
       titulo: "Empresarial",
       rotulo: "Empresas",
-      imagem: { id: "IMG-06", descricao: "Imagem IMG-06 · equipe pequena em reunião" },
+      imagem: { id: "IMG-06", descricao: "Imagem IMG-06 · equipe pequena em reunião", src: "/midia/imagens/img-06-720.webp", srcSet: "/midia/imagens/img-06-720.webp 720w, /midia/imagens/img-06-1200.webp 1200w" },
       resumo:
         "Contratado pela empresa para sócios e funcionários com vínculo. O reajuste e o cancelamento seguem o contrato empresarial.",
       acao: { rotulo: "Ver planos empresariais", href: "/planos-de-saude-empresas/" },
@@ -92,7 +92,7 @@ export const tipos = {
     {
       titulo: "MEI e autônomo",
       rotulo: "CNPJ",
-      imagem: { id: "IMG-07", descricao: "Imagem IMG-07 · padaria de bairro de manhã" },
+      imagem: { id: "IMG-07", descricao: "Imagem IMG-07 · padaria de bairro de manhã", src: "/midia/imagens/img-07-720.webp", srcSet: "/midia/imagens/img-07-720.webp 720w, /midia/imagens/img-07-1200.webp 1200w" },
       // R26: regra dos 6 meses, sem incentivo a MEI de fachada.
       resumo:
         "Pelo CNPJ ativo e regular há pelo menos 6 meses, comprovado na contratação e todo ano. Comparamos com o individual antes de você decidir.",
@@ -101,7 +101,7 @@ export const tipos = {
     {
       titulo: "Odontológico",
       rotulo: "Saúde bucal",
-      imagem: { id: "IMG-08", descricao: "Imagem IMG-08 · avó e neto escovando os dentes" },
+      imagem: { id: "IMG-08", descricao: "Imagem IMG-08 · avó e neto escovando os dentes", src: "/midia/imagens/img-08-720.webp", srcSet: "/midia/imagens/img-08-720.webp 720w, /midia/imagens/img-08-900.webp 900w" },
       resumo: "Plano só para a saúde bucal, contratado sozinho ou junto com o plano de saúde, com carência e cobertura próprias.",
       acao: { rotulo: "Comparar planos odontológicos", whatsapp: true },
     },

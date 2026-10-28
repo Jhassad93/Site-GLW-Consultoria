@@ -5,12 +5,22 @@ import type { ReactNode } from "react";
  * Imagens: enquanto não há arquivo (docs/IMAGENS.md), um bloco em tom escuro com a descrição da cena.
  */
 
-type Imagem = { src?: string; alt: string; descricao: string };
+type Imagem = { src?: string; srcSet?: string; alt: string; descricao: string };
 
 function BlocoImagem({ imagem, className }: { imagem: Imagem; className: string }) {
   if (imagem.src) {
-    // eslint-disable-next-line @next/next/no-img-element -- export estático; otimização no build
-    return <img src={imagem.src} alt={imagem.alt} className={`${className} object-cover`} />;
+    return (
+      // eslint-disable-next-line @next/next/no-img-element -- export estático; WebP em 2 larguras gerado à mão
+      <img
+        src={imagem.src}
+        srcSet={imagem.srcSet}
+        sizes="(min-width: 768px) 560px, 90vw"
+        alt={imagem.alt}
+        loading="lazy"
+        decoding="async"
+        className={`${className} object-cover`}
+      />
+    );
   }
   return (
     <div role="img" aria-label={imagem.alt} className={`${className} relative bg-[#4a5a4b]`}>

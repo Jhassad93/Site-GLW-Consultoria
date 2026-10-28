@@ -39,13 +39,13 @@ dark, gloomy, moody, underexposed, low-key lighting, heavy shadows, night, rain,
 | IMG-01 | Topo da home (cena 1) | IA | 16:9 (mín. 2560×1440) **e** 4:5 (mín. 1440×1800) | Dispensável: o VID-01 ocupa o topo (pôster tirado do próprio vídeo) |
 | IMG-02 | Topo da home (cena 2) | IA | 16:9 (mín. 2560×1440) **e** 4:5 (mín. 1440×1800) | Pendente |
 | VID-01 | Topo da home (vídeo) | IA (vídeo) | 16:9, 15–20 s, sem som | **No site** (27/10): 12,5 s em laço; 1600×900 (2,2 MB) e recorte 4:5 720×900 (0,9 MB) |
-| IMG-04 | Card "Individual ou familiar" | IA | 7:4 (mín. 1680×960) | Pendente |
-| IMG-05 | Card "Coletivo por adesão" | IA | 7:4 | Pendente |
-| IMG-06 | Card "Empresarial" | IA | 7:4 | Pendente |
-| IMG-07 | Card "MEI e autônomo" | IA | 7:4 | Pendente |
-| IMG-08 | Card "Odontológico" | IA | 7:4 | Pendente |
-| IMG-09 | Página "Planos para 60+" | IA | 4:5 (mín. 1440×1800) | Pendente |
-| IMG-10 | Página "Planos para a família" | IA | 4:5 (mín. 1440×1800) | Pendente |
+| IMG-04 | Card "Individual ou familiar" | IA | 7:4 (mín. 1680×960) | **No site** (28/10): 7:4 1200 e 720 px |
+| IMG-05 | Card "Coletivo por adesão" | IA | 7:4 | **No site** (28/10): 7:4 1200 e 720 px |
+| IMG-06 | Card "Empresarial" | IA | 7:4 | **No site** (28/10): 7:4 1200 e 720 px |
+| IMG-07 | Card "MEI e autônomo" | IA | 7:4 | **No site** (28/10): 7:4 1200 e 720 px |
+| IMG-08 | Card "Odontológico" | IA | 7:4 | **No site** (28/10): 7:4 900 e 720 px; recortado só no espelho (o primeiro plano tinha a posição das pessoas invertida) |
+| IMG-09 | Página "Planos para 60+" | IA | 4:5 (mín. 1440×1800) | **No site** (28/10): 4:5 1024 e 640 px |
+| IMG-10 | Página "Planos para a família" | IA | 4:5 (mín. 1440×1800) | **No site** (28/10): 4:5 1024 e 640 px |
 | IMG-03 | Topo da home (cena 3) | **Cliente**: equipe da GWL atendendo | 16:9 e 4:5 | Pedir ao cliente |
 | IMG-11 | Página "Sobre": equipe e escritório | **Cliente** | 3:2 | Pedir ao cliente |
 | IMG-12 | Depoimentos com foto | **Cliente**, com autorização de imagem | 4:5 (mín. 1200×1500) | Pedir ao cliente |

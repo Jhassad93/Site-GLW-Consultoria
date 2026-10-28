@@ -18,7 +18,7 @@ export type ConteudoPerfil = {
   palavraChave: string;
   h1: string;
   abertura: string;
-  imagem?: { id: string; descricao: string };
+  imagem?: { id: string; descricao: string; src?: string; srcSet?: string };
   pares: { titulo: string; preocupacao: string; resposta: string }[];
   /** Mostra os atalhos de hospital (personas para quem o hospital é o critério nº 1). */
   hospitais?: boolean;
@@ -45,7 +45,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
     h1: "Plano de saúde para seus pais, com a rede onde eles se tratam.",
     abertura:
       "Depois dos 60, o plano mais barato hoje pode não ser o mais sustentável amanhã. Comparamos opções pela rede e explicamos o reajuste de cada tipo de contrato antes da escolha.",
-    imagem: { id: "IMG-09", descricao: "Imagem IMG-09 · pai de 70 anos caminhando no parque com a filha" },
+    imagem: { id: "IMG-09", descricao: "Imagem IMG-09 · pai de 70 anos caminhando no parque com a filha", src: "/midia/imagens/img-09-640.webp", srcSet: "/midia/imagens/img-09-640.webp 640w, /midia/imagens/img-09-1024.webp 1024w" },
     hospitais: true,
     pares: [
       {
@@ -106,7 +106,7 @@ export const paginasPerfil: Record<PerfilId, ConteudoPerfil> = {
     h1: "Plano de saúde para a família, perto de casa.",
     abertura:
       "Pediatria, pronto-socorro e maternidade na zona norte: começamos pelos lugares que vocês já usam. Explicamos carência de parto, coparticipação e acomodação sem pressa.",
-    imagem: { id: "IMG-10", descricao: "Imagem IMG-10 · pai com o filho nos ombros numa feira de bairro" },
+    imagem: { id: "IMG-10", descricao: "Imagem IMG-10 · pai com o filho nos ombros numa feira de bairro", src: "/midia/imagens/img-10-640.webp", srcSet: "/midia/imagens/img-10-640.webp 640w, /midia/imagens/img-10-1024.webp 1024w" },
     hospitais: true,
     pares: [
       {

@@ -49,7 +49,19 @@ function Topo({ p }: { p: ConteudoPerfil }) {
         </div>
         {p.imagem ? (
           <div aria-hidden className="relative hidden aspect-[4/5] overflow-hidden rounded-3xl bg-[#3a4436] lg:block">
-            {isPreview && <span className="absolute bottom-4 left-5 text-legenda text-nevoa/80">{p.imagem.descricao}</span>}
+            {p.imagem.src ? (
+              // eslint-disable-next-line @next/next/no-img-element -- export estático
+              <img
+                src={p.imagem.src}
+                srcSet={p.imagem.srcSet}
+                sizes="(min-width: 1024px) 480px, 1px"
+                alt=""
+                decoding="async"
+                className="size-full object-cover"
+              />
+            ) : (
+              isPreview && <span className="absolute bottom-4 left-5 text-legenda text-nevoa/80">{p.imagem.descricao}</span>
+            )}
           </div>
         ) : null}
       </div>
