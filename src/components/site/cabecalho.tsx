@@ -32,11 +32,11 @@ export function Cabecalho() {
 
   return (
     <header className="sticky top-4 z-50 h-0 px-3 md:px-4">
-      <div className="vidro relative mx-auto flex min-h-15 max-w-[1200px] items-center justify-between gap-4 rounded-full py-1.5 pr-1.5 pl-6">
+      <div className="vidro relative mx-auto flex min-h-15 max-w-[1200px] items-center justify-between gap-4 rounded-full py-1.5 pr-1.5 pl-4 sm:pl-6">
         <Logo />
 
         <nav aria-label="Menu principal" className="hidden lg:block">
-          <ul className="m-0 flex list-none items-center gap-7 p-0 text-base">
+          <ul className="m-0 flex list-none items-center gap-5 p-0 text-base whitespace-nowrap xl:gap-7">
             {menuPrincipal.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="link-nav text-noite">
@@ -52,7 +52,7 @@ export function Cabecalho() {
           variante="escuro"
           tamanho="compacto"
           seta
-          className="hidden lg:inline-flex"
+          className="hidden whitespace-nowrap lg:inline-flex"
           data-evento="whatsapp_click"
         >
           Falar com a GWL

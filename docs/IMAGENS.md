@@ -175,4 +175,4 @@ Editorial lifestyle portrait, 4:5 vertical. A young Brazilian couple at home in 
 - Fotos da equipe atendendo no escritório (IMG-03, IMG-11), com autorização de imagem de quem aparece.
 - Foto da fachada ou do interior do escritório, se quiser mostrar o atendimento presencial.
 - Fotos de clientes para depoimentos (IMG-12), só com autorização escrita.
-- Logotipo original da GWL em vetor (SVG, PDF ou AI).
+- Logotipo original da GWL em vetor (SVG, PDF ou AI). **Provisório no site (28/10/2026):** redesenho vetorial da árvore em `public/marca/`, aprovado por João.

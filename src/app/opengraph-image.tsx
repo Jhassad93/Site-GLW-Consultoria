@@ -10,10 +10,12 @@ export const contentType = "image/png";
 
 export default async function Imagem() {
   const fontes = join(process.cwd(), "node_modules/@fontsource");
-  const [titulo, corpo] = await Promise.all([
+  const [titulo, corpo, arvore] = await Promise.all([
     readFile(join(fontes, "inter-tight/files/inter-tight-latin-500-normal.woff")),
     readFile(join(fontes, "inter/files/inter-latin-400-normal.woff")),
+    readFile(join(process.cwd(), "public/marca/arvore-nevoa.svg")),
   ]);
+  const arvoreSrc = `data:image/svg+xml;base64,${arvore.toString("base64")}`;
   return new ImageResponse(
     (
       <div
@@ -25,11 +27,14 @@ export default async function Imagem() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          gap: 40,
           padding: "72px 80px",
           fontFamily: "Inter",
         }}
       >
-        <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          { }
+          <img src={arvoreSrc} width={88} height={64} alt="" />
           <span style={{ fontFamily: "Inter Tight", fontSize: 44, letterSpacing: "-0.04em" }}>GWL</span>
           <span style={{ fontSize: 22, color: "rgba(243,242,238,0.75)" }}>Corretora de Seguros</span>
         </div>
@@ -41,7 +46,6 @@ export default async function Imagem() {
             Planos de saúde e odontológicos · Santana, zona norte de São Paulo
           </span>
         </div>
-        <div style={{ display: "flex", width: 56, height: 56, borderRadius: 999, background: "#C9E27A" }} />
       </div>
     ),
     {
