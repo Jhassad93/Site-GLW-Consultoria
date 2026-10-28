@@ -43,9 +43,20 @@ export function TopoCenas({ cenas, video, children }: { cenas: readonly Cena[]; 
     const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
     const economia = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
     const avaliar = () => setVideoPermitido(!reduzido.matches && !economia);
-    avaliar();
+    // O vídeo só começa a baixar depois que a página carregou: o pôster é o LCP e não disputa banda com ele
+    // (PageSpeed de 28/10/2026: 2 s de atraso de renderização no celular).
+    let espera = 0;
+    const iniciar = () => {
+      espera = window.setTimeout(avaliar, 800);
+    };
+    if (document.readyState === "complete") iniciar();
+    else window.addEventListener("load", iniciar, { once: true });
     reduzido.addEventListener("change", avaliar);
-    return () => reduzido.removeEventListener("change", avaliar);
+    return () => {
+      window.clearTimeout(espera);
+      window.removeEventListener("load", iniciar);
+      reduzido.removeEventListener("change", avaliar);
+    };
   }, [video]);
 
   return (
@@ -92,7 +103,14 @@ function FundoVideo({ video, tocar, pausado }: { video: VideoTopo; tocar: boolea
     <>
       <picture>
         <source media={CELULAR} srcSet={video.posterCelular} type="image/webp" />
-        <img src={video.posterDesktop} alt="" className="absolute inset-0 size-full object-cover" fetchPriority="high" />
+        <img
+          src={video.posterDesktop}
+          alt=""
+          width={1600}
+          height={900}
+          className="absolute inset-0 size-full object-cover"
+          fetchPriority="high"
+        />
       </picture>
       {tocar && (
         <video

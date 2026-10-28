@@ -14,7 +14,9 @@ function BlocoImagem({ imagem, className }: { imagem: Imagem; className: string 
       <img
         src={imagem.src}
         srcSet={imagem.srcSet}
-        sizes="(min-width: 768px) 560px, 90vw"
+        sizes="(min-width: 768px) 560px, 300px"
+        width={720}
+        height={411}
         alt={imagem.alt}
         loading="lazy"
         decoding="async"
@@ -27,7 +29,9 @@ function BlocoImagem({ imagem, className }: { imagem: Imagem; className: string 
       {...(imagem.alt ? { role: "img", "aria-label": imagem.alt } : { "aria-hidden": true })}
       className={`${className} relative bg-[#4a5a4b]`}
     >
-      <span className="absolute bottom-3.5 left-4 text-legenda text-nevoa/85">{imagem.descricao}</span>
+      <span className="absolute right-4 bottom-3.5 left-4 w-fit rounded-md bg-noite/80 px-2 py-1 text-legenda text-nevoa">
+        {imagem.descricao}
+      </span>
     </div>
   );
 }
